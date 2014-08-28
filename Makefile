@@ -1,7 +1,8 @@
 all: group compiler
 
 group:
-	@echo "Zach Bright and Nathan Tornquist"
+	@echo "Zach Bright (zbright)"
+	@echo "Nathan Tornquist (ntornqui)"
 
 compiler: helloworld
 
