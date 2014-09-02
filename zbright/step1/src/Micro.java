@@ -14,8 +14,12 @@ public class Micro {
     tokens.fill();
     for(Token token : tokens.getTokens())
     {
-      System.out.println("Token Type: " + MicroLexer.tokenNames[token.getType()]);
-      System.out.println("Value: " + token.getText());
+      try {
+        System.out.println("Token Type: " + MicroLexer.tokenNames[token.getType()]);
+        System.out.println("Value: " + token.getText());
+      } catch(IndexOutOfBoundsException e) {
+        //Catches a failed lookup of tokenNames for last token
+      }
     }
   }
 }

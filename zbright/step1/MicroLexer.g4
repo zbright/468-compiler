@@ -38,6 +38,10 @@ OPERATOR
   | '>='
   ;
 
+IDENTIFIER
+  : ('A'..'Z' | 'a'..'z') ('A'..'Z' | 'a'..'z' | '0'..'9')*
+  ;
+
 INTLITERAL
   : ('0'..'9')+
   ;
