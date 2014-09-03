@@ -1,4 +1,7 @@
 lexer grammar MicroLexer;
+COMMENT
+  : '--'  ~[\r\n]* '\r'? '\n' -> skip ;
+
 KEYWORD
   : 'PROGRAM'
   | 'BEGIN'
@@ -54,6 +57,5 @@ STRINGLITERAL
   : '"' ~('"')* '"'
   ;
 
-COMMENT
-  : '--' .* ( '\n' | '\r')
-  ;
+WHITESPACE
+  : [\t\r\n\f ]+ -> skip ;
