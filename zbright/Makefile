@@ -1,11 +1,10 @@
 LIB_ANTLR := lib/antlr.jar
-ANTLR_SCRIPT := MicroLexer.g4
+ANTLR_SCRIPT := Micro.g4
 
 all: group compiler
 
 group:
-	@echo "Zach Bright (zbright)"
-	@echo "Nathan Tornquist (ntornqui)"
+	@echo "zbright ntornqui"
 compiler:
 	rm -rf build
 	mkdir build
