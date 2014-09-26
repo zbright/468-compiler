@@ -19,6 +19,7 @@ public class Micro {
       ParseTreeWalker walker = new ParseTreeWalker();
       MicroExtendedListener listener = new MicroExtendedListener();
       walker.walk(listener, tree);
+      listener.print_symbols();
     } catch (ParseCancellationException e) {
       System.out.println("Not accepted");
     }
