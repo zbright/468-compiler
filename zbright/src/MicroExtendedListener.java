@@ -69,6 +69,11 @@ public class MicroExtendedListener extends MicroBaseListener {
     }
   }
 
+	@Override
+  public void exitString_decl(@NotNull MicroParser.String_declContext ctx) {
+    System.out.println(ctx.id().IDENTIFIER().toString());
+  }
+
   public void print_symbols() {
     System.out.println("Tree Printed");
   }
