@@ -18,7 +18,7 @@ decl
 
 /* Global String Declaration */
 string_decl
-  : STRING id ':=' str SEMICOLON ;
+  : STRING id ASSIGN str SEMICOLON ;
 
 str
   : STRINGLITERAL ;
@@ -95,7 +95,7 @@ assign_stmt
   :assign_expr SEMICOLON ;
 
 assign_expr
-  : id ':=' expr ;
+  : id ASSIGN expr ;
 
 read_stmt
   : READ '(' id_list ')' SEMICOLON ;
@@ -148,13 +148,13 @@ primary
   ;
 
 addop
-  : '+'
-  | '-'
+  : PLUS
+  | MINUS
   ;
 
 mulop
-  : '*'
-  | '/'
+  : MULT
+  | DIVIDE
   ;
 
 /* Complex Statements and Condition */
@@ -170,12 +170,12 @@ cond
   : expr compop expr ;
 
 compop
-  : '<'
-  | '>'
-  | '='
-  | '!='
-  | '<='
-  | '>='
+  : LESS
+  | MORE
+  | EQUAL
+  | NEQUAL
+  | LESSEQUAL
+  | MOREEQUAL
   ;
 
 /* ECE 468 students use this version of while_stmt */
@@ -207,23 +207,20 @@ FLOAT : 'FLOAT' ;
 
 COMMA: ',';
 SEMICOLON: ';' ;
-OPERATOR
-  : ':='
-  | '+'
-  | '-'
-  | '*'
-  | '/'
-  | '='
-  | '!='
-  | '<'
-  | '>'
-  | '('
-  | ')'
-  | ';'
-  | ','
-  | '<='
-  | '>='
-  ;
+
+ASSIGN: ':=';
+PLUS: '+';
+MINUS: '-';
+MULT: '*';
+DIVIDE: '/';
+EQUAL: '=';
+NEQUAL: '!=';
+LESS: '<';
+MORE: '>';
+LEFTPAREN: '(';
+RIGHTPAREN: ')';
+LESSEQUAL: '<=';
+MOREEQUAL: '>=';
 
 IDENTIFIER
   : ('A'..'Z' | 'a'..'z') ('A'..'Z' | 'a'..'z' | '0'..'9')*

@@ -1,6 +1,12 @@
 import org.antlr.v4.runtime.misc.NotNull;
 
 public class MicroExtendedListener extends MicroBaseListener {
+  int blockNumber = 0;
+  private String block() {
+    blockNumber++;
+    return "BLOCK " + blockNumber;
+  }
+
   @Override
   public void enterProgram(@NotNull MicroParser.ProgramContext ctx) {
     //System.out.println(ctx.getText());
@@ -19,6 +25,7 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void enterWhile_stmt(@NotNull MicroParser.While_stmtContext ctx) {
+    System.out.println(block());
     System.out.println("Enter Block (while)");
   }
 
@@ -29,6 +36,7 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void enterElse_part(@NotNull MicroParser.Else_partContext ctx) {
+    System.out.println(block());
     System.out.println("Enter Block (else)");
   }
 
@@ -39,6 +47,7 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void enterIf_stmt(@NotNull MicroParser.If_stmtContext ctx) {
+    System.out.println(block());
     System.out.println("Enter Block (if)");
   }
 
@@ -53,6 +62,9 @@ public class MicroExtendedListener extends MicroBaseListener {
     SymbolType type = SymbolType.NULL;
     if (ctx.var_type().INT() != null) { type = SymbolType.INT; }
     else if (ctx.var_type().FLOAT() != null) { type = SymbolType.FLOAT; }
+    String id = ctx.id().IDENTIFIER().getText();
+    Symbol symbol = new Symbol(id, type, null);
+
     System.out.println(type.toString() + ": " + ctx.id().IDENTIFIER().getText());
   }
 
@@ -65,13 +77,20 @@ public class MicroExtendedListener extends MicroBaseListener {
     if (type == null) { return; }
 
     for (MicroParser.IdContext idc : ctx.id_list().id()) {
-      System.out.println(type.toString() + ": " + idc.IDENTIFIER().getText());
+      String id = idc.IDENTIFIER().getText();
+      Symbol symbol = new Symbol(id, type, null);
+
+      System.out.println(type.toString() + ": " + id);
     }
   }
 
 	@Override
   public void exitString_decl(@NotNull MicroParser.String_declContext ctx) {
-    System.out.println(ctx.id().IDENTIFIER().toString());
+    String id = ctx.id().IDENTIFIER().toString();
+    String value = ctx.str().STRINGLITERAL().toString().replace("\"","");
+    Symbol symbol = new Symbol(id, SymbolType.STRING, value);
+
+    System.out.println(id + " " + value);
   }
 
   public void print_symbols() {
