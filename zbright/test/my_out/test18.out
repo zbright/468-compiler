@@ -14,4 +14,7 @@ name o type INT
 name r type INT
 name u type INT
 name y type INT
-DECLARATION ERROR a
+Symbol table main
+name a type INT
+Symbol table BLOCK 1
+Symbol table BLOCK 2

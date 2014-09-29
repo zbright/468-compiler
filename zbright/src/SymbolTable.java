@@ -18,7 +18,7 @@ class SymbolTable {
   }
 
   public void addSymbol(Symbol symbol) {
-    if (!inScope(symbol))
+    if (!inCurrentScope(symbol))
     {
       _symbols.put(symbol.getName(), symbol);
     } else {
@@ -45,6 +45,12 @@ class SymbolTable {
     return table;
   }
 
+  public boolean inCurrentScope(Symbol symbol) {
+    if (_symbols.get(symbol.getName()) != null) {
+      return true;
+    }
+    return false;
+  }
   public boolean inScope(Symbol symbol) {
     if (_symbols.get(symbol.getName()) != null) {
       return true;
