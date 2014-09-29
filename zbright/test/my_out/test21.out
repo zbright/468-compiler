@@ -7,7 +7,6 @@ name fx type FLOAT
 name dfx type FLOAT
 name error type FLOAT
 name i type INT
-
 Symbol table main
-
 Symbol table BLOCK 1
+name error1 type INT

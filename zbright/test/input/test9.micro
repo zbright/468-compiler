@@ -21,12 +21,12 @@ BEGIN
 		dfx := 2.0*x1;
 		x2 := x1 - fx/dfx;
 
-	DO
+	WHILE (x1-x2 >= error)
 		x1 := x2;
 		fx := x1*x1 - n;
 		dfx := 2.0*x1;
 		x2 := x1 - fx/dfx;
-	WHILE (x1-x2 >= error);
+	ENDWHILE
 
 		WRITE (x2);
 	END

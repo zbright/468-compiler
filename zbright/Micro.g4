@@ -159,7 +159,8 @@ mulop
 
 /* Complex Statements and Condition */
 if_stmt
-  : IF '(' cond ')' decl stmt_list else_part ENDIF ;
+  : IF '(' cond ')' decl stmt_list ENDIF
+  | IF '(' cond ')' decl stmt_list else_part ENDIF ;
 
 else_part
   : ELSE decl stmt_list

@@ -7,65 +7,59 @@ public class MicroExtendedListener extends MicroBaseListener {
     return "BLOCK " + blockNumber;
   }
 
+  SymbolTable root = null;
+  SymbolTable curr_parent = null;
+
   @Override
   public void enterProgram(@NotNull MicroParser.ProgramContext ctx) {
-    //System.out.println(ctx.getText());
-    System.out.println("ENTER GLOBAL");
+    root = new SymbolTable("GLOBAL", null);
+    curr_parent = root;
   }
 
   @Override
   public void enterFunc_decl(@NotNull MicroParser.Func_declContext ctx) {
-    System.out.println("Entered Function Declaration");
+    curr_parent = curr_parent.addSymbolTable(ctx.id().IDENTIFIER().toString());
   }
 
 	@Override
   public void exitFunc_decl(@NotNull MicroParser.Func_declContext ctx) {
-    System.out.println("Exit Function Declaration");
+    curr_parent = curr_parent.getParent();
   }
 
   @Override
   public void enterWhile_stmt(@NotNull MicroParser.While_stmtContext ctx) {
-    System.out.println(block());
-    System.out.println("Enter Block (while)");
+    curr_parent = curr_parent.addSymbolTable(block());
   }
 
   @Override
   public void exitWhile_stmt(@NotNull MicroParser.While_stmtContext ctx) {
-    System.out.println("Exit Block (while)");
+    curr_parent = curr_parent.getParent();
   }
 
   @Override
   public void enterElse_part(@NotNull MicroParser.Else_partContext ctx) {
-    System.out.println(block());
-    System.out.println("Enter Block (else)");
-  }
-
-  @Override
-  public void exitElse_part(@NotNull MicroParser.Else_partContext ctx) {
-    System.out.println("Exit Block (else)");
+    curr_parent = curr_parent.getParent();
+    curr_parent = curr_parent.addSymbolTable(block());
   }
 
   @Override
   public void enterIf_stmt(@NotNull MicroParser.If_stmtContext ctx) {
-    System.out.println(block());
-    System.out.println("Enter Block (if)");
+    curr_parent = curr_parent.addSymbolTable(block());
   }
 
   @Override
   public void exitIf_stmt(@NotNull MicroParser.If_stmtContext ctx) {
-    System.out.println("Exit Block (if)");
+    curr_parent = curr_parent.getParent();
   }
 
   @Override
   public void exitParam_decl(@NotNull MicroParser.Param_declContext ctx) {
-    System.out.println("Function Param");
     SymbolType type = SymbolType.NULL;
     if (ctx.var_type().INT() != null) { type = SymbolType.INT; }
     else if (ctx.var_type().FLOAT() != null) { type = SymbolType.FLOAT; }
     String id = ctx.id().IDENTIFIER().getText();
     Symbol symbol = new Symbol(id, type, null);
-
-    System.out.println(type.toString() + ": " + ctx.id().IDENTIFIER().getText());
+    curr_parent.addSymbol(symbol);
   }
 
   @Override
@@ -80,20 +74,19 @@ public class MicroExtendedListener extends MicroBaseListener {
       String id = idc.IDENTIFIER().getText();
       Symbol symbol = new Symbol(id, type, null);
 
-      System.out.println(type.toString() + ": " + id);
+      curr_parent.addSymbol(symbol);
     }
   }
 
 	@Override
   public void exitString_decl(@NotNull MicroParser.String_declContext ctx) {
     String id = ctx.id().IDENTIFIER().toString();
-    String value = ctx.str().STRINGLITERAL().toString().replace("\"","");
+    String value = ctx.str().STRINGLITERAL().toString();
     Symbol symbol = new Symbol(id, SymbolType.STRING, value);
-
-    System.out.println(id + " " + value);
+    curr_parent.addSymbol(symbol);
   }
 
   public void print_symbols() {
-    System.out.println("Tree Printed");
+    root.print();
   }
 }

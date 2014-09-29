@@ -19,5 +19,3 @@ name end type INT
 name result type INT
 
 Symbol table BLOCK 4
-
-
