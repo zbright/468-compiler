@@ -54,39 +54,40 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void exitParam_decl(@NotNull MicroParser.Param_declContext ctx) {
-    SymbolType type = SymbolType.NULL;
-    if (ctx.var_type().INT() != null) { type = SymbolType.INT; }
-    else if (ctx.var_type().FLOAT() != null) { type = SymbolType.FLOAT; }
-    String id = ctx.id().IDENTIFIER().getText();
-    Symbol symbol = new Symbol(id, type, null);
-    curr_parent.addSymbol(symbol);
+    SymbolType type = getSymbolType(ctx.var_type());
+    addSymbolToParent(ctx.id(), type, null);
   }
 
   @Override
   public void exitVar_decl(@NotNull MicroParser.Var_declContext ctx) {
-    SymbolType type = SymbolType.NULL;
-    if (ctx.var_type().INT() != null) { type = SymbolType.INT; }
-    else if (ctx.var_type().FLOAT() != null) { type = SymbolType.FLOAT; }
+    SymbolType type = getSymbolType(ctx.var_type());
 
-    if (type == null) { return; }
+    if (type == SymbolType.NULL) { return; }
 
     for (MicroParser.IdContext idc : ctx.id_list().id()) {
-      String id = idc.IDENTIFIER().getText();
-      Symbol symbol = new Symbol(id, type, null);
-
-      curr_parent.addSymbol(symbol);
+      addSymbolToParent(idc, type, null);
     }
   }
 
 	@Override
   public void exitString_decl(@NotNull MicroParser.String_declContext ctx) {
-    String id = ctx.id().IDENTIFIER().toString();
     String value = ctx.str().STRINGLITERAL().toString();
-    Symbol symbol = new Symbol(id, SymbolType.STRING, value);
-    curr_parent.addSymbol(symbol);
+    addSymbolToParent(ctx.id(), SymbolType.STRING, value);
   }
 
   public void print_symbols() {
     root.print();
+  }
+
+  private SymbolType getSymbolType(@NotNull MicroParser.Var_typeContext ctx) {
+    return ctx.INT() != null ? SymbolType.INT : 
+           ctx.FLOAT() != null ? SymbolType.FLOAT : SymbolType.NULL;
+  }
+
+  private void addSymbolToParent(@NotNull MicroParser.IdContext ctx, @NotNull SymbolType type, Object value) {
+    String id = ctx.IDENTIFIER().getText();
+    Symbol symbol = new Symbol(id, type, value);
+
+    curr_parent.addSymbol(symbol);
   }
 }

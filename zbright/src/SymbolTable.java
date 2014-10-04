@@ -72,7 +72,7 @@ class SymbolTable {
         System.out.print(entry.getValue().toString());
       }
       for (SymbolTable table : _tables) {
-        System.out.println("");
+        System.out.println("\n");
         table.print();
       }
     } else {

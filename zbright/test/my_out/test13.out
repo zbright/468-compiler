@@ -8,6 +8,9 @@ name y type FLOAT
 name z type FLOAT
 name h type INT
 name s1 type STRING value "string"
+
 Symbol table function1
+
 Symbol table function2
+
 Symbol table main

@@ -18,6 +18,7 @@ public class Micro {
       tree = parser.program();
     } catch (ParseCancellationException e) {
       System.out.println("Not accepted");
+      return;
     }
 
     ParseTreeWalker walker = new ParseTreeWalker();

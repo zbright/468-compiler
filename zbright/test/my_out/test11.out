@@ -8,6 +8,9 @@ name z type FLOAT
 name h type INT
 name j type INT
 name k type INT
+
 Symbol table function1
+
 Symbol table function2
+
 Symbol table main
