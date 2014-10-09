@@ -1,9 +1,7 @@
 public class WriteAstNode extends AstNode {
-	public SymbolType type;
-	public String name;
 
 	public WriteAstNode(Symbol symbol) {
-		type = symbol.getType();
+		SymbolType type = symbol.getType();
 
 		//Can only be float, int or string
 		opcode = type == SymbolType.FLOAT ? IROpCode.WRITEF : 

@@ -76,9 +76,9 @@ public class MicroExtendedListener extends MicroBaseListener {
     addSymbolToParent(ctx.id(), SymbolType.STRING, value);
   }
 
-  // @Override public void exitAssign_stmt(@NotNull MicroParser.Assign_stmtContext ctx) { 
-  //   ast.createAssignment(ctx, root);
-  // }
+  @Override public void exitAssign_stmt(@NotNull MicroParser.Assign_stmtContext ctx) { 
+    ast.createAssignment(ctx, root);
+  }
   
   @Override public void exitRead_stmt(@NotNull MicroParser.Read_stmtContext ctx) { 
     ast.createRead(ctx, root);

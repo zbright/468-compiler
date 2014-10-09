@@ -92,10 +92,7 @@ base_stmt
 
 /* Basic Statements */
 assign_stmt
-  :assign_expr SEMICOLON ;
-
-assign_expr
-  : id ASSIGN expr ;
+  :id ASSIGN expr SEMICOLON ;
 
 read_stmt
   : READ '(' id_list ')' SEMICOLON ;
@@ -107,20 +104,11 @@ return_stmt
 
 /* Expressions */
 expr
-  : expr_prefix factor ;
-
-expr_prefix
-  : expr_prefix factor addop
-  |
-  ;
+  : (factor addop)* factor ;
 
 factor
-  : factor_prefix postfix_expr ;
+  : (postfix_expr mulop)* postfix_expr ;
 
-factor_prefix
-  : factor_prefix postfix_expr mulop
-  |
-  ;
 
 postfix_expr
   : primary
@@ -131,12 +119,7 @@ call_expr
   : id '(' expr_list ')' ;
 
 expr_list
-  : expr expr_list_tail
-  |
-  ;
-
-expr_list_tail
-  : COMMA expr expr_list_tail
+  : expr (COMMA expr)*
   |
   ;
 
