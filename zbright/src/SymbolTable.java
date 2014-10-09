@@ -79,4 +79,12 @@ class SymbolTable {
       System.out.println(_errors.get(0));
     }
   }
+
+  public boolean containsSymbol(String sym_name) {
+    return this._symbols.containsKey(sym_name) ? true : false;
+  }
+
+  public Symbol getSymbolByName(String sym_name) {
+    return this._symbols.get(sym_name);
+  }
 }

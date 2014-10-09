@@ -25,5 +25,6 @@ public class Micro {
     MicroExtendedListener listener = new MicroExtendedListener();
     walker.walk(listener, tree);
     listener.print_symbols();
+    listener.print_ast();
   }
 }
