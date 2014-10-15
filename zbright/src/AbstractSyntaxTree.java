@@ -10,15 +10,19 @@ public class AbstractSyntaxTree {
 	}
 
 	public void createAssignment(MicroParser.Assign_stmtContext ctx, SymbolTable table) {
-		OperatorAstNode assignNode = new OperatorAstNode(OperatorType.ASSIGN);
-
 		Symbol symbol = findSymbolInTree(ctx.id(), table);
 		if(symbol == null) 
-				throw new RuntimeException("Symbol " + ctx.id() + "could not be found!?!");
+			throw new RuntimeException("Symbol " + ctx.id() + "could not be found!?!");
 
-		assignNode.lchild = new VariableAstNode(symbol, SymbolLocation.LEFT);
+		SymbolType type = symbol.getType();
+		if(type != SymbolType.INT || type != SymbolType.FLOAT)
+			throw new RuntimeException("Symbol " + ctx.id() + "invalid type!!");
 
-		assignNode.rchild = generateExpression(ctx.expr(), table);
+		OperatorAstNode assignNode = new OperatorAstNode(OperatorType.ASSIGN, type);
+		assignNode.opcode = type == SymbolType.INT ? IROpCode.STOREI : IROpCode.STOREF;
+
+		assignNode.children.add(new VariableAstNode(symbol, SymbolLocation.LEFT));
+		assignNode.children.add(generateExpression(ctx.expr(), table));
 
 		headNodes.add(assignNode);
 	}
@@ -71,9 +75,9 @@ public class AbstractSyntaxTree {
 	}
 
 	private AstNode linkNodes(AstNode left_node, AstNode right_node, OperatorType opType) {
-		AstNode opNode = new OperatorAstNode(opType);
-		opNode.lchild = left_node;
-		opNode.rchild = right_node;
+		OperatorAstNode opNode = new OperatorAstNode(opType, left_node.type);
+		opNode.children.add(left_node);
+		opNode.children.add(right_node);
 
 		return opNode;
 	}

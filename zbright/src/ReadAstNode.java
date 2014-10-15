@@ -1,11 +1,10 @@
 public class ReadAstNode extends AstNode {
 
 	public ReadAstNode(Symbol symbol) {
-		//Can only be float or int
-		opcode = symbol.getType() == SymbolType.FLOAT ? IROpCode.READF : IROpCode.READI;
 		name = symbol.getName();
-		lchild = null;
-		rchild = null;
+		type = symbol.getType();
+		//Can only be float or int
+		opcode = type == SymbolType.FLOAT ? IROpCode.READF : IROpCode.READI;
 	}
 
 	@Override
