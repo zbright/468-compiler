@@ -24,7 +24,7 @@ public class OperatorAstNode extends AstNode {
         break;
       case DIV:
         opcode = type == SymbolType.INT ? IROpCode.DIVI : IROpCode.DIVF;
-        tinyOp = type == SymbolType.INT ? "addi" : "addr";
+        tinyOp = type == SymbolType.INT ? "divi" : "divr";
         break;  
     }
 

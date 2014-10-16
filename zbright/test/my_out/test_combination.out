@@ -40,7 +40,7 @@ addi r4 r3
 move a r5
 muli b r5
 addi c r5
-addi a r5
+divi a r5
 addi r5 r3
 move 20 r6
 addi r6 r3
@@ -51,7 +51,7 @@ addi a r7
 move r7 b
 move b r8
 muli a r8
-addi a r8
+divi a r8
 move r8 a
 sys writei c
 sys writei b
