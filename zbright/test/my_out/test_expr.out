@@ -1,4 +1,6 @@
 ;IR code
+;LABEL main
+;LINK
 ;STOREI 1 $T0
 ;STOREI $T0 a
 ;STOREI 2 $T1
@@ -113,6 +115,7 @@
 ;STOREF $T53 t
 ;WRITEF t
 ;WRITES newline
+;RET
 ;tiny code
 var a
 var b

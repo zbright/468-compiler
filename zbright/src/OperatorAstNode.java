@@ -1,40 +1,39 @@
 public class OperatorAstNode extends AstNode {
   public OperatorType opType;
-  public String tinyOp = null;
 
   public OperatorAstNode(OperatorType op_type, SymbolType sym_type) {
     opType = op_type;
     type = sym_type;
 
+    boolean isInt = type == SymbolType.INT;
+
     switch(opType) {
       case ASSIGN:
-        opcode = type == SymbolType.INT ? IROpCode.STOREI : IROpCode.STOREF;
+        opcode = isInt ? IROpCode.STOREI : IROpCode.STOREF;
+        tinyOp = TinyOpCode.MOVE;
         break;
       case ADD:
-        opcode = type == SymbolType.INT ? IROpCode.ADDI : IROpCode.ADDF;
-        tinyOp = type == SymbolType.INT ? "addi" : "addr";
+        opcode = isInt ? IROpCode.ADDI : IROpCode.ADDF;
+        tinyOp = isInt ? TinyOpCode.ADDI : TinyOpCode.ADDR;
         break;
       case SUB:
-        opcode = type == SymbolType.INT ? IROpCode.SUBI : IROpCode.SUBF;
-        tinyOp = type == SymbolType.INT ? "subi" : "subr";
+        opcode = isInt ? IROpCode.SUBI : IROpCode.SUBF;
+        tinyOp = isInt ? TinyOpCode.SUBI : TinyOpCode.SUBR;
         break;
       case MULT:
-        opcode = type == SymbolType.INT ? IROpCode.MULTI : IROpCode.MULTF;
-        tinyOp = type == SymbolType.INT ? "muli" : "mulr";
+        opcode = isInt ? IROpCode.MULTI : IROpCode.MULTF;
+        tinyOp = isInt ? TinyOpCode.MULI : TinyOpCode.MULR;
         break;
       case DIV:
-        opcode = type == SymbolType.INT ? IROpCode.DIVI : IROpCode.DIVF;
-        tinyOp = type == SymbolType.INT ? "divi" : "divr";
+        opcode = isInt ? IROpCode.DIVI : IROpCode.DIVF;
+        tinyOp = isInt ? TinyOpCode.DIVI : TinyOpCode.DIVR;
         break;  
     }
 
   }
 
   public String toIR() {
-    int size = children.size();
-    if(size != 2)
-      throw new RuntimeException("All operators require 2 children for now");
-
+    checkSize();
     String returnReg = null;  
     switch(opType) {
       case ASSIGN:
@@ -51,20 +50,17 @@ public class OperatorAstNode extends AstNode {
   }
 
   public String toTiny() {
-    int size = children.size();
-    if(size != 2)
-      throw new RuntimeException("All operators require 2 children for now");
-
+    checkSize();
     String childTempReg = null;
     switch(opType) {
       case ASSIGN:
-        System.out.println("move " + children.get(1).toTiny() + " " + children.get(0).toTiny()); 
+        System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + children.get(0).toTiny()); 
         break;
       default:
         AstNode childZero = children.get(0);
         if(childZero instanceof VariableAstNode) {
           childTempReg = "r" + TempRegCounter.getNext();
-          System.out.println("move " + childZero.name + " " + childTempReg);
+          System.out.println(TinyOpCode.MOVE + " " + childZero.name + " " + childTempReg);
         } else {
           childTempReg = childZero.toTiny();
         }
@@ -74,6 +70,12 @@ public class OperatorAstNode extends AstNode {
         break;
     }
     return childTempReg;
+  }
+
+  private void checkSize() {
+    int size = children.size();
+    if(size != 2)
+      throw new RuntimeException("All operators require 2 children for now");
   }
 
 }

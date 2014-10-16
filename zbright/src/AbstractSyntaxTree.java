@@ -11,9 +11,6 @@ public class AbstractSyntaxTree {
 
 	public void createAssignment(MicroParser.Assign_stmtContext ctx, SymbolTable table) {
 		Symbol symbol = findSymbolInTree(ctx.id(), table);
-		if(symbol == null) 
-			throw new RuntimeException("Symbol " + ctx.id() + "could not be found!?!");
-
 		SymbolType type = symbol.getType();
 		if(type != SymbolType.INT && type != SymbolType.FLOAT) 
 			throw new RuntimeException("Symbol " + ctx.id().getText() + "invalid type!!");
@@ -32,6 +29,10 @@ public class AbstractSyntaxTree {
 
 	public void createWrite(MicroParser.Write_stmtContext ctx, SymbolTable table) {
 		createReadWriteNode(ctx.id_list(), table, ReadWrite.WRITE);
+	}
+
+	public void createLabel(String label_name) {
+		headNodes.add(new LabelAstNode(label_name));
 	}
 
 	public void print() {
@@ -62,7 +63,7 @@ public class AbstractSyntaxTree {
 
 		for (int i = 0; i < ctx.addop().size(); i++) {
 			opType = ctx.addop(i).MINUS() != null ? OperatorType.SUB : OperatorType.ADD;
-			prevNode = linkNodes(prevNode, factor_list.get(i+1), opType);
+			prevNode = linkNodes(opType, prevNode, factor_list.get(i+1));
 		}
 		return prevNode; 
 	}
@@ -79,15 +80,16 @@ public class AbstractSyntaxTree {
 		for (int i = 0; i < ctx.mulop().size(); i++) {
 			opType = ctx.mulop(i).MULT() != null ? OperatorType.MULT : OperatorType.DIV;
 
-			prevNode = linkNodes(prevNode, postfix_list.get(i+1), opType);
+			prevNode = linkNodes(opType, prevNode, postfix_list.get(i+1));
 		}
 		return prevNode; 
 	}
 
-	private AstNode linkNodes(AstNode left_node, AstNode right_node, OperatorType opType) {
-		OperatorAstNode opNode = new OperatorAstNode(opType, left_node.type);
-		opNode.children.add(left_node);
-		opNode.children.add(right_node);
+	private AstNode linkNodes(OperatorType opType, AstNode... astNodes) {
+		OperatorAstNode opNode = new OperatorAstNode(opType, astNodes[0].type);
+		for (AstNode node : astNodes) {
+			opNode.children.add(node);
+		}
 
 		return opNode;
 	}
@@ -100,9 +102,6 @@ public class AbstractSyntaxTree {
 
 		if(primary.id() != null) {
 			Symbol symbol = findSymbolInTree(primary.id(), table);
-			if(symbol == null) 
-				throw new RuntimeException("Symbol " + primary.id() + "could not be found!?!");
-
 			return new VariableAstNode(symbol, SymbolLocation.RIGHT);
 		} else if (primary.FLOATLITERAL() != null) {
 			return new LiteralAstNode(SymbolType.FLOAT, primary.FLOATLITERAL().toString());
@@ -117,9 +116,7 @@ public class AbstractSyntaxTree {
 		for (MicroParser.IdContext id : id_list.id()) {
 			Symbol symbol = findSymbolInTree(id, table);
 
-			if(symbol == null) 
-				throw new RuntimeException("Symbol " + id + "could not be found!?!");
-			else if (symbol.getType() == SymbolType.NULL) 
+			if (symbol.getType() == SymbolType.NULL) 
 				throw new RuntimeException("Can not read/write for type " + symbol.getType().toString());
 
 			if (op == ReadWrite.READ)
@@ -130,16 +127,14 @@ public class AbstractSyntaxTree {
 	}
 
 	private Symbol findSymbolInTree(MicroParser.IdContext id, SymbolTable table) {
-		Symbol symbol = null;
 		while(table != null) {
 			if(table.containsSymbol(id.getText())) { 
-				symbol = table.getSymbolByName(id.getText());
-				break;
+				return table.getSymbolByName(id.getText());
 			}
 			else 
 				table = table.getParent();
 		}
 
-		return symbol;
+		throw new RuntimeException("Symbol " + id + "could not be found!?!");
 	}
 }

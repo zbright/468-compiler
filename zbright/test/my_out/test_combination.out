@@ -1,4 +1,6 @@
 ;IR code
+;LABEL main
+;LINK
 ;STOREI 20 $T0
 ;STOREI $T0 a
 ;STOREI 30 $T1
@@ -23,6 +25,7 @@
 ;WRITEI c
 ;WRITEI b
 ;WRITEI a
+;RET
 ;tiny code
 var a
 var b

@@ -13,5 +13,8 @@ public enum IROpCode {
 	READF,
 	WRITEI,
 	WRITEF,
-	WRITES
+	WRITES,
+	LABEL,
+	RET,
+	LINK
 }

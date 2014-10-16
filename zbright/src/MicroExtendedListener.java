@@ -19,11 +19,13 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void enterFunc_decl(@NotNull MicroParser.Func_declContext ctx) {
+    ast.createLabel(ctx.id().IDENTIFIER().toString());
     curr_parent = curr_parent.addSymbolTable(ctx.id().IDENTIFIER().toString());
   }
 
 	@Override
   public void exitFunc_decl(@NotNull MicroParser.Func_declContext ctx) {
+    ast.createLabel(null);
     curr_parent = curr_parent.getParent();
   }
 
