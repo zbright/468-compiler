@@ -15,11 +15,10 @@ public class AbstractSyntaxTree {
 			throw new RuntimeException("Symbol " + ctx.id() + "could not be found!?!");
 
 		SymbolType type = symbol.getType();
-		if(type != SymbolType.INT || type != SymbolType.FLOAT)
-			throw new RuntimeException("Symbol " + ctx.id() + "invalid type!!");
+		if(type != SymbolType.INT && type != SymbolType.FLOAT) 
+			throw new RuntimeException("Symbol " + ctx.id().getText() + "invalid type!!");
 
 		OperatorAstNode assignNode = new OperatorAstNode(OperatorType.ASSIGN, type);
-		assignNode.opcode = type == SymbolType.INT ? IROpCode.STOREI : IROpCode.STOREF;
 
 		assignNode.children.add(new VariableAstNode(symbol, SymbolLocation.LEFT));
 		assignNode.children.add(generateExpression(ctx.expr(), table));
@@ -37,7 +36,7 @@ public class AbstractSyntaxTree {
 
 	public void print() {
 		for (AstNode node : headNodes) {
-			node.print();
+			node.toIR();
 		}
 	}
 

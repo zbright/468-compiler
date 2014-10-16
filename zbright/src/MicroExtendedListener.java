@@ -92,7 +92,7 @@ public class MicroExtendedListener extends MicroBaseListener {
     root.print();
   }
   public void print_ast() {
-    System.out.println("STARTING TO PRINT AST\n");
+    System.out.println(";IR code");
     ast.print();
   }
 

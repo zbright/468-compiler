@@ -6,4 +6,8 @@ public class VariableAstNode extends AstNode {
 		type = symbol.getType();
 		location = sym_loc;
 	}
+
+	public String toIR() {
+		return name;
+	}
 }

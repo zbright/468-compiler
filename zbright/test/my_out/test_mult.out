@@ -1,0 +1,17 @@
+;IR code
+;STOREI 1 $T1
+;STOREI $T1 a
+;STOREI 2 $T2
+;STOREI $T2 b
+;READI c
+;READI d
+;MULTI a c $T3
+;MULTI b d $T4
+;ADDI $T3 $T4 $T5
+;STOREI $T5 e
+;WRITEI c
+;WRITES newline
+;WRITEI d
+;WRITES newline
+;WRITEI e
+;WRITES newline

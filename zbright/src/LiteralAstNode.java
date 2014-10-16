@@ -1,8 +1,15 @@
 public class LiteralAstNode extends AstNode {
-	public String str_val;
 
 	public LiteralAstNode(SymbolType sym_type, String string_value) {
 		type = sym_type;
-		str_val = string_value;
+		name = string_value;
+		// will only be used for int and float
+		opcode = type == SymbolType.INT ? IROpCode.STOREI : IROpCode.STOREF; 
+	}
+
+	public String toIR() {
+		String returnReg = "$T" + TempRegCounter.getNext();
+		System.out.println(";" + opcode + " " + name + " " + returnReg);
+		return returnReg;
 	}
 }

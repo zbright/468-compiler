@@ -7,8 +7,8 @@ public class ReadAstNode extends AstNode {
 		opcode = type == SymbolType.FLOAT ? IROpCode.READF : IROpCode.READI;
 	}
 
-	@Override
-	public void print() {
-		System.out.println(opcode + " " + name);
+	public String toIR() {
+		System.out.println(";" + opcode + " " + name);
+		return null;
 	}
 }

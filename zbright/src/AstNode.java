@@ -7,7 +7,5 @@ public class AstNode {
 	public String name;
 	public List<AstNode> children = new ArrayList<AstNode>();
 
-	public void print() {
-
-	}
+	public String toIR() {return null;}
 }

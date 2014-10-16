@@ -9,8 +9,8 @@ public class WriteAstNode extends AstNode {
 		name = symbol.getName();
 	}
 
-	@Override
-	public void print() {
-		System.out.println(opcode + " " + name);
+	public String toIR() {
+		System.out.println(";" + opcode + " " + name);
+		return null;
 	}
 }
