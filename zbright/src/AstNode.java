@@ -8,4 +8,5 @@ public class AstNode {
 	public List<AstNode> children = new ArrayList<AstNode>();
 
 	public String toIR() {return null;}
+	public String toTiny() {return null;}
 }

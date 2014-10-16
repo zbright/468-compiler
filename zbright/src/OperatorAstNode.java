@@ -46,4 +46,8 @@ public class OperatorAstNode extends AstNode {
 		return returnReg;
 	}
 
+	public String toTiny() {
+		return null;
+	}
+
 }

@@ -12,4 +12,8 @@ public class LiteralAstNode extends AstNode {
 		System.out.println(";" + opcode + " " + name + " " + returnReg);
 		return returnReg;
 	}
+
+	public String toTiny() {
+		return null;
+	}
 }

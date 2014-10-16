@@ -13,4 +13,12 @@ public class WriteAstNode extends AstNode {
 		System.out.println(";" + opcode + " " + name);
 		return null;
 	}
+
+	public String toTiny() {
+		String tinyOp = opcode == IROpCode.WRITES ? "sys writes" :
+						opcode == IROpCode.WRITEI ? "sys writei" : "sys writer";
+
+		System.out.println(tinyOp + " " + name);
+		return null;
+	}
 }

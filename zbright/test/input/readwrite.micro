@@ -9,8 +9,5 @@ BEGIN
           READ(c, d);
           
           WRITE(c, newline, d, newline, e, newline);
-
-          a := 1 + 2;
-
 	END	
 END

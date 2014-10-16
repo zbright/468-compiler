@@ -1,0 +1,25 @@
+;IR code
+;READI c
+;READI d
+;WRITEI c
+;WRITES newline
+;WRITEI d
+;WRITES newline
+;WRITEI e
+;WRITES newline
+;tiny code
+var a
+var b
+var c
+var d
+var e
+str newline "\n"
+sys readi c
+sys readi d
+sys writei c
+sys writes newline
+sys writei d
+sys writes newline
+sys writei e
+sys writes newline
+end

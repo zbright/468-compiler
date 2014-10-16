@@ -42,6 +42,12 @@ public class AbstractSyntaxTree {
 
 	public void printTiny(SymbolTable sym_table) {
 		sym_table.printDeclarations();
+
+		for (AstNode node : headNodes) {
+			node.toTiny();
+		}
+
+		System.out.println("end");
 	}
 
 	private AstNode generateExpression(MicroParser.ExprContext ctx, SymbolTable table) {

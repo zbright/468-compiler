@@ -10,4 +10,8 @@ public class VariableAstNode extends AstNode {
 	public String toIR() {
 		return name;
 	}
+
+	public String toTiny() {
+		return null;
+	}
 }

@@ -11,4 +11,10 @@ public class ReadAstNode extends AstNode {
 		System.out.println(";" + opcode + " " + name);
 		return null;
 	}
+
+	public String toTiny() {
+		String tinyOp = opcode == IROpCode.READF ? "sys readr" : "sys readi";
+		System.out.println(tinyOp + " " + name);
+		return null;
+	}
 }

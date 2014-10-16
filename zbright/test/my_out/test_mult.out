@@ -22,3 +22,12 @@ var c
 var d
 var e
 str newline "\n"
+sys readi c
+sys readi d
+sys writei c
+sys writes newline
+sys writei d
+sys writes newline
+sys writei e
+sys writes newline
+end
