@@ -41,6 +41,7 @@ public class AbstractSyntaxTree {
 	}
 
 	public void printTiny(SymbolTable sym_table) {
+		TempRegCounter.resetCounter();
 		sym_table.printDeclarations();
 
 		for (AstNode node : headNodes) {

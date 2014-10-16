@@ -1,4 +1,8 @@
 ;IR code
+;STOREI 1 $T0
+;STOREI $T0 a
+;STOREI 2 $T1
+;STOREI $T1 b
 ;READI c
 ;READI d
 ;WRITEI c
@@ -14,6 +18,10 @@ var c
 var d
 var e
 str newline "\n"
+move 1 r0
+move r0 a
+move 2 r1
+move r1 b
 sys readi c
 sys readi d
 sys writei c
