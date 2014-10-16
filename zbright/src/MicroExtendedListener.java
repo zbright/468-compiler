@@ -96,6 +96,11 @@ public class MicroExtendedListener extends MicroBaseListener {
     ast.print();
   }
 
+  public void print_tiny() {
+    System.out.println(";tiny code");
+    ast.printTiny(root);
+  }
+
   private SymbolType getSymbolType(@NotNull MicroParser.Var_typeContext ctx) {
     return ctx.INT() != null ? SymbolType.INT : 
            ctx.FLOAT() != null ? SymbolType.FLOAT : SymbolType.NULL;

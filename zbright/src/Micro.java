@@ -26,5 +26,6 @@ public class Micro {
     walker.walk(listener, tree);
     // listener.print_symbols();
     listener.print_ast();
+    listener.print_tiny();
   }
 }

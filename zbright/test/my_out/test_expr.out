@@ -113,3 +113,13 @@
 ;STOREF $T54 t
 ;WRITEF t
 ;WRITES newline
+;tiny code
+var a
+var b
+var c
+var d
+var x
+var y
+var z
+var t
+str newline "\n"

@@ -40,6 +40,10 @@ public class AbstractSyntaxTree {
 		}
 	}
 
+	public void printTiny(SymbolTable sym_table) {
+		sym_table.printDeclarations();
+	}
+
 	private AstNode generateExpression(MicroParser.ExprContext ctx, SymbolTable table) {
 		List<AstNode> factor_list = new ArrayList<AstNode>();
 		for (int i = 0; i < ctx.factor().size(); i++) {

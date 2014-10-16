@@ -87,4 +87,20 @@ class SymbolTable {
   public Symbol getSymbolByName(String sym_name) {
     return this._symbols.get(sym_name);
   }
+
+  public void printDeclarations(){
+    String ident = "", val = "";
+    for (Symbol symbol : _symbols.values()) {
+      if (symbol.getType() == SymbolType.STRING) {
+        ident = "str ";
+        val = " " + symbol.getValue().toString();
+      } else if (symbol.getType() == SymbolType.INT || symbol.getType() == SymbolType.FLOAT) {
+        ident = "var ";
+      }
+      System.out.println(ident + symbol.getName() + val);
+    }
+    for (SymbolTable sym_table : _tables) {
+      sym_table.printDeclarations();
+    }
+  }
 }
