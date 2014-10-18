@@ -54,8 +54,8 @@ public class AbstractSyntaxTree {
 
 	private AstNode generateExpression(MicroParser.ExprContext ctx, SymbolTable table) {
 		List<AstNode> factor_list = new ArrayList<AstNode>();
-		for (int i = 0; i < ctx.factor().size(); i++) {
-			factor_list.add(generateFactor(ctx.factor(i), table));
+		for (MicroParser.FactorContext fct : ctx.factor()) {
+			factor_list.add(generateFactor(fct, table));
 		}
 
 		AstNode prevNode = factor_list.get(0);
@@ -70,8 +70,8 @@ public class AbstractSyntaxTree {
 
 	private AstNode generateFactor(MicroParser.FactorContext ctx, SymbolTable table) {
 		List<AstNode> postfix_list = new ArrayList<AstNode>();
-		for (int i = 0; i < ctx.postfix_expr().size(); i++) {
-			postfix_list.add(generatePostFix(ctx.postfix_expr(i), table));
+		for (MicroParser.Postfix_exprContext postctx : ctx.postfix_expr()) {
+			postfix_list.add(generatePostFix(postctx, table));
 		}
 
 		AstNode prevNode = postfix_list.get(0);
