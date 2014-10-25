@@ -53,7 +53,7 @@ public class AbstractSyntaxTree {
 
 	public void createElse() {
 		AstNode elseNode = new AstNode();
-		elseNode.parent = parent;
+		elseNode.parent = parent.parent;
 		parent.parent.children.add(elseNode);
 		parent = elseNode;
 	}
@@ -63,7 +63,7 @@ public class AbstractSyntaxTree {
 		condNode.parent = (IfAstNode)parent;
 		condNode.children.add(generateExpression(ctx.expr(0), table));
 		condNode.children.add(generateExpression(ctx.expr(1), table));
-		
+
 		parent.children.add(condNode);
 		AstNode stmtNode = new AstNode();
 		stmtNode.parent = parent;

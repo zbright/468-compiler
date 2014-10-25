@@ -60,7 +60,7 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void exitCond(@NotNull MicroParser.CondContext ctx) {
-    ast.createCond(ctx, root); 
+    ast.createCond(ctx, root);
   }
 
   @Override

@@ -17,4 +17,16 @@ public class IfAstNode extends AstNode {
 
 		return null;
 	}
+
+  public String toTiny() {
+    children.get(0).toTiny();
+    children.get(1).toTiny();
+    System.out.println("jmp label" + labelNum + "_end");
+		System.out.println("label label" + labelNum + "_else");
+		if(children.size() > 2)
+			children.get(2).toTiny();
+		System.out.println("label label" + labelNum + "_end");
+
+		return null;
+  }
 }

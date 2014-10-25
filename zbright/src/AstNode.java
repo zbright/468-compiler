@@ -15,5 +15,11 @@ public class AstNode {
 		}
 		return null;
 	}
-	public String toTiny() {return null;}
+
+	public String toTiny() {
+		for (AstNode node : children) {
+			node.toTiny();
+		}
+		return null;
+	}
 }
