@@ -2,7 +2,16 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class AbstractSyntaxTree {
-	List<AstNode> headNodes = new ArrayList<AstNode>();
+	AstNode root;
+	AstNode parent;
+
+	int labelNumber;
+
+	public AbstractSyntaxTree(){
+		root = new AstNode();
+		parent = root;
+		labelNumber = 0;
+	}
 
 	private enum ReadWrite {
 		READ,
@@ -20,7 +29,7 @@ public class AbstractSyntaxTree {
 		assignNode.children.add(new VariableAstNode(symbol, SymbolLocation.LEFT));
 		assignNode.children.add(generateExpression(ctx.expr(), table));
 
-		headNodes.add(assignNode);
+		parent.children.add(assignNode);
 	}
 
 	public void createRead(MicroParser.Read_stmtContext ctx, SymbolTable table) {
@@ -32,11 +41,42 @@ public class AbstractSyntaxTree {
 	}
 
 	public void createLabel(String label_name) {
-		headNodes.add(new LabelAstNode(label_name));
+		parent.children.add(new LabelAstNode(label_name));
+	}
+
+	public void createIf() {
+		IfAstNode newParent = new IfAstNode(labelNumber++);
+		parent.children.add(newParent);
+		newParent.parent = parent;
+		parent = newParent;
+	}
+
+	public void createElse() {
+		AstNode elseNode = new AstNode();
+		elseNode.parent = parent;
+		parent.parent.children.add(elseNode);
+		parent = elseNode;
+	}
+
+	public void createCond(MicroParser.CondContext ctx, SymbolTable table) {
+		CondAstNode condNode = new CondAstNode(ctx);
+		condNode.parent = (IfAstNode)parent;
+		condNode.children.add(generateExpression(ctx.expr(0), table));
+		condNode.children.add(generateExpression(ctx.expr(1), table));
+		
+		parent.children.add(condNode);
+		AstNode stmtNode = new AstNode();
+		stmtNode.parent = parent;
+		parent.children.add(stmtNode);
+		parent = stmtNode;
+	}
+
+	public void endIf() {
+		parent = parent.parent.parent;
 	}
 
 	public void print() {
-		for (AstNode node : headNodes) {
+		for (AstNode node : root.children) {
 			node.toIR();
 		}
 	}
@@ -45,7 +85,7 @@ public class AbstractSyntaxTree {
 		TempRegCounter.resetCounter();
 		sym_table.printDeclarations();
 
-		for (AstNode node : headNodes) {
+		for (AstNode node : root.children) {
 			node.toTiny();
 		}
 
@@ -120,9 +160,9 @@ public class AbstractSyntaxTree {
 				throw new RuntimeException("Can not read/write for type " + symbol.getType().toString());
 
 			if (op == ReadWrite.READ)
-				headNodes.add(new ReadAstNode(symbol));
+				parent.children.add(new ReadAstNode(symbol));
 			else if (op == ReadWrite.WRITE)
-				headNodes.add(new WriteAstNode(symbol));
+				parent.children.add(new WriteAstNode(symbol));
 		}
 	}
 

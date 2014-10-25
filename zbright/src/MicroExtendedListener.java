@@ -43,16 +43,24 @@ public class MicroExtendedListener extends MicroBaseListener {
   public void enterElse_part(@NotNull MicroParser.Else_partContext ctx) {
     curr_parent = curr_parent.getParent();
     curr_parent = curr_parent.addSymbolTable(block());
+    ast.createElse();
   }
 
   @Override
   public void enterIf_stmt(@NotNull MicroParser.If_stmtContext ctx) {
     curr_parent = curr_parent.addSymbolTable(block());
+    ast.createIf();
   }
 
   @Override
   public void exitIf_stmt(@NotNull MicroParser.If_stmtContext ctx) {
     curr_parent = curr_parent.getParent();
+    ast.endIf();
+  }
+
+  @Override
+  public void exitCond(@NotNull MicroParser.CondContext ctx) {
+    ast.createCond(ctx, root); 
   }
 
   @Override
