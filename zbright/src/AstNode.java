@@ -8,6 +8,7 @@ public class AstNode {
 	public String name;
 	public List<AstNode> children = new ArrayList<AstNode>();
 	public AstNode parent;
+	public int labelNum;
 
 	public String toIR() {
 		for (AstNode node : children) {

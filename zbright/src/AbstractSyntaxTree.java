@@ -51,6 +51,13 @@ public class AbstractSyntaxTree {
 		parent = newParent;
 	}
 
+	public void createWhile() {
+		WhileAstNode newParent = new WhileAstNode(labelNumber++);
+		parent.children.add(newParent);
+		newParent.parent = parent;
+		parent = newParent;
+	}
+
 	public void createElse() {
 		AstNode elseNode = new AstNode();
 		elseNode.parent = parent.parent;
@@ -60,7 +67,7 @@ public class AbstractSyntaxTree {
 
 	public void createCond(MicroParser.CondContext ctx, SymbolTable table) {
 		CondAstNode condNode = new CondAstNode(ctx);
-		condNode.parent = (IfAstNode)parent;
+		condNode.parent = parent;
 		condNode.children.add(generateExpression(ctx.expr(0), table));
 		condNode.children.add(generateExpression(ctx.expr(1), table));
 
@@ -71,7 +78,7 @@ public class AbstractSyntaxTree {
 		parent = stmtNode;
 	}
 
-	public void endIf() {
+	public void endControl() {
 		parent = parent.parent.parent;
 	}
 

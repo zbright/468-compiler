@@ -1,6 +1,5 @@
 public class CondAstNode extends AstNode {
   ComparisonType compop;
-  IfAstNode parent;
 
   public CondAstNode(MicroParser.CondContext ctx) {
     compop = getType(ctx.compop());

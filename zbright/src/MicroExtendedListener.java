@@ -32,11 +32,13 @@ public class MicroExtendedListener extends MicroBaseListener {
   @Override
   public void enterWhile_stmt(@NotNull MicroParser.While_stmtContext ctx) {
     curr_parent = curr_parent.addSymbolTable(block());
+    ast.createWhile();
   }
 
   @Override
   public void exitWhile_stmt(@NotNull MicroParser.While_stmtContext ctx) {
     curr_parent = curr_parent.getParent();
+    ast.endControl();
   }
 
   @Override
@@ -55,7 +57,7 @@ public class MicroExtendedListener extends MicroBaseListener {
   @Override
   public void exitIf_stmt(@NotNull MicroParser.If_stmtContext ctx) {
     curr_parent = curr_parent.getParent();
-    ast.endIf();
+    ast.endControl();
   }
 
   @Override

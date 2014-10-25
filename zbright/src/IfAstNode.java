@@ -1,5 +1,4 @@
 public class IfAstNode extends AstNode {
-	int labelNum;
 
 	public IfAstNode(int label_num) {
 		labelNum = label_num;
