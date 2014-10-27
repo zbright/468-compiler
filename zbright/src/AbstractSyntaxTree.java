@@ -66,9 +66,10 @@ public class AbstractSyntaxTree {
   }
 
   public void createCond(MicroParser.CondContext ctx, SymbolTable table) {
-    CondAstNode condNode = new CondAstNode(ctx);
+    AstNode firstChild = generateExpression(ctx.expr(0), table);
+    CondAstNode condNode = new CondAstNode(ctx, firstChild.type);
     condNode.parent = parent;
-    condNode.children.add(generateExpression(ctx.expr(0), table));
+    condNode.children.add(firstChild);
     condNode.children.add(generateExpression(ctx.expr(1), table));
 
     parent.children.add(condNode);

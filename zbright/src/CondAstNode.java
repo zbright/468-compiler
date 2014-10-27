@@ -1,7 +1,8 @@
 public class CondAstNode extends AstNode {
   ComparisonType compop;
 
-  public CondAstNode(MicroParser.CondContext ctx) {
+  public CondAstNode(MicroParser.CondContext ctx, SymbolType childType) {
+    type = childType;
     compop = getType(ctx.compop());
   }
 
@@ -11,7 +12,8 @@ public class CondAstNode extends AstNode {
   }
 
   public String toTiny() {
-    System.out.println("cmpi " + children.get(0).toTiny() + " " + children.get(1).toTiny());
+    Strgin compType = type == SymbolType.INT ? "cmpi " : "cmpr ";
+    System.out.println(compType + children.get(0).toTiny() + " " + children.get(1).toTiny());
     System.out.println("j" + compop.toString().toLowerCase() + " label" + parent.labelNum + "_else");
     return null;
   }
