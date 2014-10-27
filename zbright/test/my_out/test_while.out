@@ -21,7 +21,7 @@
 ;SUBI i $T8 $T9
 ;STOREI $T9 i
 ;JUMP label0_start
-;LABEL label0_else
+;LABEL label0_end
 ;WRITEF approx
 ;RET
 ;tiny code
@@ -56,6 +56,6 @@ move 1 r10
 subi r10 r9
 move r9 i
 jmp label0_start
-label label0_else
+label label0_end
 sys writer approx
 end

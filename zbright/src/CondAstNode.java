@@ -7,14 +7,26 @@ public class CondAstNode extends AstNode {
   }
 
   public String toIR() {
-    System.out.println(";" + compop + " " + children.get(0).toIR() + " " + children.get(1).toIR() + " label" + parent.labelNum + "_else");
+    String jumpDest = parent instanceof IfAstNode ? "_else" : "_end";
+    System.out.println(";" + compop + " " + children.get(0).toIR() + " " + children.get(1).toIR() + " label" + parent.labelNum + jumpDest);
     return null;
   }
 
   public String toTiny() {
-    Strgin compType = type == SymbolType.INT ? "cmpi " : "cmpr ";
-    System.out.println(compType + children.get(0).toTiny() + " " + children.get(1).toTiny());
-    System.out.println("j" + compop.toString().toLowerCase() + " label" + parent.labelNum + "_else");
+    AstNode childOne = children.get(1);
+    String childTempReg = null;
+    String jumpDest = parent instanceof IfAstNode ? "_else" : "_end";
+
+    if(childOne instanceof VariableAstNode) {
+      childTempReg = "r" + TempRegCounter.getNext();
+      System.out.println(TinyOpCode.MOVE + " " + childOne.name + " " + childTempReg);
+    } else {
+      childTempReg = childOne.toTiny();
+    }
+
+    String compType = type == SymbolType.INT ? "cmpi " : "cmpr ";
+    System.out.println(compType + children.get(0).toTiny() + " " + childTempReg);
+    System.out.println("j" + compop.toString().toLowerCase() + " label" + parent.labelNum + jumpDest);
     return null;
   }
 
