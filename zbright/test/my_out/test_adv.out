@@ -1,0 +1,120 @@
+;IR code
+;LABEL main
+;LINK
+;STOREF 0.0001 $T0
+;STOREF $T0 tolerance
+;STOREF 7.0 $T1
+;STOREF $T1 num
+;STOREF num approx
+;STOREI 0 $T2
+;STOREI $T2 count
+;STOREF 0.0 $T3
+;STOREF $T3 diff
+;STOREI 0 $T4
+;STOREI $T4 enough
+;LABEL label0_start
+;STOREI 1 $T5
+;EQ enough $T5 label0_end
+;STOREI 1 $T6
+;ADDI count $T6 $T7
+;STOREI $T7 count
+;STOREF 0.5 $T8
+;DIVF num approx $T9
+;ADDF approx $T9 $T10
+;MULTF $T8 $T10 $T11
+;STOREF $T11 newapprox
+;SUBF approx newapprox $T12
+;STOREF $T12 diff
+;STOREF 0.0 $T13
+;LE diff $T13 label1_else
+;GE diff tolerance label2_else
+;STOREI 1 $T14
+;STOREI $T14 enough
+;JUMP label2_end
+;LABEL label2_else
+;LABEL label2_end
+;JUMP label1_end
+;LABEL label1_else
+;STOREF 0.0 $T15
+;SUBF $T15 tolerance $T16
+;LE diff $T16 label3_else
+;STOREI 1 $T17
+;STOREI $T17 enough
+;JUMP label3_end
+;LABEL label3_else
+;LABEL label3_end
+;LABEL label1_end
+;STOREF newapprox approx
+;JUMP label0_start
+;LABEL label0_end
+;WRITEF approx
+;WRITEI count
+;RET
+;tiny code
+var count
+var enough
+var newapprox
+var approx
+var num
+var tolerance
+var diff
+move 0.0001 r0
+move r0 tolerance
+move 7.0 r1
+move r1 num
+move num r2
+move r2 approx
+move 0 r3
+move r3 count
+move 0.0 r4
+move r4 diff
+move 0 r5
+move r5 enough
+label label0_start
+move 1 r6
+cmpi enough r6
+jeq label0_end
+move count r7
+move 1 r8
+addi r8 r7
+move r7 count
+move 0.5 r9
+move approx r10
+move num r11
+divr approx r11
+addr r11 r10
+mulr r10 r9
+move r9 newapprox
+move approx r12
+subr newapprox r12
+move r12 diff
+move 0.0 r13
+cmpr diff r13
+jle label1_else
+move tolerance r14
+cmpr diff r14
+jge label2_else
+move 1 r15
+move r15 enough
+jmp label2_end
+label label2_else
+label label2_end
+jmp label1_end
+label label1_else
+move 0.0 r16
+subr tolerance r16
+cmpr diff r16
+jle label3_else
+move 1 r17
+move r17 enough
+jmp label3_end
+label label3_else
+label label3_end
+label label1_end
+move newapprox r18
+move r18 approx
+jmp label0_start
+label label0_end
+sys writer approx
+sys writei count
+end
