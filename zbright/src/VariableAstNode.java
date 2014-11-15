@@ -12,6 +12,7 @@ public class VariableAstNode extends AstNode {
 	}
 
 	public String toTiny() {
+
 		return name;
 	}
 }

@@ -102,6 +102,10 @@ public class MicroExtendedListener extends MicroBaseListener {
     ast.createWrite(ctx, curr_parent);
   }
 
+  @Override public void exitReturn_stmt(@NotNull MicroParser.Return_stmtContext ctx) {
+    ast.createReturn(ctx, curr_parent);
+  }
+
   public void print_symbols() {
     root.print();
   }

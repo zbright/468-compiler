@@ -40,6 +40,13 @@ public class AbstractSyntaxTree {
     createReadWriteNode(ctx.id_list(), table, ReadWrite.WRITE);
   }
 
+  public void createReturn(MicroParser.Return_stmtContext ctx, SymbolTable table) {
+    ReturnAstNode node = new ReturnAstNode();
+    node.children.add(generateExpression(ctx.expr(), table));
+    parent.children.add(node);
+    node.parent = parent;
+  }
+
   public void createFunctionDeclaration(MicroParser.Func_declContext ctx, SymbolTable table) {
     SymbolType type;
     if (ctx.any_type().var_type() != null) {
