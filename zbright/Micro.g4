@@ -1,3 +1,4 @@
+
 grammar Micro;
 
 /* Program */
@@ -61,8 +62,7 @@ param_decl_tail
 
 /* Function Declarations */
 func_declarations
-  : func_decl func_declarations
-  |
+  : (func_decl)*
   ;
 
 func_decl

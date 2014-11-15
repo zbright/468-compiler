@@ -40,8 +40,25 @@ public class AbstractSyntaxTree {
     createReadWriteNode(ctx.id_list(), table, ReadWrite.WRITE);
   }
 
-  public void createLabel(String label_name) {
-    parent.children.add(new LabelAstNode(label_name));
+  public void createFunctionDeclaration(MicroParser.Func_declContext ctx) {
+    SymbolType type;
+    if (ctx.any_type().var_type() != null) {
+      if (ctx.any_type().var_type().FLOAT() != null) {
+        type = SymbolType.FLOAT;
+      } else {
+        type = SymbolType.INT;
+      }
+    } else {
+      type = SymbolType.NULL;
+    }
+
+    String name;
+    name = ctx.id().getText();
+
+    FunctionDeclarationAstNode node = new FunctionDeclarationAstNode(name, type);
+    parent.children.add(node);
+    node.parent = parent;
+    parent = node;
   }
 
   public void createIf() {
@@ -79,8 +96,28 @@ public class AbstractSyntaxTree {
     parent = stmtNode;
   }
 
+  public void addParam(MicroParser.Param_declContext ctx) {
+    SymbolType type;
+    if (ctx.var_type() != null) {
+      if (ctx.var_type().FLOAT() != null) {
+        type = SymbolType.FLOAT;
+      } else if (ctx.var_type().INT() != null) {
+        type = SymbolType.INT;
+      } else {
+        type = SymbolType.STRING;
+      }
+    } else {
+      type = SymbolType.NULL;
+    }
+    ((FunctionDeclarationAstNode)parent).params.put(ctx.id().getText(), type);
+  }
+
   public void endControl() {
     parent = parent.parent.parent;
+  }
+
+  public void endFunction() {
+    parent = parent.parent;
   }
 
   public void print() {
@@ -143,9 +180,19 @@ public class AbstractSyntaxTree {
   }
 
   private AstNode generatePostFix(MicroParser.Postfix_exprContext ctx, SymbolTable table) {
-    if(ctx.primary() == null)
-      throw new RuntimeException("Call expressions are the next step");
+    if(ctx.call_expr() != null) {
+      MicroParser.Call_exprContext  call_expr = ctx.call_expr();
+      String func_name = call_expr.id().getText();
+      List<MicroParser.ExprContext> exprs = call_expr.expr_list().expr();
 
+      FunctionCallAstNode node = new FunctionCallAstNode(func_name);
+      for(MicroParser.ExprContext context : exprs) {
+        node.children.add(generateExpression(context, table));
+      }
+
+      return node;
+    }
+      
     MicroParser.PrimaryContext primary = ctx.primary();
 
     if(primary.id() != null) {

@@ -1,5 +1,5 @@
 public class TempRegCounter {
-	private static int regCounter = 0;
+	private static int regCounter = 1;
 
 	public static String getNext() {
 		return String.valueOf(regCounter++);
