@@ -40,7 +40,7 @@ public class AbstractSyntaxTree {
     createReadWriteNode(ctx.id_list(), table, ReadWrite.WRITE);
   }
 
-  public void createFunctionDeclaration(MicroParser.Func_declContext ctx) {
+  public void createFunctionDeclaration(MicroParser.Func_declContext ctx, SymbolTable table) {
     SymbolType type;
     if (ctx.any_type().var_type() != null) {
       if (ctx.any_type().var_type().FLOAT() != null) {
@@ -55,7 +55,7 @@ public class AbstractSyntaxTree {
     String name;
     name = ctx.id().getText();
 
-    FunctionDeclarationAstNode node = new FunctionDeclarationAstNode(name, type);
+    FunctionDeclarationAstNode node = new FunctionDeclarationAstNode(name, type, table);
     parent.children.add(node);
     node.parent = parent;
     parent = node;

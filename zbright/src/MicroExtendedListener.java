@@ -20,7 +20,7 @@ public class MicroExtendedListener extends MicroBaseListener {
   @Override
   public void enterFunc_decl(@NotNull MicroParser.Func_declContext ctx) {
     curr_parent = curr_parent.addSymbolTable(ctx.id().IDENTIFIER().toString());
-    ast.createFunctionDeclaration(ctx);
+    ast.createFunctionDeclaration(ctx, curr_parent);
   }
 
 	@Override

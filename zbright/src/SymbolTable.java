@@ -88,9 +88,16 @@ class SymbolTable {
     return this._symbols.get(sym_name);
   }
 
-  public void printDeclarations(){
+  public void printDeclarations() {
+    printDeclarations(new ArrayList<String>());
+  }
+
+  public void printDeclarations(List<String> ignore){
     String ident = "", val = "";
     for (Symbol symbol : _symbols.values()) {
+      if (ignore.contains(symbol.getName()))
+        continue;
+
       if (symbol.getType() == SymbolType.STRING) {
         ident = "str ";
         val = " " + symbol.getValue().toString();
@@ -99,8 +106,6 @@ class SymbolTable {
       }
       System.out.println(ident + symbol.getName() + val);
     }
-    for (SymbolTable sym_table : _tables) {
-      sym_table.printDeclarations();
-    }
   }
+
 }
