@@ -19,8 +19,8 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void enterFunc_decl(@NotNull MicroParser.Func_declContext ctx) {
-    ast.createFunctionDeclaration(ctx);
     curr_parent = curr_parent.addSymbolTable(ctx.id().IDENTIFIER().toString());
+    ast.createFunctionDeclaration(ctx);
   }
 
 	@Override
@@ -63,7 +63,7 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void exitCond(@NotNull MicroParser.CondContext ctx) {
-    ast.createCond(ctx, root);
+    ast.createCond(ctx, curr_parent);
   }
 
   @Override
@@ -91,15 +91,15 @@ public class MicroExtendedListener extends MicroBaseListener {
   }
 
   @Override public void exitAssign_stmt(@NotNull MicroParser.Assign_stmtContext ctx) { 
-    ast.createAssignment(ctx, root);
+    ast.createAssignment(ctx, curr_parent);
   }
   
   @Override public void exitRead_stmt(@NotNull MicroParser.Read_stmtContext ctx) { 
-    ast.createRead(ctx, root);
+    ast.createRead(ctx, curr_parent);
   }
   
   @Override public void exitWrite_stmt(@NotNull MicroParser.Write_stmtContext ctx) {
-    ast.createWrite(ctx, root);
+    ast.createWrite(ctx, curr_parent);
   }
 
   public void print_symbols() {

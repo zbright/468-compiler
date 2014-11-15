@@ -222,14 +222,17 @@ public class AbstractSyntaxTree {
   }
 
   private Symbol findSymbolInTree(MicroParser.IdContext id, SymbolTable table) {
+    SymbolTable prev = table;
     while(table != null) {
       if(table.containsSymbol(id.getText())) { 
         return table.getSymbolByName(id.getText());
       }
       else 
+        prev = table;
         table = table.getParent();
     }
 
-    throw new RuntimeException("Symbol " + id + "could not be found!?!");
+    prev.print();
+    throw new RuntimeException("Symbol " + id.getText() + "could not be found!?!");
   }
 }
