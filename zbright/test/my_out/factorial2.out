@@ -29,6 +29,25 @@
 ;tiny code
 str input "Please enter an integer number: "
 str eol "\n"
+push
+push r0
+push r1
+push r2
+push r3
+push r4
+push r5
+push r6
+push r7
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13
+push r14
+push r15
+jsr main
+sys halt
 label factorial
 link 2
 move 1 r0

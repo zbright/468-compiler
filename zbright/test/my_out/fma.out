@@ -29,6 +29,25 @@ str eol "\n"
 str star "*"
 str plus "+"
 str equal "="
+push
+push r0
+push r1
+push r2
+push r3
+push r4
+push r5
+push r6
+push r7
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13
+push r14
+push r15
+jsr main
+sys halt
 label add
 link 1
 move $19 r0

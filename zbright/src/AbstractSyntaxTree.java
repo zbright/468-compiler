@@ -150,6 +150,14 @@ public class AbstractSyntaxTree {
     TempRegCounter.resetCounter();
     sym_table.printDeclarations();
 
+    //Print main call
+    System.out.println("push");
+    for (int i = 0; i < TempRegCounter.regCount; i++) {
+      System.out.println("push r" + i);
+    }
+    System.out.println("jsr main");
+    System.out.println("sys halt");
+
     for (AstNode node : root.children) {
       node.toTiny();
     }
