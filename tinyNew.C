@@ -496,11 +496,12 @@ void parseline(opcodes::optype & code, operand& op1, operand& op2, ifstream & sr
     op2.settype(strval);
     ip++; // skip leading 
     is=0;
+    ss = "";
     while (buf[ip]!='"') {
-      if (buf[ip-1]=='\\' && buf[ip]=='n') {sc[is-1]='\n'; ip++;}
-      else sc[is++]=buf[ip++];
+      if (buf[ip-1]=='\\' && buf[ip]=='n') {ss[is-1]='\n'; ip++;}
+      else {ss += buf[ip++]; is++;};
     }
-    sc[is]=0; ip++;
+    ip++;
     op2.setname(sc);
   }
 
