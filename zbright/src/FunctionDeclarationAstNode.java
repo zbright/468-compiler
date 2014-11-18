@@ -28,11 +28,14 @@ public class FunctionDeclarationAstNode extends AstNode {
 	}
 
 	public int countSymbols(SymbolTable tbl) {
+    //TODO: Fix this, we might have a circular dependency
+    return tbl._symbols.size();
+/*
 		int count = tbl._symbols.size();
 		for (SymbolTable tbl_i : table._tables) {
-			count += tbl_i._symbols.size() + countSymbols(tbl_i);
+      count += tbl_i._symbols.size() + countSymbols(tbl_i);
 		}
-		return count;
+		return count;*/
 	}
 
   public String getVarName(String name) {

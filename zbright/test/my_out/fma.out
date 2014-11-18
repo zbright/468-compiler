@@ -1,0 +1,152 @@
+;IR code
+;ADDF a b $T1
+;STOREF $T1 result
+;MULTF a b $T2
+;STOREF $T2 result
+;WRITES intro
+;WRITES first
+;READF a
+;WRITES second
+;READF b
+;WRITES third
+;READF c
+;STOREF FUNCTION CALL VARIABLE multiplyresult
+;STOREF FUNCTION CALL VARIABLE addresult
+;WRITEF a
+;WRITES star
+;WRITEF b
+;WRITES plus
+;WRITEF c
+;WRITES equal
+;WRITEF addresult
+;WRITES eol
+;tiny code
+str intro "You will be asked for three float numbers\n"
+str first "Please enter the first float number: "
+str second "Please enter the second float number: "
+str third "Please enter the third float number: "
+str eol "\n"
+str star "*"
+str plus "+"
+str equal "="
+label add
+link 1
+move $19 r0
+addr $18 r0
+move r0 $-1
+move $-1 r0
+move r0 $20
+unlnk
+ret
+label multiply
+link 1
+move $19 r0
+mulr $18 r0
+move r0 $-1
+move $-1 r0
+move r0 $20
+unlnk
+ret
+label main
+link 5
+sys writes intro
+sys writes first
+sys readr $-1
+sys writes second
+sys readr $-2
+sys writes third
+sys readr $-3
+push
+push $-1
+push $-2
+push r0
+push r1
+push r2
+push r3
+push r4
+push r5
+push r6
+push r7
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13
+push r14
+push r15
+jsr multiply
+push r15
+push r14
+push r13
+push r12
+push r11
+push r10
+push r9
+push r8
+push r7
+push r6
+push r5
+push r4
+push r3
+push r2
+push r1
+push r0
+pop
+pop
+pop r1
+move r1 $-4
+push
+push $-4
+push $-3
+push r0
+push r1
+push r2
+push r3
+push r4
+push r5
+push r6
+push r7
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13
+push r14
+push r15
+jsr add
+push r15
+push r14
+push r13
+push r12
+push r11
+push r10
+push r9
+push r8
+push r7
+push r6
+push r5
+push r4
+push r3
+push r2
+push r1
+push r0
+pop
+pop
+pop r1
+move r1 $-5
+sys writer $-1
+sys writes star
+sys writer $-2
+sys writes plus
+sys writer $-3
+sys writes equal
+sys writer $-5
+sys writes eol
+move 0 r0
+move r0 r0
+move r0 $18
+unlnk
+ret
+end

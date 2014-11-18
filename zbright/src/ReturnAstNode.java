@@ -13,7 +13,11 @@ public class ReturnAstNode extends AstNode {
 		
 		int framePtr = 1;
 		int retLoc = 1;
-		int count = ((FunctionDeclarationAstNode)parent).params.size() + framePtr + retLoc + TempRegCounter.regCount;
+    AstNode node = parent;
+    while (!FunctionDeclarationAstNode.class.isInstance(node)) {
+      node = node.parent;
+    }
+		int count = ((FunctionDeclarationAstNode)node).params.size() + framePtr + retLoc + TempRegCounter.regCount;
 
     //TODO: ADD register allocation!!!
 		System.out.println("move " + retVal + " " + "r0");

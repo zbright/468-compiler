@@ -12,6 +12,10 @@ compiler:
 	rm -rf classes
 	mkdir classes
 	javac -cp $(LIB_ANTLR) -d classes src/*.java build/*.java
+testcase:
+	java -cp lib/antlr.jar:classes/ Micro test/input/fma.micro > test/my_out/fma.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/fibonacci2.micro > test/my_out/fibonacci2.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/factorial2.micro > test/my_out/factorial2.out
 clean:
 	rm -rf classes build
 
