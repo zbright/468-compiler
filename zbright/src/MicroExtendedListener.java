@@ -106,6 +106,10 @@ public class MicroExtendedListener extends MicroBaseListener {
     ast.createReturn(ctx, curr_parent);
   }
 
+  public void link_tree() {
+    ast.link_tree();
+  }
+
   public void print_symbols() {
     root.print();
   }

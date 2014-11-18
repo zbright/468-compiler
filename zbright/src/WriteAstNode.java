@@ -27,7 +27,18 @@ public class WriteAstNode extends AstNode {
 	}
 
 	public String toTiny() {
-		System.out.println(tinyOp + " " + name);
+		String tinyName = lookupSymbolName(name);
+		System.out.println(tinyOp + " " + tinyName);
 		return null;
 	}
+
+  private String lookupSymbolName(String name) {
+    AstNode node = parent;
+    if (node == null)
+      return node.name;
+    while (!FunctionDeclarationAstNode.class.isInstance(node)) {
+      node = node.parent;
+    }
+    return ((FunctionDeclarationAstNode)node).getVarName(name);
+  }
 }

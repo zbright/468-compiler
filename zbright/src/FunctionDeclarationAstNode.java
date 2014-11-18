@@ -1,4 +1,5 @@
 import java.util.Map;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.ArrayList;
 
@@ -6,6 +7,7 @@ public class FunctionDeclarationAstNode extends AstNode {
 	public Map<String, SymbolType> params = new LinkedHashMap<String, SymbolType>();
 	public SymbolType returnType;
 	public SymbolTable table;
+  public Map<String, Integer> tempVariables = new LinkedHashMap<String, Integer>();
 
 	public FunctionDeclarationAstNode(String func_name, SymbolType func_type, SymbolTable table_name) {
 		returnType = func_type;
@@ -32,4 +34,39 @@ public class FunctionDeclarationAstNode extends AstNode {
 		}
 		return count;
 	}
+
+  public String getVarName(String name) {
+    if (params.get(name) != null)
+    {
+      int count = 0;
+      count += 1; //Frame Pointer;
+      count += TempRegCounter.regCount; //Register Space
+      count += params.size(); //Max Input count
+      Iterator<String> it = params.keySet().iterator();
+      while(it.hasNext())
+      {
+        String value = it.next();
+        if (value.equals(name)) {
+          break;
+        }
+        else {
+          count -= 1;
+        }
+      }
+      return "$" + count;
+    } else {
+      SymbolTable tempTable = table;
+      while (tempTable._parent != null)
+      { tempTable = tempTable._parent; }
+
+      if (tempTable._symbols.get(name) != null) {
+        return name;
+      }
+      if (tempVariables.get(name) != null)
+        return "$-" + tempVariables.get(name);
+
+      tempVariables.put(name, tempVariables.size() + 1);
+      return "$-" + tempVariables.get(name);
+    }
+  }
 }

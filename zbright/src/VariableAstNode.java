@@ -13,6 +13,16 @@ public class VariableAstNode extends AstNode {
 
 	public String toTiny() {
 
-		return name;
+		return getName();
 	}
+
+  public String getName() {
+    AstNode node = parent;
+    if (node == null)
+      return "NODE FAILED TO FIND PARENT";
+    while (!FunctionDeclarationAstNode.class.isInstance(node)) {
+      node = node.parent;
+    }
+    return ((FunctionDeclarationAstNode)node).getVarName(name);
+  }
 }

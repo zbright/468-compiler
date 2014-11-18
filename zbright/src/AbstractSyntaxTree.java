@@ -133,6 +133,19 @@ public class AbstractSyntaxTree {
     }
   }
 
+  public void link_tree() {
+    setParent(root);
+  }
+
+  public void setParent(AstNode parent) {
+    if (parent == null)
+      return;
+    for (AstNode node : parent.children) {
+      node.parent = parent;
+      setParent(node);
+    }
+  }
+
   public void printTiny(SymbolTable sym_table) {
     TempRegCounter.resetCounter();
     sym_table.printDeclarations();

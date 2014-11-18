@@ -15,9 +15,10 @@ public class ReturnAstNode extends AstNode {
 		int retLoc = 1;
 		int count = ((FunctionDeclarationAstNode)parent).params.size() + framePtr + retLoc + TempRegCounter.regCount;
 
-
-		System.out.println("move " + retVal + " " + "$" + count);
-		System.out.println("unlink\nret");
+    //TODO: ADD register allocation!!!
+		System.out.println("move " + retVal + " " + "r0");
+		System.out.println("move " + "r0" + " " + "$" + count);
+		System.out.println("unlnk\nret");
 		return null;
 	}
 }
