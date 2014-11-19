@@ -28,7 +28,7 @@ public class FunctionCallAstNode extends AstNode {
     }
     System.out.println("jsr "+name);
     for (int i = TempRegCounter.regCount - 1; i >= 0;  i--) {
-      System.out.println("push r" + i);
+      System.out.println("pop r" + i);
     }
     for (String value : valuesForStack) {
       System.out.println("pop");
