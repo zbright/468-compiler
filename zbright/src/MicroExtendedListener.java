@@ -9,6 +9,7 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   SymbolTable root = null;
   SymbolTable curr_parent = null;
+  AbstractSyntaxTree ast = new AbstractSyntaxTree();
 
   @Override
   public void enterProgram(@NotNull MicroParser.ProgramContext ctx) {
@@ -18,11 +19,13 @@ public class MicroExtendedListener extends MicroBaseListener {
 
   @Override
   public void enterFunc_decl(@NotNull MicroParser.Func_declContext ctx) {
+    ast.createLabel(ctx.id().IDENTIFIER().toString());
     curr_parent = curr_parent.addSymbolTable(ctx.id().IDENTIFIER().toString());
   }
 
 	@Override
   public void exitFunc_decl(@NotNull MicroParser.Func_declContext ctx) {
+    ast.createLabel(null);
     curr_parent = curr_parent.getParent();
   }
 
@@ -75,8 +78,29 @@ public class MicroExtendedListener extends MicroBaseListener {
     addSymbolToParent(ctx.id(), SymbolType.STRING, value);
   }
 
+  @Override public void exitAssign_stmt(@NotNull MicroParser.Assign_stmtContext ctx) { 
+    ast.createAssignment(ctx, root);
+  }
+  
+  @Override public void exitRead_stmt(@NotNull MicroParser.Read_stmtContext ctx) { 
+    ast.createRead(ctx, root);
+  }
+  
+  @Override public void exitWrite_stmt(@NotNull MicroParser.Write_stmtContext ctx) {
+    ast.createWrite(ctx, root);
+  }
+
   public void print_symbols() {
     root.print();
+  }
+  public void print_ast() {
+    System.out.println(";IR code");
+    ast.print();
+  }
+
+  public void print_tiny() {
+    System.out.println(";tiny code");
+    ast.printTiny(root);
   }
 
   private SymbolType getSymbolType(@NotNull MicroParser.Var_typeContext ctx) {

@@ -24,6 +24,8 @@ public class Micro {
     ParseTreeWalker walker = new ParseTreeWalker();
     MicroExtendedListener listener = new MicroExtendedListener();
     walker.walk(listener, tree);
-    listener.print_symbols();
+    // listener.print_symbols();
+    listener.print_ast();
+    listener.print_tiny();
   }
 }

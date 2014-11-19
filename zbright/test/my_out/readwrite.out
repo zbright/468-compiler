@@ -1,0 +1,33 @@
+;IR code
+;STOREI 1 $T0
+;STOREI $T0 a
+;STOREI 2 $T1
+;STOREI $T1 b
+;READI c
+;READI d
+;WRITEI c
+;WRITES newline
+;WRITEI d
+;WRITES newline
+;WRITEI e
+;WRITES newline
+;tiny code
+var a
+var b
+var c
+var d
+var e
+str newline "\n"
+move 1 r0
+move r0 a
+move 2 r1
+move r1 b
+sys readi c
+sys readi d
+sys writei c
+sys writes newline
+sys writei d
+sys writes newline
+sys writei e
+sys writes newline
+end
