@@ -1,0 +1,1 @@
+java -cp lib/antlr.jar:classes/ Micro test/input/test13.micro

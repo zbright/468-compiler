@@ -13,11 +13,17 @@ public class Micro {
     MicroParser parser = new MicroParser(tokens);
     parser.setErrorHandler(new BailErrorStrategy());
 
+    ParseTree tree = null;
     try {
-      ParseTree tree = parser.program();
-      System.out.println("Accepted");
+      tree = parser.program();
     } catch (ParseCancellationException e) {
       System.out.println("Not accepted");
+      return;
     }
+
+    ParseTreeWalker walker = new ParseTreeWalker();
+    MicroExtendedListener listener = new MicroExtendedListener();
+    walker.walk(listener, tree);
+    listener.print_symbols();
   }
 }
