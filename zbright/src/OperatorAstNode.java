@@ -54,7 +54,14 @@ public class OperatorAstNode extends AstNode {
     String childTempReg = null;
     switch(opType) {
       case ASSIGN:
-        System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + children.get(0).toTiny()); 
+        if (children.get(1) instanceof VariableAstNode && children.get(0) instanceof VariableAstNode) {
+          String tempReg = "r" + TempRegCounter.getNext();
+          System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + tempReg); 
+          System.out.println(tinyOp + " " + tempReg + " " + children.get(0).toTiny()); 
+        }
+        else {
+          System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + children.get(0).toTiny()); 
+        }
         break;
       default:
         AstNode childZero = children.get(0);
