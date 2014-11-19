@@ -11,7 +11,22 @@ public class FunctionCallAstNode extends AstNode {
 
 	public String toIR() {
 
-	  return "FUNCTION CALL VARIABLE";
+    List<String> valuesForStack = new ArrayList<String>();
+    for (AstNode node : children) {
+      valuesForStack.add(node.toIR());
+    }
+    System.out.println(";PUSH");
+    for (String value : valuesForStack) {
+      System.out.println(";PUSH " + value);
+    }
+    System.out.println(";JSR "+name);
+    for (String value : valuesForStack) {
+      System.out.println(";POP");
+    }
+    //TODO: Set properly once register allocation is added
+    String childTempReg = "$T" + TempRegCounter.getNext();
+    System.out.println(";POP " + childTempReg);
+    return childTempReg;
 	}
 
   public String toTiny() {

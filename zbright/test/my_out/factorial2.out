@@ -1,31 +1,55 @@
 ;IR code
+;LABEL factorial
+;LINK
 ;STOREI 1 $T1
-;NE a $T1 label0_else
+;NE $P1 $T1 label0_else
+;STOREI 1 $T2
+;STOREF $T2 $R
+;RET
 ;JUMP label0_end
 ;LABEL label0_else
-;STOREI FUNCTION CALL VARIABLE tret
-;MULTI tret a $T2
-;STOREI $T2 ret
-;LABEL label0_end
-;WRITES input
-;READI num
 ;STOREI 1 $T3
-;NE num $T3 label1_else
-;STOREI 1 $T4
-;STOREI $T4 result
+;SUBI $P1 $T3 $T4
+;PUSH
+;PUSH $T4
+;JSR factorial
+;POP
+;POP $T5
+;STOREI $T5 $L1
+;MULTI $L1 $P1 $T6
+;STOREI $T6 $L2
+;LABEL label0_end
+;STOREF $L2 $R
+;RET
+;LABEL main
+;LINK
+;WRITES input
+;READI $L1
+;STOREI 1 $T1
+;NE $L1 $T1 label1_else
+;STOREI 1 $T2
+;STOREI $T2 $L2
 ;JUMP label1_end
 ;LABEL label1_else
 ;LABEL label1_end
-;STOREI 1 $T5
-;LE num $T5 label2_else
-;STOREI FUNCTION CALL VARIABLE result
+;STOREI 1 $T3
+;LE $L1 $T3 label2_else
+;PUSH
+;PUSH $L1
+;JSR factorial
+;POP
+;POP $T4
+;STOREI $T4 $L2
 ;JUMP label2_end
 ;LABEL label2_else
-;STOREI 0 $T6
-;STOREI $T6 result
+;STOREI 0 $T5
+;STOREI $T5 $L2
 ;LABEL label2_end
-;WRITEI result
+;WRITEI $L2
 ;WRITES eol
+;STOREI 0 $T6
+;STOREF $T6 $R
+;RET
 ;tiny code
 str input "Please enter an integer number: "
 str eol "\n"

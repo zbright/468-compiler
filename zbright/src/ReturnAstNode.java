@@ -5,12 +5,16 @@ public class ReturnAstNode extends AstNode {
 
 	public String toIR() {
 
+		String retVal = children.get(0).toIR();
+
+		System.out.println(";STOREF " + retVal + " " + "$R");
+		System.out.println(";RET");
 		return null;
 	}
 
 	public String toTiny() {
 		String retVal = children.get(0).toTiny();
-		
+
 		int framePtr = 1;
 		int retLoc = 1;
     AstNode node = parent;

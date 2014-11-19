@@ -27,22 +27,22 @@ public class OperatorAstNode extends AstNode {
       case DIV:
         opcode = isInt ? IROpCode.DIVI : IROpCode.DIVF;
         tinyOp = isInt ? TinyOpCode.DIVI : TinyOpCode.DIVR;
-        break;  
+        break;
     }
 
   }
 
   public String toIR() {
     checkSize();
-    String returnReg = null;  
+    String returnReg = null;
     switch(opType) {
       case ASSIGN:
-        System.out.println(";" + opcode + " " + children.get(1).toIR() + " " + children.get(0).toIR()); 
+        System.out.println(";" + opcode + " " + children.get(1).toIR() + " " + children.get(0).toIR());
         break;
       default:
         String printStr = ";" + opcode + " " + children.get(0).toIR() + " " + children.get(1).toIR() + " ";
         returnReg = "$T" + TempRegCounter.getNext();
-        System.out.println(printStr + returnReg); 
+        System.out.println(printStr + returnReg);
         break;
     }
 
@@ -56,11 +56,11 @@ public class OperatorAstNode extends AstNode {
       case ASSIGN:
         if (children.get(1) instanceof VariableAstNode && children.get(0) instanceof VariableAstNode) {
           String tempReg = "r" + TempRegCounter.getNext();
-          System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + tempReg); 
-          System.out.println(tinyOp + " " + tempReg + " " + children.get(0).toTiny()); 
+          System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + tempReg);
+          System.out.println(tinyOp + " " + tempReg + " " + children.get(0).toTiny());
         }
         else {
-          System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + children.get(0).toTiny()); 
+          System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + children.get(0).toTiny());
         }
         break;
       default:
@@ -73,7 +73,7 @@ public class OperatorAstNode extends AstNode {
         }
 
         String printStr = tinyOp + " " + children.get(1).toTiny() + " " + childTempReg;
-        System.out.println(printStr); 
+        System.out.println(printStr);
         break;
     }
     return childTempReg;

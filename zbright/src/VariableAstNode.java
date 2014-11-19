@@ -8,7 +8,7 @@ public class VariableAstNode extends AstNode {
 	}
 
 	public String toIR() {
-		return name;
+		return getNameIR();
 	}
 
 	public String toTiny() {
@@ -24,5 +24,15 @@ public class VariableAstNode extends AstNode {
       node = node.parent;
     }
     return ((FunctionDeclarationAstNode)node).getVarName(name);
+  }
+
+  public String getNameIR() {
+    AstNode node = parent;
+    if (node == null)
+      return "NODE FAILED TO FIND PARENT";
+    while (!FunctionDeclarationAstNode.class.isInstance(node)) {
+      node = node.parent;
+    }
+    return ((FunctionDeclarationAstNode)node).getVarNameIR(name);
   }
 }

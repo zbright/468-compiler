@@ -8,11 +8,23 @@ public class FunctionDeclarationAstNode extends AstNode {
 	public SymbolType returnType;
 	public SymbolTable table;
   public Map<String, Integer> tempVariables = new LinkedHashMap<String, Integer>();
+  public Map<String, Integer> tempVariablesIR = new LinkedHashMap<String, Integer>();
 
 	public FunctionDeclarationAstNode(String func_name, SymbolType func_type, SymbolTable table_name) {
 		returnType = func_type;
 		name = func_name;
 		table = table_name;
+	}
+
+	public String toIR() {
+		TempRegCounter.resetCounterIR();
+		System.out.println(";LABEL " + name);
+		System.out.println(";LINK");
+		// table.printDeclarations(new ArrayList<String>(params.keySet()));
+		for (AstNode node : children) {
+			node.toIR();
+		}
+		return null;
 	}
 
 	public String toTiny() {
@@ -70,6 +82,38 @@ public class FunctionDeclarationAstNode extends AstNode {
 
       tempVariables.put(name, tempVariables.size() + 1);
       return "$-" + tempVariables.get(name);
+    }
+  }
+
+  public String getVarNameIR(String name) {
+    if (params.get(name) != null)
+    {
+      int count = 1;
+      Iterator<String> it = params.keySet().iterator();
+      while(it.hasNext())
+      {
+        String value = it.next();
+        if (value.equals(name)) {
+          break;
+        }
+        else {
+          count += 1;
+        }
+      }
+      return "$P" + count;
+    } else {
+      SymbolTable tempTable = table;
+      while (tempTable._parent != null)
+      { tempTable = tempTable._parent; }
+
+      if (tempTable._symbols.get(name) != null) {
+        return name;
+      }
+      if (tempVariablesIR.get(name) != null)
+        return "$L" + tempVariablesIR.get(name);
+
+      tempVariablesIR.put(name, tempVariablesIR.size() + 1);
+      return "$L" + tempVariablesIR.get(name);
     }
   }
 }

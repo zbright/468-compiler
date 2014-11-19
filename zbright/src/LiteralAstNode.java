@@ -4,7 +4,7 @@ public class LiteralAstNode extends AstNode {
 		type = sym_type;
 		name = string_value;
 		// will only be used for int and float
-		opcode = type == SymbolType.INT ? IROpCode.STOREI : IROpCode.STOREF; 
+		opcode = type == SymbolType.INT ? IROpCode.STOREI : IROpCode.STOREF;
 	}
 
 	public String toIR() {

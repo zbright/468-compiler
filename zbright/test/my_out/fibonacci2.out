@@ -1,32 +1,67 @@
 ;IR code
+;LABEL F
+;LINK
 ;STOREI 2 $T1
-;LE n $T1 label0_else
-;STOREI FUNCTION CALL VARIABLE ret1
-;STOREI FUNCTION CALL VARIABLE ret2
+;LE $P1 $T1 label0_else
+;STOREI 1 $T2
+;SUBI $P1 $T2 $T3
+;PUSH
+;PUSH $T3
+;JSR F
+;POP
+;POP $T4
+;STOREI $T4 $L1
+;STOREI 2 $T5
+;SUBI $P1 $T5 $T6
+;PUSH
+;PUSH $T6
+;JSR F
+;POP
+;POP $T7
+;STOREI $T7 $L2
+;ADDI $L1 $L2 $T8
+;STOREF $T8 $R
+;RET
 ;JUMP label0_end
 ;LABEL label0_else
 ;LABEL label0_end
-;STOREI 0 $T2
-;NE n $T2 label1_else
+;STOREI 0 $T9
+;NE $P1 $T9 label1_else
+;STOREI 0 $T10
+;STOREF $T10 $R
+;RET
 ;JUMP label1_end
 ;LABEL label1_else
+;STOREI 1 $T11
+;STOREF $T11 $R
+;RET
 ;LABEL label1_end
-;STOREI 0 $T3
-;STOREI $T3 i
+;LABEL main
+;LINK
+;STOREI 0 $T1
+;STOREI $T1 $L1
 ;WRITES input
-;READI end
+;READI $L2
 ;LABEL label2_start
-;EQ i end label2_end
-;STOREI FUNCTION CALL VARIABLE result
-;WRITEI i
+;EQ $L1 $L2 label2_end
+;PUSH
+;PUSH $L1
+;JSR F
+;POP
+;POP $T2
+;STOREI $T2 $L3
+;WRITEI $L1
 ;WRITES space
-;WRITEI result
+;WRITEI $L3
 ;WRITES eol
-;STOREI 1 $T4
-;ADDI i $T4 $T5
-;STOREI $T5 i
+;STOREI 1 $T3
+;ADDI $L1 $T3 $T4
+;STOREI $T4 $L1
 ;JUMP label2_start
 ;LABEL label2_end
+;STOREI 0 $T5
+;STOREF $T5 $R
+;RET
 ;tiny code
 str input "Please input an integer number: "
 str space " "

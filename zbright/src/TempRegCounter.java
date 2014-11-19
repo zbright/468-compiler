@@ -1,5 +1,5 @@
 public class TempRegCounter {
-	public static int regCount = 16; 
+	public static int regCount = 16;
 	private static int regCounter = 1;
 
 	public static String getNext() {
@@ -8,5 +8,9 @@ public class TempRegCounter {
 
 	public static void resetCounter() {
 		regCounter = 0;
+	}
+
+	public static void resetCounterIR() {
+		regCounter = 1;
 	}
 }

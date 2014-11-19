@@ -1,25 +1,52 @@
 ;IR code
-;ADDF a b $T1
-;STOREF $T1 result
-;MULTF a b $T2
-;STOREF $T2 result
+;LABEL add
+;LINK
+;ADDF $P1 $P2 $T1
+;STOREF $T1 $L1
+;STOREF $L1 $R
+;RET
+;LABEL multiply
+;LINK
+;MULTF $P1 $P2 $T1
+;STOREF $T1 $L1
+;STOREF $L1 $R
+;RET
+;LABEL main
+;LINK
 ;WRITES intro
 ;WRITES first
-;READF a
+;READF $L1
 ;WRITES second
-;READF b
+;READF $L2
 ;WRITES third
-;READF c
-;STOREF FUNCTION CALL VARIABLE multiplyresult
-;STOREF FUNCTION CALL VARIABLE addresult
-;WRITEF a
+;READF $L3
+;PUSH
+;PUSH $L1
+;PUSH $L2
+;JSR multiply
+;POP
+;POP
+;POP $T1
+;STOREF $T1 $L4
+;PUSH
+;PUSH $L4
+;PUSH $L3
+;JSR add
+;POP
+;POP
+;POP $T2
+;STOREF $T2 $L5
+;WRITEF $L1
 ;WRITES star
-;WRITEF b
+;WRITEF $L2
 ;WRITES plus
-;WRITEF c
+;WRITEF $L3
 ;WRITES equal
-;WRITEF addresult
+;WRITEF $L5
 ;WRITES eol
+;STOREI 0 $T3
+;STOREF $T3 $R
+;RET
 ;tiny code
 str intro "You will be asked for three float numbers\n"
 str first "Please enter the first float number: "
