@@ -99,11 +99,11 @@ push r2
 push r1
 push r0
 pop
-pop r1
-move r1 $-1
-move $-1 r4
-muli $18 r4
-move r4 $-2
+pop r4
+move r4 $-1
+move $-1 r5
+muli $18 r5
+move r5 $-2
 label label0_end
 move $-2 r0
 move r0 $19
@@ -160,17 +160,17 @@ push r2
 push r1
 push r0
 pop
-pop r1
-move r1 $-2
+pop r3
+move r3 $-2
 jmp label2_end
 label label2_else
-move 0 r3
-move r3 $-2
+move 0 r4
+move r4 $-2
 label label2_end
 sys writei $-2
 sys writes eol
-move 0 r4
-move r4 r0
+move 0 r5
+move r5 r0
 move r0 $18
 unlnk
 ret

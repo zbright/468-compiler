@@ -113,8 +113,8 @@ push r1
 push r0
 pop
 pop
-pop r1
-move r1 $-4
+pop r0
+move r0 $-4
 push
 push $-4
 push $-3
@@ -163,8 +163,8 @@ sys writer $-3
 sys writes equal
 sys writer $-5
 sys writes eol
-move 0 r0
-move r0 r0
+move 0 r2
+move r2 r0
 move r0 $18
 unlnk
 ret

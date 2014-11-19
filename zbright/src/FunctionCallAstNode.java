@@ -34,7 +34,8 @@ public class FunctionCallAstNode extends AstNode {
       System.out.println("pop");
     }
     //TODO: Set properly once register allocation is added
-    System.out.println("pop r1");
-    return "r1";
+    String childTempReg = "r" + TempRegCounter.getNext();
+    System.out.println("pop " + childTempReg);
+    return childTempReg;
   }
 }
