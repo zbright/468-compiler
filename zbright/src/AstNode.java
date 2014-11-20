@@ -28,7 +28,7 @@ public class AstNode {
     AstNode node = parent;
     if (node == null)
       return node.name;
-    while (!FunctionDeclarationAstNode.class.isInstance(node)) {
+    while (!(node instanceof FunctionDeclarationAstNode)) {
       node = node.parent;
     }
     if (IR)

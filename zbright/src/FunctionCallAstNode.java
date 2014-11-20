@@ -16,13 +16,18 @@ public class FunctionCallAstNode extends AstNode {
       valuesForStack.add(node.toIR());
     }
     System.out.println(";PUSH");
+    String pushList = "", popList = "";
     for (String value : valuesForStack) {
-      System.out.println(";PUSH " + value);
+    	pushList += ";PUSH " + value + "\n";
+    	popList += ";POP\n";
+      //System.out.println(";PUSH " + value);
     }
+    System.out.print(pushList);
     System.out.println(";JSR "+name);
-    for (String value : valuesForStack) {
-      System.out.println(";POP");
-    }
+    System.out.print(popList);
+    // for (String value : valuesForStack) {
+    //   System.out.println(";POP");
+    // }
     //TODO: Set properly once register allocation is added
     String childTempReg = "$T" + TempRegCounter.getNext();
     System.out.println(";POP " + childTempReg);
@@ -34,20 +39,25 @@ public class FunctionCallAstNode extends AstNode {
     for (AstNode node : children) {
       valuesForStack.add(node.toTiny());
     }
+    String pushList = "", popList = "";
     System.out.println("push");
     for (String value : valuesForStack) {
-      System.out.println("push " + value);
+    	pushList += "push " + value + "\n";
+    	popList += "pop\n";
     }
+    System.out.print(pushList);
+
+    String regPush = "";
+    StringBuilder regPop = new StringBuilder("");
     for (int i = 0; i < TempRegCounter.regCount; i++) {
-      System.out.println("push r" + i);
+      regPush += "push r" + i + "\n";
+      regPop.insert(0, "pop r" + i + "\n");
     }
+    System.out.print(regPush);
     System.out.println("jsr "+name);
-    for (int i = TempRegCounter.regCount - 1; i >= 0;  i--) {
-      System.out.println("pop r" + i);
-    }
-    for (String value : valuesForStack) {
-      System.out.println("pop");
-    }
+    System.out.print(regPop);
+    System.out.print(popList);
+
     //TODO: Set properly once register allocation is added
     String childTempReg = "r" + TempRegCounter.getNext();
     System.out.println("pop " + childTempReg);
