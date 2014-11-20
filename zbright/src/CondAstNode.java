@@ -19,7 +19,7 @@ public class CondAstNode extends AstNode {
 
     if(childOne instanceof VariableAstNode) {
       childTempReg = "r" + TempRegCounter.getNext();
-      System.out.println(TinyOpCode.MOVE + " " + ((VariableAstNode)childOne).getName() + " " + childTempReg);
+      System.out.println(TinyOpCode.MOVE + " " + ((VariableAstNode)childOne).toTiny() + " " + childTempReg);
     } else {
       childTempReg = childOne.toTiny();
     }

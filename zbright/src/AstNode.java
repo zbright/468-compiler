@@ -23,4 +23,16 @@ public class AstNode {
 		}
 		return null;
 	}
+
+  public String lookupSymbolName(String name, boolean IR) {
+    AstNode node = parent;
+    if (node == null)
+      return node.name;
+    while (!FunctionDeclarationAstNode.class.isInstance(node)) {
+      node = node.parent;
+    }
+    if (IR)
+      return ((FunctionDeclarationAstNode)node).getVarNameIR(name);
+    return ((FunctionDeclarationAstNode)node).getVarName(name);
+  }
 }

@@ -67,7 +67,7 @@ public class OperatorAstNode extends AstNode {
         AstNode childZero = children.get(0);
         if(childZero instanceof VariableAstNode) {
           childTempReg = "r" + TempRegCounter.getNext();
-          System.out.println(TinyOpCode.MOVE + " " + ((VariableAstNode)childZero).getName() + " " + childTempReg);
+          System.out.println(TinyOpCode.MOVE + " " + ((VariableAstNode)childZero).toTiny() + " " + childTempReg);
         } else {
           childTempReg = childZero.toTiny();
         }
