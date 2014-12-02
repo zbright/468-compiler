@@ -1,35 +1,55 @@
 ;IR code
 ;LABEL main
 ;LINK
-;STOREF 7.0 $T0
-;STOREF $T0 num
-;STOREI 100 $T1
-;STOREI $T1 i
-;STOREI 1 $T2
-;STOREI $T2 j
+;STOREF 7.0 $T1
+;STOREF $T1 num
+;STOREI 100 $T2
+;STOREI $T2 i
+;STOREI 1 $T3
+;STOREI $T3 j
 ;STOREF num approx
 ;LABEL label0_start
-;STOREI 0 $T3
-;EQ i $T3 label0_else
-;STOREF 0.5 $T4
-;DIVF num approx $T5
-;ADDF approx $T5 $T6
-;MULTF $T4 $T6 $T7
-;STOREF $T7 newapprox
+;STOREI 0 $T4
+;EQ i $T4 label0_end
+;STOREF 0.5 $T5
+;DIVF num approx $T6
+;ADDF approx $T6 $T7
+;MULTF $T5 $T7 $T8
+;STOREF $T8 newapprox
 ;STOREF newapprox approx
-;STOREI 1 $T8
-;SUBI i $T8 $T9
-;STOREI $T9 i
+;STOREI 1 $T9
+;SUBI i $T9 $T10
+;STOREI $T10 i
 ;JUMP label0_start
 ;LABEL label0_end
 ;WRITEF approx
-;RET
 ;tiny code
 var i
 var j
 var newapprox
 var approx
 var num
+push
+push r0
+push r1
+push r2
+push r3
+push r4
+push r5
+push r6
+push r7
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13
+push r14
+push r15
+jsr main
+sys halt
+label main
+link 0
 move 7.0 r0
 move r0 num
 move 100 r1
@@ -41,7 +61,7 @@ move r3 approx
 label label0_start
 move 0 r4
 cmpi i r4
-jeq label0_else
+jeq label0_end
 move 0.5 r5
 move approx r6
 move num r7

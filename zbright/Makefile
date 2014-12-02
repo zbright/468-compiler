@@ -16,6 +16,12 @@ testcase:
 	java -cp lib/antlr.jar:classes/ Micro test/input/fma.micro > test/my_out/fma.out
 	java -cp lib/antlr.jar:classes/ Micro test/input/fibonacci2.micro > test/my_out/fibonacci2.out
 	java -cp lib/antlr.jar:classes/ Micro test/input/factorial2.micro > test/my_out/factorial2.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/test_adv.micro > test/my_out/test_adv.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/test_combination.micro > test/my_out/test_combination.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/test_expr.micro > test/my_out/test_expr.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/test_if.micro > test/my_out/test_if.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/test_mult.micro > test/my_out/test_mult.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/test_while.micro > test/my_out/test_while.out
 clean:
 	rm -rf classes build
 
