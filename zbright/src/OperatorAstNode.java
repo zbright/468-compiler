@@ -55,25 +55,45 @@ public class OperatorAstNode extends AstNode {
     switch(opType) {
       case ASSIGN:
         if (children.get(1) instanceof VariableAstNode && children.get(0) instanceof VariableAstNode) {
-          String tempReg = "r" + TempRegCounter.getNext();
-          System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + tempReg);
-          System.out.println(tinyOp + " " + tempReg + " " + children.get(0).toTiny());
+          
+          String childTag = children.get(1).toTiny();
+          String tempReg = RegCounter.getNext(childTag);
+          System.out.println(tinyOp + " " + childTag + " " + tempReg);
+
+          String secondChildTag = children.get(0).toTiny();
+
+          // if(!RegCounter.validate(tempReg, childTag)) {
+          //   tempReg = RegCounter.getNext(childTag);
+          //   System.out.println(tinyOp + " " + childTag + " " + tempReg);
+          // }
+
+          System.out.println(tinyOp + " " + tempReg + " " + secondChildTag);
         }
         else {
-          System.out.println(tinyOp + " " + children.get(1).toTiny() + " " + children.get(0).toTiny());
+          String childTag = children.get(1).toTiny();
+          System.out.println(tinyOp  + " " + childTag + " " + children.get(0).toTiny());
+
+          if(children.get(0) instanceof VariableAstNode) {
+            RegCounter.makeClean(childTag);
+          }
         }
         break;
       default:
         AstNode childZero = children.get(0);
         if(childZero instanceof VariableAstNode) {
-          childTempReg = "r" + TempRegCounter.getNext();
-          System.out.println(TinyOpCode.MOVE + " " + ((VariableAstNode)childZero).toTiny() + " " + childTempReg);
+          String childReg = ((VariableAstNode)childZero).toTiny();
+          childTempReg = RegCounter.getNext(childReg);
+          System.out.println(TinyOpCode.MOVE + " " + childReg + " " + childTempReg);
         } else {
           childTempReg = childZero.toTiny();
         }
 
+
         String printStr = tinyOp + " " + children.get(1).toTiny() + " " + childTempReg;
         System.out.println(printStr);
+
+        System.out.println("//DIRTY " + childTempReg);
+        RegCounter.makeDirty(childTempReg);
         break;
     }
     return childTempReg;

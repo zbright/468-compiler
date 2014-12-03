@@ -61,36 +61,26 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr main
 sys halt
 label add
 link 1
-move $19 r0
-addr $18 r0
+move $7 r0
+addr $6 r0
+//DIRTY r0
 move r0 $-1
 move $-1 r0
-move r0 $20
+move r0 $8
 unlnk
 ret
 label multiply
 link 1
-move $19 r0
-mulr $18 r0
+move $7 r0
+mulr $6 r0
+//DIRTY r0
 move r0 $-1
 move $-1 r0
-move r0 $20
+move r0 $8
 unlnk
 ret
 label main
@@ -109,31 +99,7 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr multiply
-pop r15
-pop r14
-pop r13
-pop r12
-pop r11
-pop r10
-pop r9
-pop r8
-pop r7
-pop r6
-pop r5
-pop r4
 pop r3
 pop r2
 pop r1
@@ -149,39 +115,15 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr add
-pop r15
-pop r14
-pop r13
-pop r12
-pop r11
-pop r10
-pop r9
-pop r8
-pop r7
-pop r6
-pop r5
-pop r4
 pop r3
 pop r2
 pop r1
 pop r0
 pop
 pop
-pop r1
-move r1 $-5
+pop r0
+move r0 $-5
 sys writer $-1
 sys writes star
 sys writer $-2
@@ -190,9 +132,9 @@ sys writer $-3
 sys writes equal
 sys writer $-5
 sys writes eol
-move 0 r2
-move r2 r0
-move r0 $18
+move 0 r1
+move r1 r0
+move r0 $6
 unlnk
 ret
 end

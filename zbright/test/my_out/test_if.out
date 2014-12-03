@@ -33,18 +33,6 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr main
 sys halt
 label main
@@ -58,23 +46,26 @@ move r2 a
 move 5 r3
 cmpi i r3
 jge label0_else
-move num r4
-addi a r4
-move r4 num
-move 3 r5
-cmpi i r5
+move num r0
+addi a r0
+//DIRTY r0
+move r0 num
+move 3 r1
+cmpi i r1
 jge label1_else
-move num r6
-addi a r6
-move r6 num
+move num r0
+addi a r0
+//DIRTY r0
+move r0 num
 jmp label1_end
 label label1_else
 label label1_end
 jmp label0_end
 label label0_else
-move num r7
-subi a r7
-move r7 num
+move num r0
+subi a r0
+//DIRTY r0
+move r0 num
 label label0_end
 sys writei num
 end

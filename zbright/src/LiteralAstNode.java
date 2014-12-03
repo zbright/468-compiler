@@ -14,7 +14,7 @@ public class LiteralAstNode extends AstNode {
 	}
 
 	public String toTiny() {
-		String returnReg = "r" + TempRegCounter.getNext();
+		String returnReg = RegCounter.getNext(name);
 		System.out.println("move " + name + " " + returnReg);
 		return returnReg;
 	}

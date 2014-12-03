@@ -130,18 +130,6 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr main
 sys halt
 label main
@@ -162,119 +150,154 @@ sys writei c
 sys writes newline
 sys writei d
 sys writes newline
-move a r4
-addi b r4
-move r4 a
+move a r0
+addi b r0
+//DIRTY r0
+move r0 a
 sys writei a
 sys writes newline
-move a r5
-muli c r5
-move r5 b
+move a r0
+muli c r0
+//DIRTY r0
+move r0 b
 sys writei b
 sys writes newline
-move 0 r6
-subi a r6
-addi b r6
-move r6 c
+move 0 r1
+subi a r1
+//DIRTY r1
+addi b r1
+//DIRTY r1
+move r1 c
 sys writei c
 sys writes newline
-move 0 r7
-subi d r7
-move r7 d
+move 0 r2
+subi d r2
+//DIRTY r2
+move r2 d
 sys writei d
 sys writes newline
-move a r8
-addi b r8
-move d r9
-addi c r9
-muli r9 r8
-move a r10
-addi b r10
-addi c r10
-addi d r10
-divi a r10
-subi r10 r8
-move r8 a
+move a r0
+addi b r0
+//DIRTY r0
+move d r3
+addi c r3
+//DIRTY r3
+muli r3 r0
+//DIRTY r0
+move a r0
+addi b r0
+//DIRTY r0
+addi c r0
+//DIRTY r0
+addi d r0
+//DIRTY r0
+divi a r0
+//DIRTY r0
+subi r0 r0
+//DIRTY r0
+move r0 a
 sys writei a
 sys writes newline
-move a r11
-move 10 r12
-addi r12 r11
-move r11 a
+move a r0
+move 10 r1
+addi r1 r0
+//DIRTY r0
+move r0 a
 sys writei a
 sys writes newline
-move b r13
-addi a r13
-move 10 r14
-addi r14 r13
-move r13 b
+move b r2
+addi a r2
+//DIRTY r2
+move 10 r0
+addi r0 r2
+//DIRTY r2
+move r2 b
 sys writei b
 sys writes newline
-move 0 r15
-move 10 r16
-subi r16 r15
-move r15 c
+move 0 r1
+move 10 r0
+subi r0 r1
+//DIRTY r1
+move r1 c
 sys writei c
 sys writes newline
-move 1.0 r17
-move r17 x
-move 2.0 r18
-move r18 y
-move 3.14159 r19
-move r19 z
+move 1.0 r2
+move r2 x
+move 2.0 r0
+move r0 y
+move 3.14159 r1
+move r1 z
 sys writer x
 sys writes newline
 sys writer z
 sys writes newline
 sys writer y
 sys writes newline
-move z r20
-move 2.0 r21
-divr r21 r20
-move r20 x
-move z r22
-divr y r22
-move r22 y
+move z r2
+move 2.0 r0
+divr r0 r2
+//DIRTY r2
+move r2 x
+move z r2
+divr y r2
+//DIRTY r2
+move r2 y
 sys writer x
 sys writes newline
 sys writer y
 sys writes newline
-move x r23
-addr y r23
-addr z r23
-divr z r23
-move r23 t
+move x r1
+addr y r1
+//DIRTY r1
+addr z r1
+//DIRTY r1
+divr z r1
+//DIRTY r1
+move r1 t
 sys writer t
 sys writes newline
-move t r24
-mulr t r24
-move r24 t
+move t r0
+mulr t r0
+//DIRTY r0
+move r0 t
 sys writer t
 sys writes newline
-move t r25
-addr z r25
-addr t r25
-move t r26
-move 2.0 r27
-divr r27 r26
-addr r26 r25
-move z r28
-move 4.0 r29
-divr r29 r28
-addr r28 r25
-move z r30
-move 5.0 r31
-divr r31 r30
-addr r30 r25
-move z r32
-move 6.0 r33
-divr r33 r32
-addr r32 r25
-move z r34
-move 7.0 r35
-divr r35 r34
-addr r34 r25
-move r25 t
+move t r0
+addr z r0
+//DIRTY r0
+addr t r0
+//DIRTY r0
+move t r0
+move 2.0 r2
+divr r2 r0
+//DIRTY r0
+addr r0 r0
+//DIRTY r0
+move z r1
+move 4.0 r2
+divr r2 r1
+//DIRTY r1
+addr r1 r0
+//DIRTY r0
+move z r1
+move 5.0 r2
+divr r2 r1
+//DIRTY r1
+addr r1 r0
+//DIRTY r0
+move z r1
+move 6.0 r2
+divr r2 r1
+//DIRTY r1
+addr r1 r0
+//DIRTY r0
+move z r1
+move 7.0 r2
+divr r2 r1
+//DIRTY r1
+addr r1 r0
+//DIRTY r0
+move r0 t
 sys writer t
 sys writes newline
 end

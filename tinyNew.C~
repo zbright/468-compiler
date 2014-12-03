@@ -12,7 +12,7 @@ bool parseerror; // stop after parsing if set to true
 
   // vvvvvvvvvvvvvvvvvvvvvvvv Statistics: constants vvvvvvvvvvvvvvvvv
 int stats;
-#define NUMREGS 4
+#define NUMREGS 200
 #define LAT_MOV_rl 1
 #define LAT_MOV_m 5
 #define LAT_INT_rl 1

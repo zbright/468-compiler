@@ -147,12 +147,13 @@ public class AbstractSyntaxTree {
   }
 
   public void printTiny(SymbolTable sym_table) {
+    RegCounter.reset();
     TempRegCounter.resetCounter();
     sym_table.printDeclarations();
 
     //Print main call
     System.out.println("push");
-    for (int i = 0; i < TempRegCounter.regCount; i++) {
+    for (int i = 0; i < RegCounter.regCount; i++) {
       System.out.println("push r" + i);
     }
     System.out.println("jsr main");

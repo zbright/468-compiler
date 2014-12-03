@@ -29,18 +29,6 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr main
 sys halt
 label main
@@ -53,9 +41,12 @@ sys readi c
 sys readi d
 move a r2
 muli c r2
+//DIRTY r2
 move b r3
 muli d r3
+//DIRTY r3
 addi r3 r2
+//DIRTY r2
 move r2 e
 sys writei c
 sys writes newline

@@ -28,7 +28,7 @@ public class FunctionDeclarationAstNode extends AstNode {
 	}
 
 	public String toTiny() {
-		TempRegCounter.resetCounter();
+		RegCounter.reset();
 		System.out.println("label " + name);
 		int symbol_count = countSymbols(table);
 		System.out.println("link " + (symbol_count - params.keySet().size()));
@@ -55,7 +55,7 @@ public class FunctionDeclarationAstNode extends AstNode {
     {
       int count = 0;
       count += 1; //Frame Pointer;
-      count += TempRegCounter.regCount; //Register Space
+      count += RegCounter.regCount; //Register Space
       count += params.size(); //Max Input count
       Iterator<String> it = params.keySet().iterator();
       while(it.hasNext())

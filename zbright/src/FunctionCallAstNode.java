@@ -49,7 +49,7 @@ public class FunctionCallAstNode extends AstNode {
 
     String regPush = "";
     StringBuilder regPop = new StringBuilder("");
-    for (int i = 0; i < TempRegCounter.regCount; i++) {
+    for (int i = 0; i < RegCounter.regCount; i++) {
       regPush += "push r" + i + "\n";
       regPop.insert(0, "pop r" + i + "\n");
     }
@@ -59,7 +59,7 @@ public class FunctionCallAstNode extends AstNode {
     System.out.print(popList);
 
     //TODO: Set properly once register allocation is added
-    String childTempReg = "r" + TempRegCounter.getNext();
+    String childTempReg = RegCounter.getNext(null);
     System.out.println("pop " + childTempReg);
     return childTempReg;
   }

@@ -62,18 +62,6 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr main
 sys halt
 label main
@@ -86,53 +74,59 @@ move num r2
 move r2 approx
 move 0 r3
 move r3 count
-move 0.0 r4
-move r4 diff
-move 0 r5
-move r5 enough
+move 0.0 r0
+move r0 diff
+move 0 r1
+move r1 enough
 label label0_start
-move 1 r6
-cmpi enough r6
+move 1 r2
+cmpi enough r2
 jeq label0_end
-move count r7
-move 1 r8
-addi r8 r7
-move r7 count
-move 0.5 r9
-move approx r10
-move num r11
-divr approx r11
-addr r11 r10
-mulr r10 r9
-move r9 newapprox
-move approx r12
-subr newapprox r12
-move r12 diff
-move 0.0 r13
-cmpr diff r13
+move count r3
+move 1 r0
+addi r0 r3
+//DIRTY r3
+move r3 count
+move 0.5 r1
+move approx r2
+move num r0
+divr approx r0
+//DIRTY r0
+addr r0 r2
+//DIRTY r2
+mulr r2 r1
+//DIRTY r1
+move r1 newapprox
+move approx r2
+subr newapprox r2
+//DIRTY r2
+move r2 diff
+move 0.0 r3
+cmpr diff r3
 jle label1_else
-move tolerance r14
-cmpr diff r14
+move tolerance r1
+cmpr diff r1
 jge label2_else
-move 1 r15
-move r15 enough
+move 1 r2
+move r2 enough
 jmp label2_end
 label label2_else
 label label2_end
 jmp label1_end
 label label1_else
-move 0.0 r16
-subr tolerance r16
-cmpr diff r16
+move 0.0 r3
+subr tolerance r3
+//DIRTY r3
+cmpr diff r3
 jle label3_else
-move 1 r17
-move r17 enough
+move 1 r1
+move r1 enough
 jmp label3_end
 label label3_else
 label label3_end
 label label1_end
-move newapprox r18
-move r18 approx
+move newapprox r2
+move r2 approx
 jmp label0_start
 label label0_end
 sys writer approx

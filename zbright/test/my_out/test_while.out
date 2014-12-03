@@ -34,18 +34,6 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr main
 sys halt
 label main
@@ -59,22 +47,26 @@ move r2 j
 move num r3
 move r3 approx
 label label0_start
-move 0 r4
-cmpi i r4
+move 0 r0
+cmpi i r0
 jeq label0_end
-move 0.5 r5
-move approx r6
-move num r7
-divr approx r7
-addr r7 r6
-mulr r6 r5
-move r5 newapprox
-move newapprox r8
-move r8 approx
-move i r9
-move 1 r10
-subi r10 r9
-move r9 i
+move 0.5 r1
+move approx r2
+move num r3
+divr approx r3
+//DIRTY r3
+addr r3 r2
+//DIRTY r2
+mulr r2 r1
+//DIRTY r1
+move r1 newapprox
+move newapprox r0
+move r0 approx
+move i r1
+move 1 r0
+subi r0 r1
+//DIRTY r1
+move r1 i
 jmp label0_start
 label label0_end
 sys writer approx

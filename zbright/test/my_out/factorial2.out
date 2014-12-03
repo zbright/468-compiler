@@ -58,79 +58,45 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr main
 sys halt
 label factorial
 link 2
 move 1 r0
-cmpi $18 r0
+cmpi $6 r0
 jne label0_else
 move 1 r1
 move r1 r0
-move r0 $19
+move r0 $7
 unlnk
 ret
 jmp label0_end
 label label0_else
-move $18 r2
+move $6 r2
 move 1 r3
 subi r3 r2
+//DIRTY r2
 push
 push r2
 push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr factorial
-pop r15
-pop r14
-pop r13
-pop r12
-pop r11
-pop r10
-pop r9
-pop r8
-pop r7
-pop r6
-pop r5
-pop r4
 pop r3
 pop r2
 pop r1
 pop r0
 pop
-pop r4
-move r4 $-1
-move $-1 r5
-muli $18 r5
-move r5 $-2
+pop r0
+move r0 $-1
+move $-1 r1
+muli $6 r1
+//DIRTY r1
+move r1 $-2
 label label0_end
 move $-2 r0
-move r0 $19
+move r0 $7
 unlnk
 ret
 label main
@@ -154,31 +120,7 @@ push r0
 push r1
 push r2
 push r3
-push r4
-push r5
-push r6
-push r7
-push r8
-push r9
-push r10
-push r11
-push r12
-push r13
-push r14
-push r15
 jsr factorial
-pop r15
-pop r14
-pop r13
-pop r12
-pop r11
-pop r10
-pop r9
-pop r8
-pop r7
-pop r6
-pop r5
-pop r4
 pop r3
 pop r2
 pop r1
@@ -188,14 +130,14 @@ pop r3
 move r3 $-2
 jmp label2_end
 label label2_else
-move 0 r4
-move r4 $-2
+move 0 r0
+move r0 $-2
 label label2_end
 sys writei $-2
 sys writes eol
-move 0 r5
-move r5 r0
-move r0 $18
+move 0 r1
+move r1 r0
+move r0 $6
 unlnk
 ret
 end

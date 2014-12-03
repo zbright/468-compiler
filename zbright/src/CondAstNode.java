@@ -18,8 +18,9 @@ public class CondAstNode extends AstNode {
     String jumpDest = parent instanceof IfAstNode ? "_else" : "_end";
 
     if(childOne instanceof VariableAstNode) {
-      childTempReg = "r" + TempRegCounter.getNext();
-      System.out.println(TinyOpCode.MOVE + " " + ((VariableAstNode)childOne).toTiny() + " " + childTempReg);
+      String childTag = ((VariableAstNode)childOne).toTiny();
+      childTempReg = RegCounter.getNext(childTag);
+      System.out.println(TinyOpCode.MOVE + " " + childTag + " " + childTempReg);
     } else {
       childTempReg = childOne.toTiny();
     }
