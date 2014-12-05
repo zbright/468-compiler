@@ -1,11 +1,13 @@
 public class RegCounter {
   public static int regCount = 4;
   public static Register[] registers = new Register[regCount];
+  private static boolean _showdebug = false;
 
   public static String getNext(String newTag) {
     int oldestClean = -1;
     int oldestDirty = -1;
-    printAge();
+    if (_showdebug)
+      printAge();
     for(int i = 0; i < regCount; i++) {
       //if(registers[i].tag == newTag) {
       //  oldestClean = i;
@@ -43,7 +45,8 @@ public class RegCounter {
         continue;
       registers[i].age++;
     }
-    System.out.println(";                                // assign r" + String.valueOf(nextReg));
+    if (_showdebug) 
+      System.out.println(";                                // assign r" + String.valueOf(nextReg));
     return "r" + String.valueOf(nextReg);
   }
   
@@ -71,8 +74,10 @@ public class RegCounter {
     String regNum = reg.substring(1, reg.length());
     int regInt = Integer.parseInt(regNum);
     registers[regInt].dirty = false;
-    System.out.println(";                                // Make clean " + reg);
-    printAge();
+    if (_showdebug) {
+      System.out.println(";                                // Make clean " + reg);
+      printAge();
+    }
   }
 
   public static boolean validate(String strReg, String tag) {
@@ -89,8 +94,10 @@ public class RegCounter {
       temp += String.valueOf(registers[i].age) + " ";
       temp2 += (registers[i].dirty ? "t " : "f ");
     }
-    System.out.println(";                                // " + temp);
-    System.out.println(";                                // " + temp2 + "\n");
+    if (_showdebug) {
+      System.out.println(";                                // " + temp);
+      System.out.println(";                                // " + temp2 + "\n");
+    }
   }
   
   // private int findOldest() {

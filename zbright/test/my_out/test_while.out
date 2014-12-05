@@ -38,135 +38,31 @@ jsr main
 sys halt
 label main
 link 0
-;                                // 0 0 0 0 
-;                                // f f f f 
-
-;                                // assign r0
 move 7.0 r0
 move r0 num
-;                                // Make clean r0
-;                                // 0 1 1 1 
-;                                // f f f f 
-
-;                                // 0 1 1 1 
-;                                // f f f f 
-
-;                                // assign r1
 move 100 r1
 move r1 i
-;                                // Make clean r1
-;                                // 1 0 2 2 
-;                                // f f f f 
-
-;                                // 1 0 2 2 
-;                                // f f f f 
-
-;                                // assign r2
 move 1 r2
 move r2 j
-;                                // Make clean r2
-;                                // 2 1 0 3 
-;                                // f f f f 
-
-;                                // 2 1 0 3 
-;                                // f f f f 
-
-;                                // assign r3
 move num r3
 move r3 approx
 label label0_start
-;                                // 3 2 1 0 
-;                                // f f f f 
-
-;                                // assign r0
 move 0 r0
 cmpi i r0
 jeq label0_end
-;                                // 0 3 2 1 
-;                                // f f f f 
-
-;                                // assign r1
 move 0.5 r1
-;                                // 1 0 3 2 
-;                                // f f f f 
-
-;                                // assign r2
 move approx r2
-;                                // 2 1 0 3 
-;                                // f f f f 
-
-;                                // assign r3
 move num r3
 divr approx r3
-;                                // 3 2 1 0 
-;                                // f f f f 
-
-;                                //DIRTY r3
-;                                // 4 3 2 0 
-;                                // f f f t 
-
-;                                // Make clean r3
-;                                // 4 3 2 0 
-;                                // f f f f 
-
 addr r3 r2
-;                                // 4 3 2 0 
-;                                // f f f f 
-
-;                                //DIRTY r2
-;                                // 5 4 0 1 
-;                                // f f t f 
-
-;                                // Make clean r2
-;                                // 5 4 0 1 
-;                                // f f f f 
-
 mulr r2 r1
-;                                // 5 4 0 1 
-;                                // f f f f 
-
-;                                //DIRTY r1
-;                                // 6 0 1 2 
-;                                // f t f f 
-
 move r1 newapprox
-;                                // Make clean r1
-;                                // 6 0 1 2 
-;                                // f f f f 
-
-;                                // 6 0 1 2 
-;                                // f f f f 
-
-;                                // assign r0
 move newapprox r0
 move r0 approx
-;                                // 0 1 2 3 
-;                                // f f f f 
-
-;                                // assign r3
 move i r3
-;                                // 1 2 3 0 
-;                                // f f f f 
-
-;                                // assign r2
 move 1 r2
-;                                // Make clean r2
-;                                // 2 3 0 1 
-;                                // f f f f 
-
 subi r2 r3
-;                                // 2 3 0 1 
-;                                // f f f f 
-
-;                                //DIRTY r3
-;                                // 3 4 1 0 
-;                                // f f f t 
-
 move r3 i
-;                                // Make clean r3
-;                                // 3 4 1 0 
-;                                // f f f f 
-
 jmp label0_start
 label label0_end
 sys writer approx

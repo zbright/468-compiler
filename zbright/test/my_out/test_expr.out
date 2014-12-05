@@ -134,46 +134,14 @@ jsr main
 sys halt
 label main
 link 0
-;                                // 0 0 0 0 
-;                                // f f f f 
-
-;                                // assign r0
 move 1 r0
 move r0 a
-;                                // Make clean r0
-;                                // 0 1 1 1 
-;                                // f f f f 
-
-;                                // 0 1 1 1 
-;                                // f f f f 
-
-;                                // assign r1
 move 2 r1
 move r1 b
-;                                // Make clean r1
-;                                // 1 0 2 2 
-;                                // f f f f 
-
-;                                // 1 0 2 2 
-;                                // f f f f 
-
-;                                // assign r2
 move 10 r2
 move r2 c
-;                                // Make clean r2
-;                                // 2 1 0 3 
-;                                // f f f f 
-
-;                                // 2 1 0 3 
-;                                // f f f f 
-
-;                                // assign r3
 move 20 r3
 move r3 d
-;                                // Make clean r3
-;                                // 3 2 1 0 
-;                                // f f f f 
-
 sys writei a
 sys writes newline
 sys writei b
@@ -182,620 +150,119 @@ sys writei c
 sys writes newline
 sys writei d
 sys writes newline
-;                                // 3 2 1 0 
-;                                // f f f f 
-
-;                                // assign r0
 move a r0
 addi b r0
-;                                // 0 3 2 1 
-;                                // f f f f 
-
-;                                //DIRTY r0
-;                                // 0 4 3 2 
-;                                // t f f f 
-
 move r0 a
-;                                // Make clean r0
-;                                // 0 4 3 2 
-;                                // f f f f 
-
 sys writei a
 sys writes newline
-;                                // 0 4 3 2 
-;                                // f f f f 
-
-;                                // assign r1
 move a r1
 muli c r1
-;                                // 1 0 4 3 
-;                                // f f f f 
-
-;                                //DIRTY r1
-;                                // 2 0 5 4 
-;                                // f t f f 
-
 move r1 b
-;                                // Make clean r1
-;                                // 2 0 5 4 
-;                                // f f f f 
-
 sys writei b
 sys writes newline
-;                                // 2 0 5 4 
-;                                // f f f f 
-
-;                                // assign r2
 move 0 r2
 subi a r2
-;                                // 3 1 0 5 
-;                                // f f f f 
-
-;                                //DIRTY r2
-;                                // 4 2 0 6 
-;                                // f f t f 
-
 addi b r2
-;                                // 4 2 0 6 
-;                                // f f t f 
-
-;                                //DIRTY r2
-;                                // 5 3 0 7 
-;                                // f f t f 
-
 move r2 c
-;                                // Make clean r2
-;                                // 5 3 0 7 
-;                                // f f f f 
-
 sys writei c
 sys writes newline
-;                                // 5 3 0 7 
-;                                // f f f f 
-
-;                                // assign r3
 move 0 r3
 subi d r3
-;                                // 6 4 1 0 
-;                                // f f f f 
-
-;                                //DIRTY r3
-;                                // 7 5 2 0 
-;                                // f f f t 
-
 move r3 d
-;                                // Make clean r3
-;                                // 7 5 2 0 
-;                                // f f f f 
-
 sys writei d
 sys writes newline
-;                                // 7 5 2 0 
-;                                // f f f f 
-
-;                                // assign r0
 move a r0
 addi b r0
-;                                // 0 6 3 1 
-;                                // f f f f 
-
-;                                //DIRTY r0
-;                                // 0 7 4 2 
-;                                // t f f f 
-
-;                                // 0 7 4 2 
-;                                // t f f f 
-
-;                                // assign r1
 move d r1
 addi c r1
-;                                // 1 0 5 3 
-;                                // t f f f 
-
-;                                //DIRTY r1
-;                                // 2 0 6 4 
-;                                // t t f f 
-
-;                                // Make clean r1
-;                                // 2 0 6 4 
-;                                // t f f f 
-
 muli r1 r0
-;                                // 2 0 6 4 
-;                                // t f f f 
-
-;                                //DIRTY r0
-;                                // 0 1 7 5 
-;                                // t f f f 
-
-;                                // 0 1 7 5 
-;                                // t f f f 
-
-;                                // assign r2
 move a r2
 addi b r2
-;                                // 1 2 0 6 
-;                                // t f f f 
-
-;                                //DIRTY r2
-;                                // 2 3 0 7 
-;                                // t f t f 
-
 addi c r2
-;                                // 2 3 0 7 
-;                                // t f t f 
-
-;                                //DIRTY r2
-;                                // 3 4 0 8 
-;                                // t f t f 
-
 addi d r2
-;                                // 3 4 0 8 
-;                                // t f t f 
-
-;                                //DIRTY r2
-;                                // 4 5 0 9 
-;                                // t f t f 
-
 divi a r2
-;                                // 4 5 0 9 
-;                                // t f t f 
-
-;                                //DIRTY r2
-;                                // 5 6 0 10 
-;                                // t f t f 
-
-;                                // Make clean r2
-;                                // 5 6 0 10 
-;                                // t f f f 
-
 subi r2 r0
-;                                // 5 6 0 10 
-;                                // t f f f 
-
-;                                //DIRTY r0
-;                                // 0 7 1 11 
-;                                // t f f f 
-
 move r0 a
-;                                // Make clean r0
-;                                // 0 7 1 11 
-;                                // f f f f 
-
 sys writei a
 sys writes newline
-;                                // 0 7 1 11 
-;                                // f f f f 
-
-;                                // assign r3
 move a r3
-;                                // 1 8 2 0 
-;                                // f f f f 
-
-;                                // assign r1
 move 10 r1
-;                                // Make clean r1
-;                                // 2 0 3 1 
-;                                // f f f f 
-
 addi r1 r3
-;                                // 2 0 3 1 
-;                                // f f f f 
-
-;                                //DIRTY r3
-;                                // 3 1 4 0 
-;                                // f f f t 
-
 move r3 a
-;                                // Make clean r3
-;                                // 3 1 4 0 
-;                                // f f f f 
-
 sys writei a
 sys writes newline
-;                                // 3 1 4 0 
-;                                // f f f f 
-
-;                                // assign r2
 move b r2
 addi a r2
-;                                // 4 2 0 1 
-;                                // f f f f 
-
-;                                //DIRTY r2
-;                                // 5 3 0 2 
-;                                // f f t f 
-
-;                                // 5 3 0 2 
-;                                // f f t f 
-
-;                                // assign r0
 move 10 r0
-;                                // Make clean r0
-;                                // 0 4 1 3 
-;                                // f f t f 
-
 addi r0 r2
-;                                // 0 4 1 3 
-;                                // f f t f 
-
-;                                //DIRTY r2
-;                                // 1 5 0 4 
-;                                // f f t f 
-
 move r2 b
-;                                // Make clean r2
-;                                // 1 5 0 4 
-;                                // f f f f 
-
 sys writei b
 sys writes newline
-;                                // 1 5 0 4 
-;                                // f f f f 
-
-;                                // assign r1
 move 0 r1
-;                                // 2 0 1 5 
-;                                // f f f f 
-
-;                                // assign r3
 move 10 r3
-;                                // Make clean r3
-;                                // 3 1 2 0 
-;                                // f f f f 
-
 subi r3 r1
-;                                // 3 1 2 0 
-;                                // f f f f 
-
-;                                //DIRTY r1
-;                                // 4 0 3 1 
-;                                // f t f f 
-
 move r1 c
-;                                // Make clean r1
-;                                // 4 0 3 1 
-;                                // f f f f 
-
 sys writei c
 sys writes newline
-;                                // 4 0 3 1 
-;                                // f f f f 
-
-;                                // assign r0
 move 1.0 r0
 move r0 x
-;                                // Make clean r0
-;                                // 0 1 4 2 
-;                                // f f f f 
-
-;                                // 0 1 4 2 
-;                                // f f f f 
-
-;                                // assign r2
 move 2.0 r2
 move r2 y
-;                                // Make clean r2
-;                                // 1 2 0 3 
-;                                // f f f f 
-
-;                                // 1 2 0 3 
-;                                // f f f f 
-
-;                                // assign r3
 move 3.14159 r3
 move r3 z
-;                                // Make clean r3
-;                                // 2 3 1 0 
-;                                // f f f f 
-
 sys writer x
 sys writes newline
 sys writer z
 sys writes newline
 sys writer y
 sys writes newline
-;                                // 2 3 1 0 
-;                                // f f f f 
-
-;                                // assign r1
 move z r1
-;                                // 3 0 2 1 
-;                                // f f f f 
-
-;                                // assign r0
 move 2.0 r0
-;                                // Make clean r0
-;                                // 0 1 3 2 
-;                                // f f f f 
-
 divr r0 r1
-;                                // 0 1 3 2 
-;                                // f f f f 
-
-;                                //DIRTY r1
-;                                // 1 0 4 3 
-;                                // f t f f 
-
 move r1 x
-;                                // Make clean r1
-;                                // 1 0 4 3 
-;                                // f f f f 
-
-;                                // 1 0 4 3 
-;                                // f f f f 
-
-;                                // assign r2
 move z r2
 divr y r2
-;                                // 2 1 0 4 
-;                                // f f f f 
-
-;                                //DIRTY r2
-;                                // 3 2 0 5 
-;                                // f f t f 
-
 move r2 y
-;                                // Make clean r2
-;                                // 3 2 0 5 
-;                                // f f f f 
-
 sys writer x
 sys writes newline
 sys writer y
 sys writes newline
-;                                // 3 2 0 5 
-;                                // f f f f 
-
-;                                // assign r3
 move x r3
 addr y r3
-;                                // 4 3 1 0 
-;                                // f f f f 
-
-;                                //DIRTY r3
-;                                // 5 4 2 0 
-;                                // f f f t 
-
 addr z r3
-;                                // 5 4 2 0 
-;                                // f f f t 
-
-;                                //DIRTY r3
-;                                // 6 5 3 0 
-;                                // f f f t 
-
 divr z r3
-;                                // 6 5 3 0 
-;                                // f f f t 
-
-;                                //DIRTY r3
-;                                // 7 6 4 0 
-;                                // f f f t 
-
 move r3 t
-;                                // Make clean r3
-;                                // 7 6 4 0 
-;                                // f f f f 
-
 sys writer t
 sys writes newline
-;                                // 7 6 4 0 
-;                                // f f f f 
-
-;                                // assign r0
 move t r0
 mulr t r0
-;                                // 0 7 5 1 
-;                                // f f f f 
-
-;                                //DIRTY r0
-;                                // 0 8 6 2 
-;                                // t f f f 
-
 move r0 t
-;                                // Make clean r0
-;                                // 0 8 6 2 
-;                                // f f f f 
-
 sys writer t
 sys writes newline
-;                                // 0 8 6 2 
-;                                // f f f f 
-
-;                                // assign r1
 move t r1
 addr z r1
-;                                // 1 0 7 3 
-;                                // f f f f 
-
-;                                //DIRTY r1
-;                                // 2 0 8 4 
-;                                // f t f f 
-
 addr t r1
-;                                // 2 0 8 4 
-;                                // f t f f 
-
-;                                //DIRTY r1
-;                                // 3 0 9 5 
-;                                // f t f f 
-
-;                                // 3 0 9 5 
-;                                // f t f f 
-
-;                                // assign r2
 move t r2
-;                                // 4 1 0 6 
-;                                // f t f f 
-
-;                                // assign r3
 move 2.0 r3
-;                                // Make clean r3
-;                                // 5 2 1 0 
-;                                // f t f f 
-
 divr r3 r2
-;                                // 5 2 1 0 
-;                                // f t f f 
-
-;                                //DIRTY r2
-;                                // 6 3 0 1 
-;                                // f t t f 
-
-;                                // Make clean r2
-;                                // 6 3 0 1 
-;                                // f t f f 
-
 addr r2 r1
-;                                // 6 3 0 1 
-;                                // f t f f 
-
-;                                //DIRTY r1
-;                                // 7 0 1 2 
-;                                // f t f f 
-
-;                                // 7 0 1 2 
-;                                // f t f f 
-
-;                                // assign r0
 move z r0
-;                                // 0 1 2 3 
-;                                // f t f f 
-
-;                                // assign r3
 move 4.0 r3
-;                                // Make clean r3
-;                                // 1 2 3 0 
-;                                // f t f f 
-
 divr r3 r0
-;                                // 1 2 3 0 
-;                                // f t f f 
-
-;                                //DIRTY r0
-;                                // 0 3 4 1 
-;                                // t t f f 
-
-;                                // Make clean r0
-;                                // 0 3 4 1 
-;                                // f t f f 
-
 addr r0 r1
-;                                // 0 3 4 1 
-;                                // f t f f 
-
-;                                //DIRTY r1
-;                                // 1 0 5 2 
-;                                // f t f f 
-
-;                                // 1 0 5 2 
-;                                // f t f f 
-
-;                                // assign r2
 move z r2
-;                                // 2 1 0 3 
-;                                // f t f f 
-
-;                                // assign r3
 move 5.0 r3
-;                                // Make clean r3
-;                                // 3 2 1 0 
-;                                // f t f f 
-
 divr r3 r2
-;                                // 3 2 1 0 
-;                                // f t f f 
-
-;                                //DIRTY r2
-;                                // 4 3 0 1 
-;                                // f t t f 
-
-;                                // Make clean r2
-;                                // 4 3 0 1 
-;                                // f t f f 
-
 addr r2 r1
-;                                // 4 3 0 1 
-;                                // f t f f 
-
-;                                //DIRTY r1
-;                                // 5 0 1 2 
-;                                // f t f f 
-
-;                                // 5 0 1 2 
-;                                // f t f f 
-
-;                                // assign r0
 move z r0
-;                                // 0 1 2 3 
-;                                // f t f f 
-
-;                                // assign r3
 move 6.0 r3
-;                                // Make clean r3
-;                                // 1 2 3 0 
-;                                // f t f f 
-
 divr r3 r0
-;                                // 1 2 3 0 
-;                                // f t f f 
-
-;                                //DIRTY r0
-;                                // 0 3 4 1 
-;                                // t t f f 
-
-;                                // Make clean r0
-;                                // 0 3 4 1 
-;                                // f t f f 
-
 addr r0 r1
-;                                // 0 3 4 1 
-;                                // f t f f 
-
-;                                //DIRTY r1
-;                                // 1 0 5 2 
-;                                // f t f f 
-
-;                                // 1 0 5 2 
-;                                // f t f f 
-
-;                                // assign r2
 move z r2
-;                                // 2 1 0 3 
-;                                // f t f f 
-
-;                                // assign r3
 move 7.0 r3
-;                                // Make clean r3
-;                                // 3 2 1 0 
-;                                // f t f f 
-
 divr r3 r2
-;                                // 3 2 1 0 
-;                                // f t f f 
-
-;                                //DIRTY r2
-;                                // 4 3 0 1 
-;                                // f t t f 
-
-;                                // Make clean r2
-;                                // 4 3 0 1 
-;                                // f t f f 
-
 addr r2 r1
-;                                // 4 3 0 1 
-;                                // f t f f 
-
-;                                //DIRTY r1
-;                                // 5 0 1 2 
-;                                // f t f f 
-
 move r1 t
-;                                // Make clean r1
-;                                // 5 0 1 2 
-;                                // f f f f 
-
 sys writer t
 sys writes newline
 end

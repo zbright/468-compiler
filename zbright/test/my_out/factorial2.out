@@ -62,17 +62,9 @@ jsr main
 sys halt
 label factorial
 link 2
-;                                // 0 0 0 0 
-;                                // f f f f 
-
-;                                // assign r0
 move 1 r0
 cmpi $6 r0
 jne label0_else
-;                                // 0 1 1 1 
-;                                // f f f f 
-
-;                                // assign r1
 move 1 r1
 move r1 r0
 move r0 $7
@@ -80,28 +72,9 @@ unlnk
 ret
 jmp label0_end
 label label0_else
-;                                // 1 0 2 2 
-;                                // f f f f 
-
-;                                // assign r2
 move $6 r2
-;                                // 2 1 0 3 
-;                                // f f f f 
-
-;                                // assign r3
 move 1 r3
-;                                // Make clean r3
-;                                // 3 2 1 0 
-;                                // f f f f 
-
 subi r3 r2
-;                                // 3 2 1 0 
-;                                // f f f f 
-
-;                                //DIRTY r2
-;                                // 4 3 0 1 
-;                                // f f t f 
-
 push
 push r2
 push r0
@@ -114,34 +87,11 @@ pop r2
 pop r1
 pop r0
 pop
-;                                // 4 3 0 1 
-;                                // f f t f 
-
-;                                // assign r0
 pop r0
 move r0 $-1
-;                                // Make clean r0
-;                                // 0 4 1 2 
-;                                // f f t f 
-
-;                                // 0 4 1 2 
-;                                // f f t f 
-
-;                                // assign r1
 move $-1 r1
 muli $6 r1
-;                                // 1 0 2 3 
-;                                // f f t f 
-
-;                                //DIRTY r1
-;                                // 2 0 3 4 
-;                                // f t t f 
-
 move r1 $-2
-;                                // Make clean r1
-;                                // 2 0 3 4 
-;                                // f f t f 
-
 label label0_end
 move $-2 r0
 move r0 $7
@@ -151,30 +101,14 @@ label main
 link 2
 sys writes input
 sys readi $-1
-;                                // 0 0 0 0 
-;                                // f f f f 
-
-;                                // assign r0
 move 1 r0
 cmpi $-1 r0
 jne label1_else
-;                                // 0 1 1 1 
-;                                // f f f f 
-
-;                                // assign r1
 move 1 r1
 move r1 $-2
-;                                // Make clean r1
-;                                // 1 0 2 2 
-;                                // f f f f 
-
 jmp label1_end
 label label1_else
 label label1_end
-;                                // 1 0 2 2 
-;                                // f f f f 
-
-;                                // assign r2
 move 1 r2
 cmpi $-1 r2
 jle label2_else
@@ -190,35 +124,15 @@ pop r2
 pop r1
 pop r0
 pop
-;                                // 2 1 0 3 
-;                                // f f f f 
-
-;                                // assign r3
 pop r3
 move r3 $-2
-;                                // Make clean r3
-;                                // 3 2 1 0 
-;                                // f f f f 
-
 jmp label2_end
 label label2_else
-;                                // 3 2 1 0 
-;                                // f f f f 
-
-;                                // assign r0
 move 0 r0
 move r0 $-2
-;                                // Make clean r0
-;                                // 0 3 2 1 
-;                                // f f f f 
-
 label label2_end
 sys writei $-2
 sys writes eol
-;                                // 0 3 2 1 
-;                                // f f f f 
-
-;                                // assign r1
 move 0 r1
 move r1 r0
 move r0 $6

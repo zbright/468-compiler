@@ -33,71 +33,18 @@ jsr main
 sys halt
 label main
 link 0
-;                                // 0 0 0 0 
-;                                // f f f f 
-
-;                                // assign r0
 move 1 r0
 move r0 a
-;                                // Make clean r0
-;                                // 0 1 1 1 
-;                                // f f f f 
-
-;                                // 0 1 1 1 
-;                                // f f f f 
-
-;                                // assign r1
 move 2 r1
 move r1 b
-;                                // Make clean r1
-;                                // 1 0 2 2 
-;                                // f f f f 
-
 sys readi c
 sys readi d
-;                                // 1 0 2 2 
-;                                // f f f f 
-
-;                                // assign r2
 move a r2
 muli c r2
-;                                // 2 1 0 3 
-;                                // f f f f 
-
-;                                //DIRTY r2
-;                                // 3 2 0 4 
-;                                // f f t f 
-
-;                                // 3 2 0 4 
-;                                // f f t f 
-
-;                                // assign r3
 move b r3
 muli d r3
-;                                // 4 3 1 0 
-;                                // f f t f 
-
-;                                //DIRTY r3
-;                                // 5 4 2 0 
-;                                // f f t t 
-
-;                                // Make clean r3
-;                                // 5 4 2 0 
-;                                // f f t f 
-
 addi r3 r2
-;                                // 5 4 2 0 
-;                                // f f t f 
-
-;                                //DIRTY r2
-;                                // 6 5 0 1 
-;                                // f f t f 
-
 move r2 e
-;                                // Make clean r2
-;                                // 6 5 0 1 
-;                                // f f f f 
-
 sys writei c
 sys writes newline
 sys writei d

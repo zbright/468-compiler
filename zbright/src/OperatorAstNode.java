@@ -1,5 +1,6 @@
 public class OperatorAstNode extends AstNode {
   public OperatorType opType;
+  private boolean _showdebug = false;
 
   public OperatorAstNode(OperatorType op_type, SymbolType sym_type) {
     opType = op_type;
@@ -94,10 +95,13 @@ public class OperatorAstNode extends AstNode {
         String printStr = tinyOp + " " + childSrc + " " + childTempReg;
         System.out.println(printStr);
 
-        RegCounter.printAge();
-        System.out.println(";                                //DIRTY " + childTempReg);
+        if (_showdebug) {
+          RegCounter.printAge();
+          System.out.println(";                                //DIRTY " + childTempReg);
+        }
         RegCounter.makeDirty(childTempReg);
-        RegCounter.printAge();
+        if (_showdebug)
+          RegCounter.printAge();
         break;
     }
     return childTempReg;
