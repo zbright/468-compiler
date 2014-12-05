@@ -37,35 +37,109 @@ jsr main
 sys halt
 label main
 link 0
+;                                // 0 0 0 0 
+;                                // f f f f 
+
+;                                // assign r0
 move 7 r0
 move r0 num
+;                                // Make clean r0
+;                                // 0 1 1 1 
+;                                // f f f f 
+
+;                                // 0 1 1 1 
+;                                // f f f f 
+
+;                                // assign r1
 move 2 r1
 move r1 i
+;                                // Make clean r1
+;                                // 1 0 2 2 
+;                                // f f f f 
+
+;                                // 1 0 2 2 
+;                                // f f f f 
+
+;                                // assign r2
 move 42 r2
 move r2 a
+;                                // Make clean r2
+;                                // 2 1 0 3 
+;                                // f f f f 
+
+;                                // 2 1 0 3 
+;                                // f f f f 
+
+;                                // assign r3
 move 5 r3
 cmpi i r3
 jge label0_else
+;                                // 3 2 1 0 
+;                                // f f f f 
+
+;                                // assign r0
 move num r0
 addi a r0
-//DIRTY r0
+;                                // 0 3 2 1 
+;                                // f f f f 
+
+;                                //DIRTY r0
+;                                // 0 4 3 2 
+;                                // t f f f 
+
 move r0 num
+;                                // Make clean r0
+;                                // 0 4 3 2 
+;                                // f f f f 
+
+;                                // 0 4 3 2 
+;                                // f f f f 
+
+;                                // assign r1
 move 3 r1
 cmpi i r1
 jge label1_else
-move num r0
-addi a r0
-//DIRTY r0
-move r0 num
+;                                // 1 0 4 3 
+;                                // f f f f 
+
+;                                // assign r2
+move num r2
+addi a r2
+;                                // 2 1 0 4 
+;                                // f f f f 
+
+;                                //DIRTY r2
+;                                // 3 2 0 5 
+;                                // f f t f 
+
+move r2 num
+;                                // Make clean r2
+;                                // 3 2 0 5 
+;                                // f f f f 
+
 jmp label1_end
 label label1_else
 label label1_end
 jmp label0_end
 label label0_else
-move num r0
-subi a r0
-//DIRTY r0
-move r0 num
+;                                // 3 2 0 5 
+;                                // f f f f 
+
+;                                // assign r3
+move num r3
+subi a r3
+;                                // 4 3 1 0 
+;                                // f f f f 
+
+;                                //DIRTY r3
+;                                // 5 4 2 0 
+;                                // f f f t 
+
+move r3 num
+;                                // Make clean r3
+;                                // 5 4 2 0 
+;                                // f f f f 
+
 label label0_end
 sys writei num
 end

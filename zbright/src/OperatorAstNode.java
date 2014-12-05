@@ -88,12 +88,16 @@ public class OperatorAstNode extends AstNode {
           childTempReg = childZero.toTiny();
         }
 
-
-        String printStr = tinyOp + " " + children.get(1).toTiny() + " " + childTempReg;
+        String childSrc = children.get(1).toTiny();
+        if (childSrc.matches("r[0123]"))
+          RegCounter.makeClean(childSrc);
+        String printStr = tinyOp + " " + childSrc + " " + childTempReg;
         System.out.println(printStr);
 
-        System.out.println("//DIRTY " + childTempReg);
+        RegCounter.printAge();
+        System.out.println(";                                //DIRTY " + childTempReg);
         RegCounter.makeDirty(childTempReg);
+        RegCounter.printAge();
         break;
     }
     return childTempReg;

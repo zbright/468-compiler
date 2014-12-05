@@ -2,7 +2,7 @@ LIB_ANTLR := lib/antlr.jar
 ANTLR_SCRIPT := Micro.g4
 
 all: group compiler
-
+buildtest: compiler testcase
 group:
 	@echo "zbright ntornqui"
 compiler:

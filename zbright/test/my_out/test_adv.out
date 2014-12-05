@@ -66,65 +66,229 @@ jsr main
 sys halt
 label main
 link 0
+;                                // 0 0 0 0 
+;                                // f f f f 
+
+;                                // assign r0
 move 0.0001 r0
 move r0 tolerance
+;                                // Make clean r0
+;                                // 0 1 1 1 
+;                                // f f f f 
+
+;                                // 0 1 1 1 
+;                                // f f f f 
+
+;                                // assign r1
 move 7.0 r1
 move r1 num
+;                                // Make clean r1
+;                                // 1 0 2 2 
+;                                // f f f f 
+
+;                                // 1 0 2 2 
+;                                // f f f f 
+
+;                                // assign r2
 move num r2
 move r2 approx
+;                                // 2 1 0 3 
+;                                // f f f f 
+
+;                                // assign r3
 move 0 r3
 move r3 count
+;                                // Make clean r3
+;                                // 3 2 1 0 
+;                                // f f f f 
+
+;                                // 3 2 1 0 
+;                                // f f f f 
+
+;                                // assign r0
 move 0.0 r0
 move r0 diff
+;                                // Make clean r0
+;                                // 0 3 2 1 
+;                                // f f f f 
+
+;                                // 0 3 2 1 
+;                                // f f f f 
+
+;                                // assign r1
 move 0 r1
 move r1 enough
+;                                // Make clean r1
+;                                // 1 0 3 2 
+;                                // f f f f 
+
 label label0_start
+;                                // 1 0 3 2 
+;                                // f f f f 
+
+;                                // assign r2
 move 1 r2
 cmpi enough r2
 jeq label0_end
+;                                // 2 1 0 3 
+;                                // f f f f 
+
+;                                // assign r3
 move count r3
+;                                // 3 2 1 0 
+;                                // f f f f 
+
+;                                // assign r0
 move 1 r0
+;                                // Make clean r0
+;                                // 0 3 2 1 
+;                                // f f f f 
+
 addi r0 r3
-//DIRTY r3
+;                                // 0 3 2 1 
+;                                // f f f f 
+
+;                                //DIRTY r3
+;                                // 1 4 3 0 
+;                                // f f f t 
+
 move r3 count
+;                                // Make clean r3
+;                                // 1 4 3 0 
+;                                // f f f f 
+
+;                                // 1 4 3 0 
+;                                // f f f f 
+
+;                                // assign r1
 move 0.5 r1
+;                                // 2 0 4 1 
+;                                // f f f f 
+
+;                                // assign r2
 move approx r2
+;                                // 3 1 0 2 
+;                                // f f f f 
+
+;                                // assign r0
 move num r0
 divr approx r0
-//DIRTY r0
+;                                // 0 2 1 3 
+;                                // f f f f 
+
+;                                //DIRTY r0
+;                                // 0 3 2 4 
+;                                // t f f f 
+
+;                                // Make clean r0
+;                                // 0 3 2 4 
+;                                // f f f f 
+
 addr r0 r2
-//DIRTY r2
+;                                // 0 3 2 4 
+;                                // f f f f 
+
+;                                //DIRTY r2
+;                                // 1 4 0 5 
+;                                // f f t f 
+
+;                                // Make clean r2
+;                                // 1 4 0 5 
+;                                // f f f f 
+
 mulr r2 r1
-//DIRTY r1
+;                                // 1 4 0 5 
+;                                // f f f f 
+
+;                                //DIRTY r1
+;                                // 2 0 1 6 
+;                                // f t f f 
+
 move r1 newapprox
-move approx r2
-subr newapprox r2
-//DIRTY r2
-move r2 diff
-move 0.0 r3
-cmpr diff r3
+;                                // Make clean r1
+;                                // 2 0 1 6 
+;                                // f f f f 
+
+;                                // 2 0 1 6 
+;                                // f f f f 
+
+;                                // assign r3
+move approx r3
+subr newapprox r3
+;                                // 3 1 2 0 
+;                                // f f f f 
+
+;                                //DIRTY r3
+;                                // 4 2 3 0 
+;                                // f f f t 
+
+move r3 diff
+;                                // Make clean r3
+;                                // 4 2 3 0 
+;                                // f f f f 
+
+;                                // 4 2 3 0 
+;                                // f f f f 
+
+;                                // assign r0
+move 0.0 r0
+cmpr diff r0
 jle label1_else
-move tolerance r1
-cmpr diff r1
+;                                // 0 3 4 1 
+;                                // f f f f 
+
+;                                // assign r2
+move tolerance r2
+cmpr diff r2
 jge label2_else
-move 1 r2
-move r2 enough
+;                                // 1 4 0 2 
+;                                // f f f f 
+
+;                                // assign r1
+move 1 r1
+move r1 enough
+;                                // Make clean r1
+;                                // 2 0 1 3 
+;                                // f f f f 
+
 jmp label2_end
 label label2_else
 label label2_end
 jmp label1_end
 label label1_else
+;                                // 2 0 1 3 
+;                                // f f f f 
+
+;                                // assign r3
 move 0.0 r3
 subr tolerance r3
-//DIRTY r3
+;                                // 3 1 2 0 
+;                                // f f f f 
+
+;                                //DIRTY r3
+;                                // 4 2 3 0 
+;                                // f f f t 
+
 cmpr diff r3
 jle label3_else
-move 1 r1
-move r1 enough
+;                                // 4 2 3 0 
+;                                // f f f t 
+
+;                                // assign r0
+move 1 r0
+move r0 enough
+;                                // Make clean r0
+;                                // 0 3 4 1 
+;                                // f f f t 
+
 jmp label3_end
 label label3_else
 label label3_end
 label label1_end
+;                                // 0 3 4 1 
+;                                // f f f t 
+
+;                                // assign r2
 move newapprox r2
 move r2 approx
 jmp label0_start

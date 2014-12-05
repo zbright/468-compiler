@@ -5,12 +5,12 @@ public class RegCounter {
   public static String getNext(String newTag) {
     int oldestClean = -1;
     int oldestDirty = -1;
-
+    printAge();
     for(int i = 0; i < regCount; i++) {
-      if(registers[i].tag == newTag) {
-        oldestClean = i;
-        break;
-      }
+      //if(registers[i].tag == newTag) {
+      //  oldestClean = i;
+      //  break;
+      //}
 
       if(oldestDirty == -1 && registers[i].dirty)
         oldestDirty = i;
@@ -25,7 +25,10 @@ public class RegCounter {
     int nextReg = 0;
     if(oldestClean == -1) {
       nextReg = oldestDirty;
-      System.out.println("move r" + nextReg + " " + registers[nextReg].tag);
+      if (!registers[nextReg].tag.matches("[-+]?(\\d*[.])?\\d+"))
+      {
+        System.out.println("move r" + nextReg + " " + registers[nextReg].tag);
+      }
     } 
     else {
       nextReg = oldestClean;
@@ -40,7 +43,7 @@ public class RegCounter {
         continue;
       registers[i].age++;
     }
-
+    System.out.println(";                                // assign r" + String.valueOf(nextReg));
     return "r" + String.valueOf(nextReg);
   }
   
@@ -56,8 +59,10 @@ public class RegCounter {
     registers[regInt].dirty = true;
 
     for(int i = 0; i < regCount; i++) {
-      if(i == regInt)
+      if(i == regInt) {
+        registers[i].age = 0;
         continue;
+      }
       registers[i].age++;
     }
   }
@@ -66,6 +71,8 @@ public class RegCounter {
     String regNum = reg.substring(1, reg.length());
     int regInt = Integer.parseInt(regNum);
     registers[regInt].dirty = false;
+    System.out.println(";                                // Make clean " + reg);
+    printAge();
   }
 
   public static boolean validate(String strReg, String tag) {
@@ -73,6 +80,17 @@ public class RegCounter {
     int regInt = Integer.parseInt(regNum);
 
     return tag.equals(registers[regInt].tag);
+  }
+  
+  public static void printAge() {
+    String temp = "";
+    String temp2 = "";
+    for (int i = 0; i < registers.length; i++) {
+      temp += String.valueOf(registers[i].age) + " ";
+      temp2 += (registers[i].dirty ? "t " : "f ");
+    }
+    System.out.println(";                                // " + temp);
+    System.out.println(";                                // " + temp2 + "\n");
   }
   
   // private int findOldest() {
