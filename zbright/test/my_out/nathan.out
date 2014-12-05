@@ -1,0 +1,125 @@
+;IR code
+;LABEL main
+;LINK
+;STOREI 1 $T1
+;STOREF $T1 a
+;STOREI 2 $T2
+;STOREF $T2 b
+;STOREI 10 $T3
+;STOREF $T3 c
+;STOREI 20 $T4
+;STOREF $T4 d
+;STOREF 1.0 $T5
+;STOREF $T5 x
+;STOREF 2.0 $T6
+;STOREF $T6 y
+;STOREF 3.14159 $T7
+;STOREF $T7 z
+;STOREI 5 $T8
+;STOREF $T8 t
+;ADDF b a $T9
+;STOREF 2.6 $T10
+;DIVF $T9 $T10 $T11
+;STOREF 3.1 $T12
+;MULTF $T11 $T12 $T13
+;ADDF a $T13 $T14
+;ADDF $T14 c $T15
+;DIVF c d $T16
+;ADDF $T15 $T16 $T17
+;ADDF t z $T18
+;ADDF $T18 t $T19
+;STOREF 2.0 $T20
+;DIVF t $T20 $T21
+;ADDF $T19 $T21 $T22
+;STOREF 4.0 $T23
+;DIVF z $T23 $T24
+;ADDF $T22 $T24 $T25
+;STOREF 5.0 $T26
+;DIVF z $T26 $T27
+;ADDF $T25 $T27 $T28
+;STOREF 6.0 $T29
+;DIVF z $T29 $T30
+;ADDF $T28 $T30 $T31
+;STOREF 7.0 $T32
+;DIVF z $T32 $T33
+;ADDF $T31 $T33 $T34
+;MULTF $T17 $T34 $T35
+;STOREF $T35 q
+;WRITEF q
+;WRITES newline
+;tiny code
+var a
+var b
+var c
+var d
+var x
+var y
+var z
+var t
+var q
+str newline "\n"
+push
+push r0
+push r1
+push r2
+push r3
+jsr main
+sys halt
+label main
+link 0
+move 1 r0
+move r0 a
+move 2 r1
+move r1 b
+move 10 r2
+move r2 c
+move 20 r3
+move r3 d
+move 1.0 r0
+move r0 x
+move 2.0 r1
+move r1 y
+move 3.14159 r2
+move r2 z
+move 5 r3
+move r3 t
+move a r0
+move b r1
+addr a r1
+move 2.6 r2
+divr r2 r1
+move 3.1 r3
+mulr r3 r1
+addr r1 r0
+addr c r0
+move c r2
+divr d r2
+addr r2 r0
+move t r3
+addr z r3
+addr t r3
+move t r1
+move 2.0 r2
+divr r2 r1
+addr r1 r3
+move z r2
+move 4.0 r1
+divr r1 r2
+addr r2 r3
+move z r1
+move 5.0 r2
+divr r2 r1
+addr r1 r3
+move z r2
+move 6.0 r1
+divr r1 r2
+addr r2 r3
+move z r1
+move 7.0 r2
+divr r2 r1
+addr r1 r3
+mulr r3 r0
+move r0 q
+sys writer q
+sys writes newline
+end

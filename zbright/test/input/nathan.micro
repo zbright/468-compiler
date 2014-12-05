@@ -1,0 +1,21 @@
+PROGRAM expr
+BEGIN
+
+	FLOAT a,b,c,d;
+	FLOAT x,y,z,t,q;
+	STRING newline := "\n";
+
+	FUNCTION VOID main()
+	BEGIN
+		a := 1;
+		b := 2;
+		c := 10;
+		d := 20;
+		x := 1.0;
+		y := 2.0;
+		z := 3.14159;
+    t := 5;
+		q := (a + (b + a)/2.6*3.1 + c + c/d)*(t+z+t+t/2.0+z/4.0+z/5.0+z/6.0+z/7.0);
+		WRITE (q, newline);
+	END	
+END
