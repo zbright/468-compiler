@@ -22,6 +22,11 @@ testcase:
 	java -cp lib/antlr.jar:classes/ Micro test/input/test_if.micro > test/my_out/test_if.out
 	java -cp lib/antlr.jar:classes/ Micro test/input/test_mult.micro > test/my_out/test_mult.out
 	java -cp lib/antlr.jar:classes/ Micro test/input/test_while.micro > test/my_out/test_while.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/estimatePi.micro > test/my_out/estimatePi.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/estimatePi.micro > test/my_out/estimatePi.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/bitstream.micro > test/my_out/bitstream.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/quicksort.micro > test/my_out/quicksort.out
+	java -cp lib/antlr.jar:classes/ Micro test/input/integral.micro > test/my_out/integral.out
 clean:
 	rm -rf classes build
 

@@ -97,7 +97,7 @@ class SymbolTable {
     for (Symbol symbol : _symbols.values()) {
       if (ignore.contains(symbol.getName()))
         continue;
-
+      val = "";
       if (symbol.getType() == SymbolType.STRING) {
         ident = "str ";
         val = " " + symbol.getValue().toString();
