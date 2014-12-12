@@ -59,10 +59,10 @@ mulr r2 r1
 move r1 newapprox
 move newapprox r0
 move r0 approx
-move i r3
-move 1 r2
-subi r2 r3
-move r3 i
+move i r0
+move 1 r1
+subi r1 r0
+move r0 i
 jmp label0_start
 label label0_end
 sys writer approx

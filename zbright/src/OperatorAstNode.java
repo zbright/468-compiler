@@ -69,6 +69,7 @@ public class OperatorAstNode extends AstNode {
           // }
 
           System.out.println(tinyOp + " " + tempReg + " " + secondChildTag);
+          RegCounter.reset();
         }
         else {
           String childTag = children.get(1).toTiny();
@@ -84,6 +85,7 @@ public class OperatorAstNode extends AstNode {
         if(childZero instanceof VariableAstNode) {
           String childReg = ((VariableAstNode)childZero).toTiny();
           childTempReg = RegCounter.getNext(childReg);
+          RegCounter.makeDirty(childTempReg);
           System.out.println(TinyOpCode.MOVE + " " + childReg + " " + childTempReg);
         } else {
           childTempReg = childZero.toTiny();

@@ -27,7 +27,7 @@ public class RegCounter {
     int nextReg = 0;
     if(oldestClean == -1) {
       nextReg = oldestDirty;
-      if (!registers[nextReg].tag.matches("[-+]?(\\d*[.])?\\d+"))
+      if (registers[nextReg].tag != null && !registers[nextReg].tag.matches("[-+]?(\\d*[.])?\\d+"))
       {
         System.out.println("move r" + nextReg + " " + registers[nextReg].tag);
       }
@@ -71,9 +71,12 @@ public class RegCounter {
   }
 
   public static void makeClean(String reg) {
-    String regNum = reg.substring(1, reg.length());
-    int regInt = Integer.parseInt(regNum);
-    registers[regInt].dirty = false;
+    if (reg != null && reg.matches("r[0123]"))
+    {
+      String regNum = reg.substring(1, reg.length());
+      int regInt = Integer.parseInt(regNum);
+      registers[regInt].dirty = false;
+    }
     if (_showdebug) {
       System.out.println(";                                // Make clean " + reg);
       printAge();
@@ -94,10 +97,8 @@ public class RegCounter {
       temp += String.valueOf(registers[i].age) + " ";
       temp2 += (registers[i].dirty ? "t " : "f ");
     }
-    if (_showdebug) {
-      System.out.println(";                                // " + temp);
-      System.out.println(";                                // " + temp2 + "\n");
-    }
+    System.out.println(";                                // " + temp);
+    System.out.println(";                                // " + temp2 + "\n");
   }
   
   // private int findOldest() {

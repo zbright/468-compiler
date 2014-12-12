@@ -43,6 +43,7 @@ public class FunctionCallAstNode extends AstNode {
     System.out.println("push");
     for (String value : valuesForStack) {
     	pushList += "push " + value + "\n";
+      RegCounter.makeClean(value);
     	popList += "pop\n";
     }
     System.out.print(pushList);
@@ -61,6 +62,7 @@ public class FunctionCallAstNode extends AstNode {
     //TODO: Set properly once register allocation is added
     String childTempReg = RegCounter.getNext(null);
     System.out.println("pop " + childTempReg);
+    RegCounter.makeDirty(childTempReg);
     return childTempReg;
   }
 }

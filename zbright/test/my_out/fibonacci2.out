@@ -110,29 +110,29 @@ pop r2
 pop r1
 pop r0
 pop
-pop r3
-move r3 $-2
-move $-1 r2
-addi $-2 r2
-move r2 r0
+pop r1
+move r1 $-2
+move $-1 r3
+addi $-2 r3
+move r3 r0
 move r0 $7
 unlnk
 ret
 jmp label0_end
 label label0_else
 label label0_end
-move 0 r3
-cmpi $6 r3
+move 0 r2
+cmpi $6 r2
 jne label1_else
-move 0 r3
-move r3 r0
+move 0 r0
+move r0 r0
 move r0 $7
 unlnk
 ret
 jmp label1_end
 label label1_else
-move 1 r3
-move r3 r0
+move 1 r1
+move r1 r0
 move r0 $7
 unlnk
 ret

@@ -133,8 +133,8 @@ jmp label2_end
 label label2_else
 label label2_end
 move $-1 r1
-move 2 r2
-divi r2 r1
+move 2 r3
+divi r3 r1
 move r1 $-1
 jmp label0_start
 label label0_end

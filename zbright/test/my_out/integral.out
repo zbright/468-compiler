@@ -141,8 +141,8 @@ mulr $-1 r2
 addr r2 r0
 move r0 $-2
 move $-3 r3
-move 1 r2
-addr r2 r3
+move 1 r1
+addr r1 r3
 move r3 $-3
 jmp label0_start
 label label0_end
