@@ -108,7 +108,7 @@
 ;POP
 ;POP $T15
 ;DIVF $T10 $T15 $T16
-;ADDF $T16 $L1 $T17
+;ADDF $L1 $T16 $T17
 ;STOREF $T17 $L1
 ;STOREI 1 $T18
 ;ADDF $L2 $T18 $T19
@@ -311,6 +311,7 @@ label label3_start
 move $6 r2
 cmpr $-2 r2
 jge label3_end
+move $-1 r3
 push
 push $-2
 push r0
@@ -323,11 +324,11 @@ pop r2
 pop r1
 pop r0
 pop
-pop r3
-move 2 r0
+pop r0
+move 2 r1
 push
-push r3
 push r0
+push r1
 push r0
 push r1
 push r2
@@ -339,14 +340,14 @@ pop r1
 pop r0
 pop
 pop
-pop r1
-move 2 r2
-move $-2 r3
+pop r2
+move 2 r0
+move $-2 r1
 move 1 r0
-addr r0 r3
+addr r0 r1
 push
-push r2
-push r3
+push r0
+push r1
 push r0
 push r1
 push r2
@@ -358,14 +359,14 @@ pop r1
 pop r0
 pop
 pop
-pop r2
-mulr r2 r1
-move 2 r0
-muli $-2 r0
-move 1 r3
-addi r3 r0
+pop r0
+mulr r0 r2
+move 2 r1
+muli $-2 r1
+move 1 r0
+addi r0 r1
 push
-push r0
+push r1
 push r0
 push r1
 push r2
@@ -376,14 +377,14 @@ pop r2
 pop r1
 pop r0
 pop
-pop r2
-divr r2 r1
-addr $-1 r1
-move r1 $-1
-move $-2 r3
+pop r0
+divr r0 r2
+addr r2 r3
+move r3 $-1
+move $-2 r1
 move 1 r0
-addr r0 r3
-move r3 $-2
+addr r0 r1
+move r1 $-2
 jmp label3_start
 label label3_end
 move $-1 r0

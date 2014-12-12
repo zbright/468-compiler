@@ -4,7 +4,7 @@ BEGIN
         STRING eol := "\n";
         STRING one := "1";
         STRING zero := "0";
-
+        
         FUNCTION VOID main()
         BEGIN
                 INT a;
@@ -15,13 +15,15 @@ BEGIN
                   IF(IsEven(a) = 1)
                     WRITE(zero);
                   ENDIF
+                  
                   IF(IsOdd(a) = 1)
                     WRITE(one);
                   ENDIF
-		  a := a / 2;
+                  a := a / 2;
                 ENDWHILE
 
                 WRITE(eol);
+                RETURN 0;
         END
 
         FUNCTION INT IsEven(INT a)
@@ -31,6 +33,7 @@ BEGIN
                 ELSE
                         RETURN IsOdd(a - 1);
                 ENDIF
+                RETURN 0;
         END
 
         FUNCTION INT IsOdd(INT a)
@@ -40,5 +43,7 @@ BEGIN
                 ELSE
                         RETURN IsEven(a - 1);
                 ENDIF
+                RETURN 0;
         END
+        
 END

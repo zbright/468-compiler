@@ -34,6 +34,9 @@
 ;JUMP label0_start
 ;LABEL label0_end
 ;WRITES eol
+;STOREI 0 $T8
+;STOREF $T8 $R
+;RET
 ;LABEL IsEven
 ;LINK
 ;STOREI 0 $T1
@@ -53,6 +56,9 @@
 ;STOREF $T5 $R
 ;RET
 ;LABEL label3_end
+;STOREI 0 $T6
+;STOREF $T6 $R
+;RET
 ;LABEL IsOdd
 ;LINK
 ;STOREI 0 $T1
@@ -72,6 +78,9 @@
 ;STOREF $T5 $R
 ;RET
 ;LABEL label4_end
+;STOREI 0 $T6
+;STOREF $T6 $R
+;RET
 ;tiny code
 str prompt "Give me a number to output bitstring in reverse order: "
 str eol "\n"
@@ -139,6 +148,11 @@ move r1 $-1
 jmp label0_start
 label label0_end
 sys writes eol
+move 0 r3
+move r3 r0
+move r0 $6
+unlnk
+ret
 label IsEven
 link 0
 move 0 r0
@@ -172,6 +186,11 @@ move r0 $7
 unlnk
 ret
 label label3_end
+move 0 r1
+move r1 r0
+move r0 $7
+unlnk
+ret
 label IsOdd
 link 0
 move 0 r0
@@ -205,4 +224,9 @@ move r0 $7
 unlnk
 ret
 label label4_end
+move 0 r1
+move r1 r0
+move r0 $7
+unlnk
+ret
 end
