@@ -39,30 +39,30 @@ label main
 link 0
 move 7 r0
 move r0 num
-move 2 r1
-move r1 i
-move 42 r2
-move r2 a
-move 5 r3
-cmpi i r3
+move 2 r0
+move r0 i
+move 42 r0
+move r0 a
+move 5 r0
+cmpi i r0
 jge label0_else
-move num r0
-addi a r0
-move r0 num
-move 3 r1
-cmpi i r1
+move num r1
+addi a r1
+move r1 num
+move 3 r0
+cmpi i r0
 jge label1_else
-move num r2
-addi a r2
-move r2 num
+move num r1
+addi a r1
+move r1 num
 jmp label1_end
 label label1_else
 label label1_end
 jmp label0_end
 label label0_else
-move num r3
-subi a r3
-move r3 num
+move num r0
+subi a r0
+move r0 num
 label label0_end
 sys writei num
 end

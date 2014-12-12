@@ -112,27 +112,27 @@ pop r0
 pop
 pop r2
 move r2 $-2
-move $-1 r3
-addi $-2 r3
-move r3 r0
+move $-1 r0
+addi $-2 r0
+move r0 r0
 move r0 $7
 unlnk
 ret
 jmp label0_end
 label label0_else
 label label0_end
-move 0 r0
-cmpi $6 r0
-jne label1_else
 move 0 r1
-move r1 r0
+cmpi $6 r1
+jne label1_else
+move 0 r2
+move r2 r0
 move r0 $7
 unlnk
 ret
 jmp label1_end
 label label1_else
-move 1 r2
-move r2 r0
+move 1 r3
+move r3 r0
 move r0 $7
 unlnk
 ret
@@ -144,8 +144,8 @@ move r0 $-1
 sys writes input
 sys readi $-2
 label label2_start
-move $-2 r1
-cmpi $-1 r1
+move $-2 r0
+cmpi $-1 r0
 jeq label2_end
 push
 push $-1
@@ -159,20 +159,20 @@ pop r2
 pop r1
 pop r0
 pop
-pop r2
-move r2 $-3
+pop r1
+move r1 $-3
 sys writei $-1
 sys writes space
 sys writei $-3
 sys writes eol
-move 1 r3
-move $-1 r0
-addi r3 r0
-move r0 $-1
+move 1 r0
+move $-1 r1
+addi r0 r1
+move r1 $-1
 jmp label2_start
 label label2_end
-move 0 r1
-move r1 r0
+move 0 r0
+move r0 r0
 move r0 $6
 unlnk
 ret

@@ -662,8 +662,8 @@ pop r2
 pop r1
 pop r0
 pop
-pop r1
-move r1 $-2
+pop r0
+move r0 $-2
 push
 push $7
 push $-2
@@ -678,8 +678,8 @@ pop r1
 pop r0
 pop
 pop
-pop r2
-move r2 $-3
+pop r0
+move r0 $-3
 push
 push $6
 push $-1
@@ -694,8 +694,8 @@ pop r1
 pop r0
 pop
 pop
-pop r3
-move r3 $-3
+pop r0
+move r0 $-3
 move 0 r0
 move r0 r0
 move r0 $8
@@ -717,12 +717,12 @@ pop r0
 pop
 pop r0
 move r0 $-1
-move 1 r1
-move $7 r2
-subi r1 r2
+move 1 r0
+move $7 r1
+subi r0 r1
 push
 push $6
-push r2
+push r1
 push r0
 push r1
 push r2
@@ -734,8 +734,8 @@ pop r1
 pop r0
 pop
 pop
-pop r3
-move r3 $-2
+pop r2
+move r2 $-2
 move $8 r0
 move r0 $-3
 move $8 r0
@@ -760,8 +760,8 @@ pop r0
 pop
 pop r2
 move r2 $-5
-move $-1 r3
-cmpi $-5 r3
+move $-1 r0
+cmpi $-5 r0
 jgt label21_else
 push
 push $-3
@@ -777,26 +777,26 @@ pop r1
 pop r0
 pop
 pop
-pop r0
-move r0 $-2
-move 1 r2
-move $-3 r3
-addi r2 r3
-move r3 $-3
+pop r1
+move r1 $-2
+move 1 r0
+move $-3 r1
+addi r0 r1
+move r1 $-3
 jmp label21_end
 label label21_else
 label label21_end
 move 1 r0
-move $-4 r2
-addi r0 r2
-move r2 $-4
+move $-4 r1
+addi r0 r1
+move r1 $-4
 jmp label20_start
 label label20_end
-move 1 r3
-move $7 r0
-subi r3 r0
+move 1 r0
+move $7 r1
+subi r0 r1
 push
-push r0
+push r1
 push $-3
 push r0
 push r1
@@ -820,24 +820,24 @@ link 2
 move 1 r0
 move r0 $-1
 label label22_start
-move $6 r1
-move 2 r2
-move $-1 r3
-muli r2 r3
-cmpi r3 r1
-jge label22_end
-move 1 r0
-move $-1 r1
-addi r0 r1
-move r1 $-1
-move $6 r2
-move 2 r0
-move $-1 r1
-muli r0 r1
-cmpi r1 r2
-jge label23_else
+move $6 r0
+move 2 r1
 move $-1 r2
-move r2 $-2
+muli r1 r2
+cmpi r2 r0
+jge label22_end
+move 1 r3
+move $-1 r0
+addi r3 r0
+move r0 $-1
+move $6 r0
+move 2 r1
+move $-1 r2
+muli r1 r2
+cmpi r2 r0
+jge label23_else
+move $-1 r3
+move r3 $-2
 jmp label23_end
 label label23_else
 label label23_end
@@ -894,8 +894,8 @@ pop r0
 pop
 pop
 pop
-pop r3
-move r3 $-1
+pop r0
+move r0 $-1
 push
 push $7
 push $-1
@@ -912,11 +912,11 @@ pop
 pop
 pop r0
 move r0 $-2
-move 1 r1
-move $-1 r3
-addi r1 r3
+move 1 r0
+move $-1 r1
+addi r0 r1
 push
-push r3
+push r1
 push $6
 push r0
 push r1
@@ -929,13 +929,13 @@ pop r1
 pop r0
 pop
 pop
-pop r0
-move r0 $-2
+pop r2
+move r2 $-2
 jmp label24_end
 label label24_else
 label label24_end
-move 0 r1
-move r1 r0
+move 0 r0
+move r0 r0
 move r0 $8
 unlnk
 ret
@@ -966,10 +966,10 @@ pop
 pop
 pop r1
 move r1 $-3
-move 1 r2
-move $-1 r3
-addi r2 r3
-move r3 $-1
+move 1 r0
+move $-1 r1
+addi r0 r1
+move r1 $-1
 jmp label25_start
 label label25_end
 move 0 r0
@@ -993,11 +993,11 @@ pop r2
 pop r1
 pop r0
 pop
-pop r1
-move r1 $-1
-move 5 r2
+pop r0
+move r0 $-1
+move 5 r0
 push
-push r2
+push r0
 push r0
 push r1
 push r2
@@ -1008,8 +1008,8 @@ pop r2
 pop r1
 pop r0
 pop
-pop r3
-move r3 $-1
+pop r1
+move r1 $-1
 sys writes eol
 sys writes sorting
 sys writes eol
@@ -1030,9 +1030,9 @@ pop
 pop
 pop r1
 move r1 $-1
-move 5 r2
+move 5 r0
 push
-push r2
+push r0
 push r0
 push r1
 push r2
@@ -1043,6 +1043,6 @@ pop r2
 pop r1
 pop r0
 pop
-pop r3
-move r3 $-1
+pop r1
+move r1 $-1
 end

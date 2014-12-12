@@ -109,22 +109,22 @@ link 3
 move $8 r0
 divr $9 r0
 move r0 $-1
-move 0 r1
-move r1 $-2
-move 1 r2
-move r2 $-3
+move 0 r0
+move r0 $-2
+move 1 r0
+move r0 $-3
 sys writes dxis
 sys writer $-1
 sys writes eol
 label label0_start
-move $9 r3
-cmpr $-3 r3
+move $9 r0
+cmpr $-3 r0
 jge label0_end
-move $-3 r0
-mulr $-1 r0
-addr $7 r0
+move $-3 r1
+mulr $-1 r1
+addr $7 r1
 push
-push r0
+push r1
 push r0
 push r1
 push r2
@@ -135,15 +135,15 @@ pop r2
 pop r1
 pop r0
 pop
-pop r1
-mulr $-1 r1
-move $-2 r2
-addr r1 r2
-move r2 $-2
-move 1 r3
-move $-3 r0
-addr r3 r0
-move r0 $-3
+pop r2
+mulr $-1 r2
+move $-2 r3
+addr r2 r3
+move r3 $-2
+move 1 r0
+move $-3 r1
+addr r0 r1
+move r1 $-3
 jmp label0_start
 label label0_end
 sys writes eol
@@ -184,8 +184,8 @@ pop
 pop r1
 move r1 $-4
 sys writer $-4
-move 0 r2
-move r2 r0
+move 0 r0
+move r0 r0
 move r0 $6
 unlnk
 ret

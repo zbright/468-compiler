@@ -120,8 +120,8 @@ pop r1
 pop r0
 pop
 pop
-pop r1
-move r1 $-5
+pop r0
+move r0 $-5
 sys writer $-1
 sys writes star
 sys writer $-2
@@ -130,8 +130,8 @@ sys writer $-3
 sys writes equal
 sys writer $-5
 sys writes eol
-move 0 r2
-move r2 r0
+move 0 r0
+move r0 r0
 move r0 $6
 unlnk
 ret

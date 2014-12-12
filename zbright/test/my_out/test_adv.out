@@ -68,39 +68,39 @@ label main
 link 0
 move 0.0001 r0
 move r0 tolerance
-move 7.0 r1
-move r1 num
-move num r2
-move r2 approx
+move 7.0 r0
+move r0 num
+move num r0
+move r0 approx
 move 0 r0
 move r0 count
-move 0.0 r1
-move r1 diff
-move 0 r2
-move r2 enough
+move 0.0 r0
+move r0 diff
+move 0 r0
+move r0 enough
 label label0_start
-move 1 r3
-cmpi enough r3
-jeq label0_end
 move 1 r0
-move count r1
-addi r0 r1
-move r1 count
-move 0.5 r2
-move num r3
-divr approx r3
+cmpi enough r0
+jeq label0_end
+move 1 r1
+move count r2
+addi r1 r2
+move r2 count
+move 0.5 r0
+move num r1
+divr approx r1
+move approx r2
+addr r1 r2
+mulr r2 r0
+move r0 newapprox
 move approx r0
-addr r3 r0
-mulr r0 r2
-move r2 newapprox
-move approx r1
-subr newapprox r1
-move r1 diff
-move 0.0 r3
-cmpr diff r3
-jle label1_else
-move tolerance r0
+subr newapprox r0
+move r0 diff
+move 0.0 r0
 cmpr diff r0
+jle label1_else
+move tolerance r1
+cmpr diff r1
 jge label2_else
 move 1 r2
 move r2 enough
@@ -109,12 +109,12 @@ label label2_else
 label label2_end
 jmp label1_end
 label label1_else
-move 0.0 r1
-subr tolerance r1
-cmpr diff r1
+move 0.0 r0
+subr tolerance r0
+cmpr diff r0
 jle label3_else
-move 1 r3
-move r3 enough
+move 1 r1
+move r1 enough
 jmp label3_end
 label label3_else
 label label3_end

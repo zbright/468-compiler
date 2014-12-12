@@ -35,16 +35,16 @@ label main
 link 0
 move 1 r0
 move r0 a
-move 2 r1
-move r1 b
+move 2 r0
+move r0 b
 sys readi c
 sys readi d
-move a r2
-muli c r2
-move b r3
-muli d r3
-addi r3 r2
-move r2 e
+move a r0
+muli c r0
+move b r1
+muli d r1
+addi r1 r0
+move r0 e
 sys writei c
 sys writes newline
 sys writei d

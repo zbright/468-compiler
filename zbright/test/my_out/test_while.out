@@ -40,12 +40,12 @@ label main
 link 0
 move 7.0 r0
 move r0 num
-move 100 r1
-move r1 i
-move 1 r2
-move r2 j
-move num r3
-move r3 approx
+move 100 r0
+move r0 i
+move 1 r0
+move r0 j
+move num r0
+move r0 approx
 label label0_start
 move 0 r0
 cmpi i r0

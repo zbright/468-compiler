@@ -89,9 +89,9 @@ pop r0
 pop
 pop r0
 move r0 $-1
-move $-1 r1
-muli $6 r1
-move r1 $-2
+move $-1 r0
+muli $6 r0
+move r0 $-2
 label label0_end
 move $-2 r0
 move r0 $7
@@ -109,8 +109,8 @@ move r1 $-2
 jmp label1_end
 label label1_else
 label label1_end
-move 1 r2
-cmpi $-1 r2
+move 1 r0
+cmpi $-1 r0
 jle label2_else
 push
 push $-1
@@ -124,8 +124,8 @@ pop r2
 pop r1
 pop r0
 pop
-pop r3
-move r3 $-2
+pop r1
+move r1 $-2
 jmp label2_end
 label label2_else
 move 0 r0
@@ -133,8 +133,8 @@ move r0 $-2
 label label2_end
 sys writei $-2
 sys writes eol
-move 0 r1
-move r1 r0
+move 0 r0
+move r0 r0
 move r0 $6
 unlnk
 ret
