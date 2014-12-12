@@ -81,6 +81,10 @@ public class OperatorAstNode extends AstNode {
         }
         break;
       default:
+        String childSrc = "";
+        if(children.get(0) instanceof VariableAstNode) {
+          childSrc = children.get(1).toTiny();
+        }
         AstNode childZero = children.get(0);
         if(childZero instanceof VariableAstNode) {
           String childReg = ((VariableAstNode)childZero).toTiny();
@@ -90,8 +94,11 @@ public class OperatorAstNode extends AstNode {
         } else {
           childTempReg = childZero.toTiny();
         }
-
-        String childSrc = children.get(1).toTiny();
+       
+        if( !(children.get(0) instanceof VariableAstNode)) {
+          childSrc = children.get(1).toTiny();
+        }
+          
         if (childSrc.matches("r[0123]"))
           RegCounter.makeClean(childSrc);
         String printStr = tinyOp + " " + childSrc + " " + childTempReg;
@@ -103,7 +110,7 @@ public class OperatorAstNode extends AstNode {
         }
         RegCounter.makeDirty(childTempReg);
         if (_showdebug)
-          RegCounter.printAge();
+          RegCounter.printAge();    
         break;
     }
     return childTempReg;

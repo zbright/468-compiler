@@ -141,15 +141,15 @@ sys writes one
 jmp label2_end
 label label2_else
 label label2_end
-move $-1 r1
-move 2 r3
-divi r3 r1
-move r1 $-1
+move 2 r1
+move $-1 r3
+divi r1 r3
+move r3 $-1
 jmp label0_start
 label label0_end
 sys writes eol
-move 0 r3
-move r3 r0
+move 0 r1
+move r1 r0
 move r0 $6
 unlnk
 ret
@@ -165,11 +165,11 @@ unlnk
 ret
 jmp label3_end
 label label3_else
-move $6 r2
-move 1 r3
-subi r3 r2
+move 1 r2
+move $6 r3
+subi r2 r3
 push
-push r2
+push r3
 push r0
 push r1
 push r2
@@ -203,11 +203,11 @@ unlnk
 ret
 jmp label4_end
 label label4_else
-move $6 r2
-move 1 r3
-subi r3 r2
+move 1 r2
+move $6 r3
+subi r2 r3
 push
-push r2
+push r3
 push r0
 push r1
 push r2

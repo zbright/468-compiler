@@ -120,12 +120,11 @@ label label0_start
 move $9 r3
 cmpr $-3 r3
 jge label0_end
-move $-2 r0
-move $-3 r1
-mulr $-1 r1
-addr $7 r1
+move $-3 r0
+mulr $-1 r0
+addr $7 r0
 push
-push r1
+push r0
 push r0
 push r1
 push r2
@@ -136,14 +135,15 @@ pop r2
 pop r1
 pop r0
 pop
-pop r2
-mulr $-1 r2
-addr r2 r0
-move r0 $-2
-move $-3 r3
-move 1 r1
-addr r1 r3
-move r3 $-3
+pop r1
+mulr $-1 r1
+move $-2 r2
+addr r1 r2
+move r2 $-2
+move 1 r3
+move $-3 r0
+addr r3 r0
+move r0 $-3
 jmp label0_start
 label label0_end
 sys writes eol

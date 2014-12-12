@@ -51,18 +51,18 @@ move 0 r0
 cmpi i r0
 jeq label0_end
 move 0.5 r1
-move approx r2
-move num r3
-divr approx r3
-addr r3 r2
-mulr r2 r1
+move num r2
+divr approx r2
+move approx r3
+addr r2 r3
+mulr r3 r1
 move r1 newapprox
 move newapprox r0
 move r0 approx
-move i r0
-move 1 r1
-subi r1 r0
-move r0 i
+move 1 r0
+move i r1
+subi r0 r1
+move r1 i
 jmp label0_start
 label label0_end
 sys writer approx

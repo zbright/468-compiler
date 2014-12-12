@@ -82,25 +82,25 @@ label label0_start
 move 1 r3
 cmpi enough r3
 jeq label0_end
-move count r0
-move 1 r1
-addi r1 r0
-move r0 count
+move 1 r0
+move count r1
+addi r0 r1
+move r1 count
 move 0.5 r2
-move approx r3
-move num r1
-divr approx r1
-addr r1 r3
-mulr r3 r2
-move r2 newapprox
+move num r3
+divr approx r3
 move approx r0
-subr newapprox r0
-move r0 diff
-move 0.0 r1
-cmpr diff r1
-jle label1_else
-move tolerance r3
+addr r3 r0
+mulr r0 r2
+move r2 newapprox
+move approx r1
+subr newapprox r1
+move r1 diff
+move 0.0 r3
 cmpr diff r3
+jle label1_else
+move tolerance r0
+cmpr diff r0
 jge label2_else
 move 1 r2
 move r2 enough
@@ -109,18 +109,18 @@ label label2_else
 label label2_end
 jmp label1_end
 label label1_else
-move 0.0 r0
-subr tolerance r0
-cmpr diff r0
+move 0.0 r1
+subr tolerance r1
+cmpr diff r1
 jle label3_else
-move 1 r1
-move r1 enough
+move 1 r3
+move r3 enough
 jmp label3_end
 label label3_else
 label label3_end
 label label1_end
-move newapprox r3
-move r3 approx
+move newapprox r0
+move r0 approx
 jmp label0_start
 label label0_end
 sys writer approx
