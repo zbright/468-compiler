@@ -1,0 +1,208 @@
+;IR code
+;LABEL main
+;LINK
+;WRITES prompt
+;READI $L1
+;LABEL label0_start
+;STOREI 0 $T1
+;LE $L1 $T1 label0_end
+;PUSH
+;PUSH $L1
+;JSR IsEven
+;POP
+;POP $T2
+;STOREI 1 $T3
+;NE $T2 $T3 label1_else
+;WRITES zero
+;JUMP label1_end
+;LABEL label1_else
+;LABEL label1_end
+;PUSH
+;PUSH $L1
+;JSR IsOdd
+;POP
+;POP $T4
+;STOREI 1 $T5
+;NE $T4 $T5 label2_else
+;WRITES one
+;JUMP label2_end
+;LABEL label2_else
+;LABEL label2_end
+;STOREI 2 $T6
+;DIVI $L1 $T6 $T7
+;STOREI $T7 $L1
+;JUMP label0_start
+;LABEL label0_end
+;WRITES eol
+;LABEL IsEven
+;LINK
+;STOREI 0 $T1
+;NE $P1 $T1 label3_else
+;STOREI 1 $T2
+;STOREF $T2 $R
+;RET
+;JUMP label3_end
+;LABEL label3_else
+;STOREI 1 $T3
+;SUBI $P1 $T3 $T4
+;PUSH
+;PUSH $T4
+;JSR IsOdd
+;POP
+;POP $T5
+;STOREF $T5 $R
+;RET
+;LABEL label3_end
+;LABEL IsOdd
+;LINK
+;STOREI 0 $T1
+;NE $P1 $T1 label4_else
+;STOREI 0 $T2
+;STOREF $T2 $R
+;RET
+;JUMP label4_end
+;LABEL label4_else
+;STOREI 1 $T3
+;SUBI $P1 $T3 $T4
+;PUSH
+;PUSH $T4
+;JSR IsEven
+;POP
+;POP $T5
+;STOREF $T5 $R
+;RET
+;LABEL label4_end
+;tiny code
+str prompt "Give me a number to output bitstring in reverse order: "
+str eol "\n"
+str one "1"
+str zero "0"
+push
+push r0
+push r1
+push r2
+push r3
+jsr main
+sys halt
+label main
+link 1
+sys writes prompt
+sys readi $-1
+label label0_start
+move 0 r0
+cmpi $-1 r0
+jle label0_end
+move 1 r1
+push
+push $-1
+push r0
+push r1
+push r2
+push r3
+jsr IsEven
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r2
+cmpr r2 r1
+jne label1_else
+sys writes zero
+jmp label1_end
+label label1_else
+label label1_end
+move 1 r3
+push
+push $-1
+push r0
+push r1
+push r2
+push r3
+jsr IsOdd
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r0
+cmpr r0 r3
+jne label2_else
+sys writes one
+jmp label2_end
+label label2_else
+label label2_end
+move $-1 r1
+move 2 r2
+divi r2 r1
+move r1 $-1
+jmp label0_start
+label label0_end
+sys writes eol
+label IsEven
+link 0
+move 0 r0
+cmpi $6 r0
+jne label3_else
+move 1 r1
+move r1 r0
+move r0 $7
+unlnk
+ret
+jmp label3_end
+label label3_else
+move $6 r2
+move 1 r3
+subi r3 r2
+push
+push r2
+push r0
+push r1
+push r2
+push r3
+jsr IsOdd
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r0
+move r0 r0
+move r0 $7
+unlnk
+ret
+label label3_end
+label IsOdd
+link 0
+move 0 r0
+cmpi $6 r0
+jne label4_else
+move 0 r1
+move r1 r0
+move r0 $7
+unlnk
+ret
+jmp label4_end
+label label4_else
+move $6 r2
+move 1 r3
+subi r3 r2
+push
+push r2
+push r0
+push r1
+push r2
+push r3
+jsr IsEven
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r0
+move r0 r0
+move r0 $7
+unlnk
+ret
+label label4_end
+end

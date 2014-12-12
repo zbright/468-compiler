@@ -1,0 +1,192 @@
+;IR code
+;LABEL F
+;LINK
+;MULTF $P1 $P1 $T1
+;STOREI 8 $T2
+;MULTI $T2 $P1 $T3
+;MULTI $T3 $P1 $T4
+;MULTI $T4 $P1 $T5
+;ADDF $T1 $T5 $T6
+;STOREI 9 $T7
+;MULTI $T7 $P1 $T8
+;ADDF $T6 $T8 $T9
+;STOREI 5 $T10
+;ADDF $T9 $T10 $T11
+;STOREF $T11 $R
+;RET
+;LABEL iapprox
+;LINK
+;DIVF $P2 $P1 $T1
+;STOREF $T1 $L1
+;STOREI 0 $T2
+;STOREF $T2 $L2
+;STOREI 1 $T3
+;STOREF $T3 $L3
+;WRITES dxis
+;WRITEF $L1
+;WRITES eol
+;LABEL label0_start
+;GE $L3 $P1 label0_end
+;MULTF $L3 $L1 $T4
+;ADDF $T4 $P3 $T5
+;PUSH
+;PUSH $T5
+;JSR F
+;POP
+;POP $T6
+;MULTF $T6 $L1 $T7
+;ADDF $L2 $T7 $T8
+;STOREF $T8 $L2
+;STOREI 1 $T9
+;ADDF $L3 $T9 $T10
+;STOREF $T10 $L3
+;JUMP label0_start
+;LABEL label0_end
+;WRITES eol
+;STOREF $L2 $R
+;RET
+;LABEL main
+;LINK
+;WRITES intro
+;WRITES eol
+;WRITES ins2
+;READF $L1
+;WRITES ins3
+;READF $L2
+;WRITES ins
+;READF $L3
+;SUBF $L2 $L1 $T1
+;PUSH
+;PUSH $L3
+;PUSH $T1
+;PUSH $L1
+;PUSH $L2
+;JSR iapprox
+;POP
+;POP
+;POP
+;POP
+;POP $T2
+;STOREF $T2 $L4
+;WRITEF $L4
+;STOREI 0 $T3
+;STOREF $T3 $R
+;RET
+;tiny code
+str dxis "dx = "
+str eol "\n"
+str intro "Integrating f(x) = 8x^3 + x^2 + 9x + 5"
+str ins "Enter number of partitions to use to approximate: "
+str ins2 "Integration range from x= "
+str ins3 "to x= "
+push
+push r0
+push r1
+push r2
+push r3
+jsr main
+sys halt
+label F
+link 0
+move $6 r0
+mulr $6 r0
+move 8 r1
+muli $6 r1
+muli $6 r1
+muli $6 r1
+addr r1 r0
+move 9 r2
+muli $6 r2
+addr r2 r0
+move 5 r3
+addr r3 r0
+move r0 r0
+move r0 $7
+unlnk
+ret
+label iapprox
+link 3
+move $8 r0
+divr $9 r0
+move r0 $-1
+move 0 r1
+move r1 $-2
+move 1 r2
+move r2 $-3
+sys writes dxis
+sys writer $-1
+sys writes eol
+label label0_start
+move $9 r3
+cmpr $-3 r3
+jge label0_end
+move $-2 r0
+move $-3 r1
+mulr $-1 r1
+addr $7 r1
+push
+push r1
+push r0
+push r1
+push r2
+push r3
+jsr F
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r2
+mulr $-1 r2
+addr r2 r0
+move r0 $-2
+move $-3 r3
+move 1 r2
+addr r2 r3
+move r3 $-3
+jmp label0_start
+label label0_end
+sys writes eol
+move $-2 r0
+move r0 $10
+unlnk
+ret
+label main
+link 4
+sys writes intro
+sys writes eol
+sys writes ins2
+sys readr $-1
+sys writes ins3
+sys readr $-2
+sys writes ins
+sys readr $-3
+move $-2 r0
+subr $-1 r0
+push
+push $-3
+push r0
+push $-1
+push $-2
+push r0
+push r1
+push r2
+push r3
+jsr iapprox
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop
+pop
+pop r1
+move r1 $-4
+sys writer $-4
+move 0 r2
+move r2 r0
+move r0 $6
+unlnk
+ret
+end

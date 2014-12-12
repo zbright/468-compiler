@@ -1,0 +1,1048 @@
+;IR code
+;LABEL Aget
+;LINK
+;STOREI 0 $T1
+;NE $P1 $T1 label0_else
+;STOREF a0 $R
+;RET
+;JUMP label0_end
+;LABEL label0_else
+;LABEL label0_end
+;STOREI 1 $T2
+;NE $P1 $T2 label1_else
+;STOREF a1 $R
+;RET
+;JUMP label1_end
+;LABEL label1_else
+;LABEL label1_end
+;STOREI 2 $T3
+;NE $P1 $T3 label2_else
+;STOREF a2 $R
+;RET
+;JUMP label2_end
+;LABEL label2_else
+;LABEL label2_end
+;STOREI 3 $T4
+;NE $P1 $T4 label3_else
+;STOREF a3 $R
+;RET
+;JUMP label3_end
+;LABEL label3_else
+;LABEL label3_end
+;STOREI 4 $T5
+;NE $P1 $T5 label4_else
+;STOREF a4 $R
+;RET
+;JUMP label4_end
+;LABEL label4_else
+;LABEL label4_end
+;STOREI 5 $T6
+;NE $P1 $T6 label5_else
+;STOREF a5 $R
+;RET
+;JUMP label5_end
+;LABEL label5_else
+;LABEL label5_end
+;STOREI 6 $T7
+;NE $P1 $T7 label6_else
+;STOREF a6 $R
+;RET
+;JUMP label6_end
+;LABEL label6_else
+;LABEL label6_end
+;STOREI 7 $T8
+;NE $P1 $T8 label7_else
+;STOREF a7 $R
+;RET
+;JUMP label7_end
+;LABEL label7_else
+;LABEL label7_end
+;STOREI 8 $T9
+;NE $P1 $T9 label8_else
+;STOREF a8 $R
+;RET
+;JUMP label8_end
+;LABEL label8_else
+;LABEL label8_end
+;STOREI 9 $T10
+;NE $P1 $T10 label9_else
+;STOREF a9 $R
+;RET
+;JUMP label9_end
+;LABEL label9_else
+;LABEL label9_end
+;LABEL Aset
+;LINK
+;STOREI 0 $T1
+;NE $P1 $T1 label10_else
+;STOREI $P2 a0
+;JUMP label10_end
+;LABEL label10_else
+;LABEL label10_end
+;STOREI 1 $T2
+;NE $P1 $T2 label11_else
+;STOREI $P2 a1
+;JUMP label11_end
+;LABEL label11_else
+;LABEL label11_end
+;STOREI 2 $T3
+;NE $P1 $T3 label12_else
+;STOREI $P2 a2
+;JUMP label12_end
+;LABEL label12_else
+;LABEL label12_end
+;STOREI 3 $T4
+;NE $P1 $T4 label13_else
+;STOREI $P2 a3
+;JUMP label13_end
+;LABEL label13_else
+;LABEL label13_end
+;STOREI 4 $T5
+;NE $P1 $T5 label14_else
+;STOREI $P2 a4
+;JUMP label14_end
+;LABEL label14_else
+;LABEL label14_end
+;STOREI 5 $T6
+;NE $P1 $T6 label15_else
+;STOREI $P2 a5
+;JUMP label15_end
+;LABEL label15_else
+;LABEL label15_end
+;STOREI 6 $T7
+;NE $P1 $T7 label16_else
+;STOREI $P2 a6
+;JUMP label16_end
+;LABEL label16_else
+;LABEL label16_end
+;STOREI 7 $T8
+;NE $P1 $T8 label17_else
+;STOREI $P2 a7
+;JUMP label17_end
+;LABEL label17_else
+;LABEL label17_end
+;STOREI 8 $T9
+;NE $P1 $T9 label18_else
+;STOREI $P2 a8
+;JUMP label18_end
+;LABEL label18_else
+;LABEL label18_end
+;STOREI 9 $T10
+;NE $P1 $T10 label19_else
+;STOREI $P2 a9
+;JUMP label19_end
+;LABEL label19_else
+;LABEL label19_end
+;STOREF $P2 $R
+;RET
+;LABEL printarray
+;LINK
+;WRITES p0
+;WRITEI a0
+;WRITES sep
+;WRITEI a1
+;WRITES sep
+;WRITEI a2
+;WRITES sep
+;WRITEI a3
+;WRITES sep
+;WRITEI a4
+;WRITES sep
+;WRITEI a5
+;WRITES sep
+;WRITEI a6
+;WRITES sep
+;WRITEI a7
+;WRITES sep
+;WRITEI a8
+;WRITES sep
+;WRITEI a9
+;WRITES sep
+;STOREI 0 $T1
+;STOREF $T1 $R
+;RET
+;LABEL Aswap
+;LINK
+;PUSH
+;PUSH $P1
+;JSR Aget
+;POP
+;POP $T1
+;STOREI $T1 $L1
+;PUSH
+;PUSH $P2
+;JSR Aget
+;POP
+;POP $T2
+;STOREI $T2 $L2
+;PUSH
+;PUSH $P1
+;PUSH $L2
+;JSR Aset
+;POP
+;POP
+;POP $T3
+;STOREI $T3 $L3
+;PUSH
+;PUSH $P2
+;PUSH $L1
+;JSR Aset
+;POP
+;POP
+;POP $T4
+;STOREI $T4 $L3
+;STOREI 0 $T5
+;STOREF $T5 $R
+;RET
+;LABEL partition
+;LINK
+;PUSH
+;PUSH $P3
+;JSR Aget
+;POP
+;POP $T1
+;STOREI $T1 $L1
+;STOREI 1 $T2
+;SUBI $P2 $T2 $T3
+;PUSH
+;PUSH $P3
+;PUSH $T3
+;JSR Aswap
+;POP
+;POP
+;POP $T4
+;STOREI $T4 $L2
+;STOREI $P1 $L3
+;STOREI $P1 $L4
+;LABEL label20_start
+;STOREI 1 $T5
+;SUBI $P2 $T5 $T6
+;GE $L4 $T6 label20_end
+;PUSH
+;PUSH $L4
+;JSR Aget
+;POP
+;POP $T7
+;STOREI $T7 $L5
+;GT $L5 $L1 label21_else
+;PUSH
+;PUSH $L3
+;PUSH $L4
+;JSR Aswap
+;POP
+;POP
+;POP $T8
+;STOREI $T8 $L2
+;STOREI 1 $T9
+;ADDI $L3 $T9 $T10
+;STOREI $T10 $L3
+;JUMP label21_end
+;LABEL label21_else
+;LABEL label21_end
+;STOREI 1 $T11
+;ADDI $L4 $T11 $T12
+;STOREI $T12 $L4
+;JUMP label20_start
+;LABEL label20_end
+;STOREI 1 $T13
+;SUBI $P2 $T13 $T14
+;PUSH
+;PUSH $T14
+;PUSH $L3
+;JSR Aswap
+;POP
+;POP
+;POP $T15
+;STOREI $T15 $L2
+;STOREF $L3 $R
+;RET
+;LABEL floorhalves
+;LINK
+;STOREI 1 $T1
+;STOREI $T1 $L1
+;LABEL label22_start
+;STOREI 2 $T2
+;MULTI $L1 $T2 $T3
+;GE $T3 $P1 label22_end
+;STOREI 1 $T4
+;ADDI $L1 $T4 $T5
+;STOREI $T5 $L1
+;STOREI 2 $T6
+;MULTI $L1 $T6 $T7
+;GE $T7 $P1 label23_else
+;STOREI $L1 $L2
+;JUMP label23_end
+;LABEL label23_else
+;LABEL label23_end
+;JUMP label22_start
+;LABEL label22_end
+;STOREF $L2 $R
+;RET
+;LABEL qsort
+;LINK
+;WRITES sorting
+;WRITEI $P1
+;WRITES sep
+;WRITEI $P2
+;WRITES eol
+;STOREI 1 $T1
+;SUBI $P2 $T1 $T2
+;LE $T2 $P1 label24_else
+;SUBI $P2 $P1 $T3
+;PUSH
+;PUSH $T3
+;JSR floorhalves
+;POP
+;POP $T4
+;ADDI $P1 $T4 $T5
+;STOREI $T5 $L1
+;PUSH
+;PUSH $P1
+;PUSH $P2
+;PUSH $L1
+;JSR partition
+;POP
+;POP
+;POP
+;POP $T6
+;STOREI $T6 $L1
+;PUSH
+;PUSH $P1
+;PUSH $L1
+;JSR qsort
+;POP
+;POP
+;POP $T7
+;STOREI $T7 $L2
+;STOREI 1 $T8
+;ADDI $L1 $T8 $T9
+;PUSH
+;PUSH $T9
+;PUSH $P2
+;JSR qsort
+;POP
+;POP
+;POP $T10
+;STOREI $T10 $L2
+;JUMP label24_end
+;LABEL label24_else
+;LABEL label24_end
+;STOREI 0 $T11
+;STOREF $T11 $R
+;RET
+;LABEL readinput
+;LINK
+;LABEL label25_start
+;GE $L1 $P1 label25_end
+;WRITES input
+;WRITEI $L1
+;WRITES closebr
+;WRITES eq
+;READI $L2
+;PUSH
+;PUSH $L1
+;PUSH $L2
+;JSR Aset
+;POP
+;POP
+;POP $T1
+;STOREI $T1 $L3
+;STOREI 1 $T2
+;ADDI $L1 $T2 $T3
+;STOREI $T3 $L1
+;JUMP label25_start
+;LABEL label25_end
+;STOREI 0 $T4
+;STOREF $T4 $R
+;RET
+;LABEL main
+;LINK
+;STOREI 10 $T1
+;STOREI $T1 MAXLEN
+;PUSH
+;PUSH MAXLEN
+;JSR readinput
+;POP
+;POP $T2
+;STOREI $T2 $L1
+;STOREI 5 $T3
+;PUSH
+;PUSH $T3
+;JSR printarray
+;POP
+;POP $T4
+;STOREI $T4 $L1
+;WRITES eol
+;WRITES sorting
+;WRITES eol
+;STOREI 0 $T5
+;PUSH
+;PUSH $T5
+;PUSH MAXLEN
+;JSR qsort
+;POP
+;POP
+;POP $T6
+;STOREI $T6 $L1
+;STOREI 5 $T7
+;PUSH
+;PUSH $T7
+;JSR printarray
+;POP
+;POP $T8
+;STOREI $T8 $L1
+;tiny code
+var MAXLEN
+var a0
+var a1
+var a2
+var a3
+var a4
+var a5
+var a6
+var a7
+var a8
+var a9
+str p0 "Array: "
+str eol "\n"
+str sep ", "
+str sorting "Sorting.."
+str parting "Partiting.."
+str input "Input array value at A["
+str closebr "]"
+str eq "="
+push
+push r0
+push r1
+push r2
+push r3
+jsr main
+sys halt
+label Aget
+link 0
+move 0 r0
+cmpi $6 r0
+jne label0_else
+move a0 r0
+move r0 $7
+unlnk
+ret
+jmp label0_end
+label label0_else
+label label0_end
+move 1 r1
+cmpi $6 r1
+jne label1_else
+move a1 r0
+move r0 $7
+unlnk
+ret
+jmp label1_end
+label label1_else
+label label1_end
+move 2 r2
+cmpi $6 r2
+jne label2_else
+move a2 r0
+move r0 $7
+unlnk
+ret
+jmp label2_end
+label label2_else
+label label2_end
+move 3 r3
+cmpi $6 r3
+jne label3_else
+move a3 r0
+move r0 $7
+unlnk
+ret
+jmp label3_end
+label label3_else
+label label3_end
+move 4 r0
+cmpi $6 r0
+jne label4_else
+move a4 r0
+move r0 $7
+unlnk
+ret
+jmp label4_end
+label label4_else
+label label4_end
+move 5 r1
+cmpi $6 r1
+jne label5_else
+move a5 r0
+move r0 $7
+unlnk
+ret
+jmp label5_end
+label label5_else
+label label5_end
+move 6 r2
+cmpi $6 r2
+jne label6_else
+move a6 r0
+move r0 $7
+unlnk
+ret
+jmp label6_end
+label label6_else
+label label6_end
+move 7 r3
+cmpi $6 r3
+jne label7_else
+move a7 r0
+move r0 $7
+unlnk
+ret
+jmp label7_end
+label label7_else
+label label7_end
+move 8 r0
+cmpi $6 r0
+jne label8_else
+move a8 r0
+move r0 $7
+unlnk
+ret
+jmp label8_end
+label label8_else
+label label8_end
+move 9 r1
+cmpi $6 r1
+jne label9_else
+move a9 r0
+move r0 $7
+unlnk
+ret
+jmp label9_end
+label label9_else
+label label9_end
+label Aset
+link 0
+move 0 r0
+cmpi $7 r0
+jne label10_else
+move $6 r1
+move r1 a0
+jmp label10_end
+label label10_else
+label label10_end
+move 1 r2
+cmpi $7 r2
+jne label11_else
+move $6 r3
+move r3 a1
+jmp label11_end
+label label11_else
+label label11_end
+move 2 r0
+cmpi $7 r0
+jne label12_else
+move $6 r1
+move r1 a2
+jmp label12_end
+label label12_else
+label label12_end
+move 3 r2
+cmpi $7 r2
+jne label13_else
+move $6 r3
+move r3 a3
+jmp label13_end
+label label13_else
+label label13_end
+move 4 r0
+cmpi $7 r0
+jne label14_else
+move $6 r1
+move r1 a4
+jmp label14_end
+label label14_else
+label label14_end
+move 5 r2
+cmpi $7 r2
+jne label15_else
+move $6 r3
+move r3 a5
+jmp label15_end
+label label15_else
+label label15_end
+move 6 r0
+cmpi $7 r0
+jne label16_else
+move $6 r1
+move r1 a6
+jmp label16_end
+label label16_else
+label label16_end
+move 7 r2
+cmpi $7 r2
+jne label17_else
+move $6 r3
+move r3 a7
+jmp label17_end
+label label17_else
+label label17_end
+move 8 r0
+cmpi $7 r0
+jne label18_else
+move $6 r1
+move r1 a8
+jmp label18_end
+label label18_else
+label label18_end
+move 9 r2
+cmpi $7 r2
+jne label19_else
+move $6 r3
+move r3 a9
+jmp label19_end
+label label19_else
+label label19_end
+move $6 r0
+move r0 $8
+unlnk
+ret
+label printarray
+link 0
+sys writes p0
+sys writei a0
+sys writes sep
+sys writei a1
+sys writes sep
+sys writei a2
+sys writes sep
+sys writei a3
+sys writes sep
+sys writei a4
+sys writes sep
+sys writei a5
+sys writes sep
+sys writei a6
+sys writes sep
+sys writei a7
+sys writes sep
+sys writei a8
+sys writes sep
+sys writei a9
+sys writes sep
+move 0 r0
+move r0 r0
+move r0 $7
+unlnk
+ret
+label Aswap
+link 3
+push
+push $7
+push r0
+push r1
+push r2
+push r3
+jsr Aget
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r0
+move r0 $-1
+push
+push $6
+push r0
+push r1
+push r2
+push r3
+jsr Aget
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r1
+move r1 $-2
+push
+push $7
+push $-2
+push r0
+push r1
+push r2
+push r3
+jsr Aset
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r2
+move r2 $-3
+push
+push $6
+push $-1
+push r0
+push r1
+push r2
+push r3
+jsr Aset
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r3
+move r3 $-3
+move 0 r0
+move r0 r0
+move r0 $8
+unlnk
+ret
+label partition
+link 5
+push
+push $6
+push r0
+push r1
+push r2
+push r3
+jsr Aget
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r0
+move r0 $-1
+move $7 r1
+move 1 r2
+subi r2 r1
+push
+push $6
+push r1
+push r0
+push r1
+push r2
+push r3
+jsr Aswap
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r3
+move r3 $-2
+move $8 r0
+move r0 $-3
+move $8 r2
+move r2 $-4
+label label20_start
+move $7 r3
+move 1 r0
+subi r0 r3
+cmpi $-4 r3
+jge label20_end
+push
+push $-4
+push r0
+push r1
+push r2
+push r3
+jsr Aget
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r2
+move r2 $-5
+move $-1 r0
+cmpi $-5 r0
+jgt label21_else
+push
+push $-3
+push $-4
+push r0
+push r1
+push r2
+push r3
+jsr Aswap
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r2
+move r2 $-2
+move $-3 r0
+move 1 r2
+addi r2 r0
+move r0 $-3
+jmp label21_end
+label label21_else
+label label21_end
+move $-4 r2
+move 1 r0
+addi r0 r2
+move r2 $-4
+jmp label20_start
+label label20_end
+move $7 r0
+move 1 r2
+subi r2 r0
+push
+push r0
+push $-3
+push r0
+push r1
+push r2
+push r3
+jsr Aswap
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r2
+move r2 $-2
+move $-3 r0
+move r0 $9
+unlnk
+ret
+label floorhalves
+link 2
+move 1 r0
+move r0 $-1
+label label22_start
+move $6 r1
+move $-1 r2
+move 2 r3
+muli r3 r2
+cmpi r2 r1
+jge label22_end
+move $-1 r0
+move 1 r1
+addi r1 r0
+move r0 $-1
+move $6 r3
+move $-1 r1
+move 2 r0
+muli r0 r1
+cmpi r1 r3
+jge label23_else
+move $-1 r3
+move r3 $-2
+jmp label23_end
+label label23_else
+label label23_end
+jmp label22_start
+label label22_end
+move $-2 r0
+move r0 $7
+unlnk
+ret
+label qsort
+link 2
+sys writes sorting
+sys writei $7
+sys writes sep
+sys writei $6
+sys writes eol
+move $7 r0
+move $6 r1
+move 1 r2
+subi r2 r1
+cmpi r1 r0
+jle label24_else
+move $7 r3
+move $6 r0
+subi $7 r0
+push
+push r0
+push r0
+push r1
+push r2
+push r3
+jsr floorhalves
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r2
+addi r2 r3
+move r3 $-1
+push
+push $7
+push $6
+push $-1
+push r0
+push r1
+push r2
+push r3
+jsr partition
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop
+pop r2
+move r2 $-1
+push
+push $7
+push $-1
+push r0
+push r1
+push r2
+push r3
+jsr qsort
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r3
+move r3 $-2
+move $-1 r2
+move 1 r3
+addi r3 r2
+push
+push r2
+push $6
+push r0
+push r1
+push r2
+push r3
+jsr qsort
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r3
+move r3 $-2
+jmp label24_end
+label label24_else
+label label24_end
+move 0 r3
+move r3 r0
+move r0 $8
+unlnk
+ret
+label readinput
+link 3
+label label25_start
+move $6 r0
+cmpi $-1 r0
+jge label25_end
+sys writes input
+sys writei $-1
+sys writes closebr
+sys writes eq
+sys readi $-2
+push
+push $-1
+push $-2
+push r0
+push r1
+push r2
+push r3
+jsr Aset
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r1
+move r1 $-3
+move $-1 r2
+move 1 r3
+addi r3 r2
+move r2 $-1
+jmp label25_start
+label label25_end
+move 0 r0
+move r0 r0
+move r0 $7
+unlnk
+ret
+label main
+link 3
+move 10 r0
+move r0 MAXLEN
+push
+push MAXLEN
+push r0
+push r1
+push r2
+push r3
+jsr readinput
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r1
+move r1 $-1
+move 5 r2
+push
+push r2
+push r0
+push r1
+push r2
+push r3
+jsr printarray
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r3
+move r3 $-1
+sys writes eol
+sys writes sorting
+sys writes eol
+move 0 r0
+push
+push r0
+push MAXLEN
+push r0
+push r1
+push r2
+push r3
+jsr qsort
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r1
+move r1 $-1
+move 5 r2
+push
+push r2
+push r0
+push r1
+push r2
+push r3
+jsr printarray
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r3
+move r3 $-1
+end
