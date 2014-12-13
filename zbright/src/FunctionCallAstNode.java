@@ -36,14 +36,15 @@ public class FunctionCallAstNode extends AstNode {
 
   public String toTiny() {
     List<String> valuesForStack = new ArrayList<String>();
-    for (AstNode node : children) {
-      valuesForStack.add(node.toTiny());
-    }
     String pushList = "", popList = "";
+    for (AstNode node : children) {
+      String tempResult = node.toTiny();
+      valuesForStack.add(tempResult);
+    	pushList += "push " + tempResult + "\n";
+      RegCounter.makeClean(tempResult);
+    }
     System.out.println("push");
     for (String value : valuesForStack) {
-    	pushList += "push " + value + "\n";
-      RegCounter.makeClean(value);
     	popList += "pop\n";
     }
     System.out.print(pushList);
