@@ -120,10 +120,10 @@ label label0_start
 move $9 r0
 cmpr $-3 r0
 jge label0_end
+push
 move $-3 r1
 mulr $-1 r1
 addr $7 r1
-push
 push r1
 push r0
 push r1
@@ -161,10 +161,10 @@ sys writes ins3
 sys readr $-2
 sys writes ins
 sys readr $-3
-move $-2 r0
-subr $-1 r0
 push
 push $-3
+move $-2 r0
+subr $-1 r0
 push r0
 push $-1
 push $-2

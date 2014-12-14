@@ -202,12 +202,10 @@ ret
 jmp label0_end
 label label0_else
 push
-;                          OperatorAstNode@14e8b5fe
 move 1 r2
 move $6 r3
 subr r2 r3
 push r3
-
 push r0
 push r1
 push r2
@@ -299,18 +297,11 @@ move r0 $-4
 move 5 r0
 move r0 $-5
 push
-;                          LiteralAstNode@103b1799
 move 1 r0
 push r0
-
-;                          FunctionCallAstNode@178a4622
 push
-;                          VariableAstNode@77026e40
 push $-1
-
-;                          VariableAstNode@409468ca
 push $-2
-
 push r0
 push r1
 push r2
@@ -324,17 +315,10 @@ pop
 pop
 pop r1
 push r1
-
-;                          FunctionCallAstNode@4f6bc6e5
 push
-;                          FunctionCallAstNode@2ccf0d1f
 push
-;                          VariableAstNode@4d668534
 push $-2
-
-;                          VariableAstNode@5b3409f
 push $-3
-
 push r0
 push r1
 push r2
@@ -348,7 +332,6 @@ pop
 pop
 pop r2
 push r2
-
 push r0
 push r1
 push r2
@@ -361,43 +344,28 @@ pop r0
 pop
 pop r3
 push r3
-
-;                          OperatorAstNode@3b5789a5
 move 10 r0
 move $-5 r1
 addr r0 r1
 push r1
-
-;                          OperatorAstNode@700dce12
 move $-1 r2
 addr $-2 r2
 push r2
-
-;                          OperatorAstNode@1a543937
 move $-3 r3
 addr $-5 r3
 push r3
-
-;                          OperatorAstNode@f785762
 move 5 r0
 addi $-1 r0
 push r0
-
-;                          OperatorAstNode@25b0eadd
 move 3 r1
 move $-2 r2
 divr r1 r2
 push r2
-
-;                          OperatorAstNode@20b6680
 move 3 r3
 divi $-2 r3
 push r3
-
-;                          LiteralAstNode@3a765e8c
 move 17 r0
 push r0
-
 push r0
 push r1
 push r2
@@ -422,58 +390,38 @@ move r1 $-6
 sys writes eol
 sys writes eol
 push
-;                          OperatorAstNode@31395750
 move $-1 r0
 addr $-2 r0
 push r0
-
-;                          OperatorAstNode@2b935e6f
 move $-3 r1
 addr $-4 r1
 push r1
-
-;                          OperatorAstNode@581cdfc2
 move $-1 r2
 addr $-2 r2
 addr $-3 r2
 push r2
-
-;                          OperatorAstNode@4fa666bf
 move $-1 r3
 addr $-2 r3
 move $-4 r0
 mulr $-3 r0
 addr r0 r3
 push r3
-
-;                          VariableAstNode@35a3ae73
 push $-1
-
-;                          VariableAstNode@d121b88
 push $-2
-
-;                          VariableAstNode@1fcd846c
 push $-3
-
-;                          OperatorAstNode@6db0dec3
 move $-4 r1
 mulr $-5 r1
 divr $-1 r1
 mulr $-2 r1
 push r1
-
-;                          OperatorAstNode@76f10c77
 move $-1 r2
 mulr $-3 r2
 mulr $-3 r2
 mulr $-3 r2
 push r2
-
-;                          OperatorAstNode@4b6995a2
 move $-5 r0
 addr $-4 r0
 push r0
-
 push r0
 push r1
 push r2

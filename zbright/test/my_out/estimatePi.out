@@ -219,10 +219,10 @@ unlnk
 ret
 jmp label0_end
 label label0_else
+push
 move 1 r2
 move $6 r3
 subr r2 r3
-push
 push r3
 push r0
 push r1
@@ -312,6 +312,7 @@ move $6 r0
 cmpr $-2 r0
 jge label3_end
 push
+push
 push $-2
 push r0
 push r1
@@ -324,9 +325,8 @@ pop r1
 pop r0
 pop
 pop r1
-move 2 r2
-push
 push r1
+move 2 r2
 push r2
 push r0
 push r1
@@ -340,12 +340,12 @@ pop r0
 pop
 pop
 pop r3
+push
 move 2 r0
+push r0
 move 1 r1
 move $-2 r2
 addr r1 r2
-push
-push r0
 push r2
 push r0
 push r1
@@ -360,11 +360,11 @@ pop
 pop
 pop r0
 mulr r0 r3
+push
 move 2 r1
 muli $-2 r1
 move 1 r2
 addi r2 r1
-push
 push r1
 push r0
 push r1
@@ -402,6 +402,7 @@ move $6 r0
 cmpr $-2 r0
 jge label4_end
 push
+push
 push $-2
 push r0
 push r1
@@ -414,9 +415,8 @@ pop r1
 pop r0
 pop
 pop r1
-move 2 r2
-push
 push r1
+move 2 r2
 push r2
 push r0
 push r1
@@ -430,11 +430,11 @@ pop r0
 pop
 pop
 pop r3
+push
 move 2 r0
 muli $-2 r0
 move 1 r1
 addi r1 r0
-push
 push r0
 push r0
 push r1

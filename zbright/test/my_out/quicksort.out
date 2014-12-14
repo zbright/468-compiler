@@ -717,11 +717,11 @@ pop r0
 pop
 pop r0
 move r0 $-1
+push
+push $6
 move 1 r0
 move $7 r1
 subi r0 r1
-push
-push $6
 push r1
 push r0
 push r1
@@ -792,10 +792,10 @@ addi r0 r1
 move r1 $-4
 jmp label20_start
 label label20_end
+push
 move 1 r0
 move $7 r1
 subi r0 r1
-push
 push r1
 push $-3
 push r0
@@ -860,9 +860,9 @@ move $6 r2
 subi r1 r2
 cmpi r2 r0
 jle label24_else
+push
 move $6 r3
 subi $7 r3
-push
 push r3
 push r0
 push r1
@@ -912,10 +912,10 @@ pop
 pop
 pop r0
 move r0 $-2
+push
 move 1 r0
 move $-1 r1
 addi r0 r1
-push
 push r1
 push $6
 push r0
@@ -995,8 +995,8 @@ pop r0
 pop
 pop r0
 move r0 $-1
-move 5 r0
 push
+move 5 r0
 push r0
 push r0
 push r1
@@ -1013,8 +1013,8 @@ move r1 $-1
 sys writes eol
 sys writes sorting
 sys writes eol
-move 0 r0
 push
+move 0 r0
 push r0
 push MAXLEN
 push r0
@@ -1030,8 +1030,8 @@ pop
 pop
 pop r1
 move r1 $-1
-move 5 r0
 push
+move 5 r0
 push r0
 push r0
 push r1

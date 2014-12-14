@@ -72,10 +72,10 @@ unlnk
 ret
 jmp label0_end
 label label0_else
+push
 move 1 r2
 move $6 r3
 subi r2 r3
-push
 push r3
 push r0
 push r1
