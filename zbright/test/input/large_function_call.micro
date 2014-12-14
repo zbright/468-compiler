@@ -1,0 +1,66 @@
+PROGRAM estimatePi
+BEGIN
+    STRING eol := "\n"; 
+
+    FUNCTION FLOAT factorial(FLOAT x) 
+    BEGIN 
+        FLOAT ret,tret; 
+        IF (x = 0) 
+            RETURN 1; 
+        ELSE 
+            tret := factorial(x-1); 
+            ret := tret*x; 
+        ENDIF 
+        RETURN ret; 
+    END
+
+    FUNCTION FLOAT exponential(FLOAT x, FLOAT y) 
+    BEGIN 
+        FLOAT result; 
+        result := 1.0;
+        WHILE(y>0)
+            result := result * x;
+            y := y-1;
+        ENDWHILE 
+ 
+         
+        RETURN result; 
+    END
+
+    FUNCTION INT largecall(FLOAT x, FLOAT y, FLOAT z, FLOAT w, FLOAT a, FLOAT b, FLOAT c, FLOAT d, FLOAT e, FLOAT f)
+    BEGIN
+      FLOAT result;
+      WRITE(x,eol);
+      WRITE(y,eol);
+      WRITE(z,eol);
+      WRITE(w,eol);
+      WRITE(a,eol);
+      WRITE(b,eol);
+      WRITE(c,eol);
+      WRITE(d,eol);
+      WRITE(e,eol);
+      WRITE(f,eol);
+      result := x + y + z + w + a + b + c + d + e + f;
+      RETURN result;
+    END
+     
+    FUNCTION INT main() 
+    BEGIN 
+        FLOAT result;
+        FLOAT a;
+        FLOAT b;
+        FLOAT c;
+        FLOAT d;
+        FLOAT e;
+        a := 1;
+        b := 2;
+        c := 3;
+        d := 4;
+        e := 5;
+        result := largecall(1, exponential(a, b), factorial(exponential(b, c)), e + 10, a + b, c + e, 5 + a, b / 3, 3 / b, 17);
+        WRITE(eol,eol);
+        result := largecall(a+b,c+d,a+b+c,a+b+(d*c),a,b,c,d*e/a*b,a*c*c*c,e+d);
+
+        WRITE(result,eol); 
+    END 
+END

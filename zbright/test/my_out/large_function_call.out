@@ -1,0 +1,500 @@
+;IR code
+;LABEL factorial
+;LINK
+;STOREI 0 $T1
+;NE $P1 $T1 label0_else
+;STOREI 1 $T2
+;STOREF $T2 $R
+;RET
+;JUMP label0_end
+;LABEL label0_else
+;STOREI 1 $T3
+;SUBF $P1 $T3 $T4
+;PUSH
+;PUSH $T4
+;JSR factorial
+;POP
+;POP $T5
+;STOREF $T5 $L1
+;MULTF $L1 $P1 $T6
+;STOREF $T6 $L2
+;LABEL label0_end
+;STOREF $L2 $R
+;RET
+;LABEL exponential
+;LINK
+;STOREF 1.0 $T1
+;STOREF $T1 $L1
+;LABEL label1_start
+;STOREI 0 $T2
+;LE $P2 $T2 label1_end
+;MULTF $L1 $P1 $T3
+;STOREF $T3 $L1
+;STOREI 1 $T4
+;SUBF $P2 $T4 $T5
+;STOREF $T5 $P2
+;JUMP label1_start
+;LABEL label1_end
+;STOREF $L1 $R
+;RET
+;LABEL largecall
+;LINK
+;WRITEF $P1
+;WRITES eol
+;WRITEF $P2
+;WRITES eol
+;WRITEF $P3
+;WRITES eol
+;WRITEF $P4
+;WRITES eol
+;WRITEF $P5
+;WRITES eol
+;WRITEF $P6
+;WRITES eol
+;WRITEF $P7
+;WRITES eol
+;WRITEF $P8
+;WRITES eol
+;WRITEF $P9
+;WRITES eol
+;WRITEF $P10
+;WRITES eol
+;ADDF $P1 $P2 $T1
+;ADDF $T1 $P3 $T2
+;ADDF $T2 $P4 $T3
+;ADDF $T3 $P5 $T4
+;ADDF $T4 $P6 $T5
+;ADDF $T5 $P7 $T6
+;ADDF $T6 $P8 $T7
+;ADDF $T7 $P9 $T8
+;ADDF $T8 $P10 $T9
+;STOREF $T9 $L1
+;STOREF $L1 $R
+;RET
+;LABEL main
+;LINK
+;STOREI 1 $T1
+;STOREF $T1 $L1
+;STOREI 2 $T2
+;STOREF $T2 $L2
+;STOREI 3 $T3
+;STOREF $T3 $L3
+;STOREI 4 $T4
+;STOREF $T4 $L4
+;STOREI 5 $T5
+;STOREF $T5 $L5
+;STOREI 1 $T6
+;PUSH
+;PUSH $L1
+;PUSH $L2
+;JSR exponential
+;POP
+;POP
+;POP $T7
+;PUSH
+;PUSH $L2
+;PUSH $L3
+;JSR exponential
+;POP
+;POP
+;POP $T8
+;PUSH
+;PUSH $T8
+;JSR factorial
+;POP
+;POP $T9
+;STOREI 10 $T10
+;ADDF $L5 $T10 $T11
+;ADDF $L1 $L2 $T12
+;ADDF $L3 $L5 $T13
+;STOREI 5 $T14
+;ADDI $T14 $L1 $T15
+;STOREI 3 $T16
+;DIVF $L2 $T16 $T17
+;STOREI 3 $T18
+;DIVI $T18 $L2 $T19
+;STOREI 17 $T20
+;PUSH
+;PUSH $T6
+;PUSH $T7
+;PUSH $T9
+;PUSH $T11
+;PUSH $T12
+;PUSH $T13
+;PUSH $T15
+;PUSH $T17
+;PUSH $T19
+;PUSH $T20
+;JSR largecall
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP $T21
+;STOREF $T21 $L6
+;WRITES eol
+;WRITES eol
+;ADDF $L1 $L2 $T22
+;ADDF $L3 $L4 $T23
+;ADDF $L1 $L2 $T24
+;ADDF $T24 $L3 $T25
+;ADDF $L1 $L2 $T26
+;MULTF $L4 $L3 $T27
+;ADDF $T26 $T27 $T28
+;MULTF $L4 $L5 $T29
+;DIVF $T29 $L1 $T30
+;MULTF $T30 $L2 $T31
+;MULTF $L1 $L3 $T32
+;MULTF $T32 $L3 $T33
+;MULTF $T33 $L3 $T34
+;ADDF $L5 $L4 $T35
+;PUSH
+;PUSH $T22
+;PUSH $T23
+;PUSH $T25
+;PUSH $T28
+;PUSH $L1
+;PUSH $L2
+;PUSH $L3
+;PUSH $T31
+;PUSH $T34
+;PUSH $T35
+;JSR largecall
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP
+;POP $T36
+;STOREF $T36 $L6
+;WRITEF $L6
+;WRITES eol
+;tiny code
+str eol "\n"
+push
+push r0
+push r1
+push r2
+push r3
+jsr main
+sys halt
+label factorial
+link 2
+move 0 r0
+cmpr $6 r0
+jne label0_else
+move 1 r1
+move r1 r0
+move r0 $7
+unlnk
+ret
+jmp label0_end
+label label0_else
+push
+;                          OperatorAstNode@14e8b5fe
+move 1 r2
+move $6 r3
+subr r2 r3
+push r3
+
+push r0
+push r1
+push r2
+push r3
+jsr factorial
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r0
+move r0 $-1
+move $-1 r0
+mulr $6 r0
+move r0 $-2
+label label0_end
+move $-2 r0
+move r0 $7
+unlnk
+ret
+label exponential
+link 1
+move 1.0 r0
+move r0 $-1
+label label1_start
+move 0 r0
+cmpr $6 r0
+jle label1_end
+move $-1 r1
+mulr $7 r1
+move r1 $-1
+move 1 r0
+move $6 r1
+subr r0 r1
+move r1 $6
+jmp label1_start
+label label1_end
+move $-1 r0
+move r0 $8
+unlnk
+ret
+label largecall
+link 1
+sys writer $15
+sys writes eol
+sys writer $14
+sys writes eol
+sys writer $13
+sys writes eol
+sys writer $12
+sys writes eol
+sys writer $11
+sys writes eol
+sys writer $10
+sys writes eol
+sys writer $9
+sys writes eol
+sys writer $8
+sys writes eol
+sys writer $7
+sys writes eol
+sys writer $6
+sys writes eol
+move $15 r0
+addr $14 r0
+addr $13 r0
+addr $12 r0
+addr $11 r0
+addr $10 r0
+addr $9 r0
+addr $8 r0
+addr $7 r0
+addr $6 r0
+move r0 $-1
+move $-1 r0
+move r0 $16
+unlnk
+ret
+label main
+link 6
+move 1 r0
+move r0 $-1
+move 2 r0
+move r0 $-2
+move 3 r0
+move r0 $-3
+move 4 r0
+move r0 $-4
+move 5 r0
+move r0 $-5
+push
+;                          LiteralAstNode@103b1799
+move 1 r0
+push r0
+
+;                          FunctionCallAstNode@178a4622
+push
+;                          VariableAstNode@77026e40
+push $-1
+
+;                          VariableAstNode@409468ca
+push $-2
+
+push r0
+push r1
+push r2
+push r3
+jsr exponential
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r1
+push r1
+
+;                          FunctionCallAstNode@4f6bc6e5
+push
+;                          FunctionCallAstNode@2ccf0d1f
+push
+;                          VariableAstNode@4d668534
+push $-2
+
+;                          VariableAstNode@5b3409f
+push $-3
+
+push r0
+push r1
+push r2
+push r3
+jsr exponential
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop r2
+push r2
+
+push r0
+push r1
+push r2
+push r3
+jsr factorial
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop r3
+push r3
+
+;                          OperatorAstNode@3b5789a5
+move 10 r0
+move $-5 r1
+addr r0 r1
+push r1
+
+;                          OperatorAstNode@700dce12
+move $-1 r2
+addr $-2 r2
+push r2
+
+;                          OperatorAstNode@1a543937
+move $-3 r3
+addr $-5 r3
+push r3
+
+;                          OperatorAstNode@f785762
+move 5 r0
+addi $-1 r0
+push r0
+
+;                          OperatorAstNode@25b0eadd
+move 3 r1
+move $-2 r2
+divr r1 r2
+push r2
+
+;                          OperatorAstNode@20b6680
+move 3 r3
+divi $-2 r3
+push r3
+
+;                          LiteralAstNode@3a765e8c
+move 17 r0
+push r0
+
+push r0
+push r1
+push r2
+push r3
+jsr largecall
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop r1
+move r1 $-6
+sys writes eol
+sys writes eol
+push
+;                          OperatorAstNode@31395750
+move $-1 r0
+addr $-2 r0
+push r0
+
+;                          OperatorAstNode@2b935e6f
+move $-3 r1
+addr $-4 r1
+push r1
+
+;                          OperatorAstNode@581cdfc2
+move $-1 r2
+addr $-2 r2
+addr $-3 r2
+push r2
+
+;                          OperatorAstNode@4fa666bf
+move $-1 r3
+addr $-2 r3
+move $-4 r0
+mulr $-3 r0
+addr r0 r3
+push r3
+
+;                          VariableAstNode@35a3ae73
+push $-1
+
+;                          VariableAstNode@d121b88
+push $-2
+
+;                          VariableAstNode@1fcd846c
+push $-3
+
+;                          OperatorAstNode@6db0dec3
+move $-4 r1
+mulr $-5 r1
+divr $-1 r1
+mulr $-2 r1
+push r1
+
+;                          OperatorAstNode@76f10c77
+move $-1 r2
+mulr $-3 r2
+mulr $-3 r2
+mulr $-3 r2
+push r2
+
+;                          OperatorAstNode@4b6995a2
+move $-5 r0
+addr $-4 r0
+push r0
+
+push r0
+push r1
+push r2
+push r3
+jsr largecall
+pop r3
+pop r2
+pop r1
+pop r0
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop r3
+move r3 $-6
+sys writer $-6
+sys writes eol
+end
